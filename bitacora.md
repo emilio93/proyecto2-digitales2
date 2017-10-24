@@ -5,7 +5,9 @@
 	_23/10/17_
 
 	_Se inicia a las 10:04_
-	_Boa se desconecta a las 10:56
+	_Boa se desconecta a las 10:56_
+	_Emilio se desconecta a las 12:34_
+	_Robin se desconecta a las 1:00_
 	_Son h_
 
 	- Revision del enunciado
