@@ -1,19 +1,38 @@
-
+`timescale 1ns/1ps
 `define BUF_WIDTH 3
+
+//liberia de celdas cmos
+`ifndef cmos_cells
+	`include "../lib/cmos_cells.v"
+`endif
+//include de design under test(DUT), units under test(UUT)
+`ifndef fifo
+  `include "../bloques/FIFO/fifo.v"
+`endif
+`ifndef fifoSynth
+  `include "../build/fifo-sintetizado.v"
+`endif
 
 module fifo_test();
 reg clk, rst, wr_en, rd_en ;
 reg[7:0] buf_in;
 reg[7:0] tempdata;
-wire [7:0] buf_out;
-wire [`BUF_WIDTH :0] fifo_counter;
+wire buf_full, buf_fullSynth, buf_empty, buf_emptySynth;
+wire [7:0] buf_out, buf_outSynth;
+wire [`BUF_WIDTH :0] fifo_counter, fifo_counterSynth;
 
 fifo ff( .clk(clk), .rst(rst), .buf_in(buf_in), .buf_out(buf_out),
          .wr_en(wr_en), .rd_en(rd_en), .buf_empty(buf_empty),
          .buf_full(buf_full), .fifo_counter(fifo_counter) );
 
+fifoSynth ffSynth( .clk(clk), .rst(rst), .buf_in(buf_in), .buf_out(buf_outSynth),
+         .wr_en(wr_en), .rd_en(rd_en), .buf_empty(buf_emptySynth),
+         .buf_full(buf_fullSynth), .fifo_counter(fifo_counterSynth) );
+
 initial
 begin
+  $dumpfile("gtkws/fifo_test.vcd");
+  $dumpvars();
    clk = 0;
    rst = 1;
         rd_en = 0;
@@ -49,7 +68,7 @@ begin
         pop(tempdata);
         pop(tempdata);
         pop(tempdata);
-   push(140);
+        push(140);
         pop(tempdata);
         push(tempdata);//
         pop(tempdata);
@@ -65,6 +84,7 @@ begin
         pop(tempdata);
         push(5);
         pop(tempdata);
+        #15 $finish;
 end
 
 always
