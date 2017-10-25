@@ -1,0 +1,12 @@
+build
+synth
+pdfs
+tests
+*.vcd
+*.out
+*.swp
+*.dot
+
+\.tags1
+
+\.tags
