@@ -1,5 +1,8 @@
 Boanerges MC
 Registro de tiempo invertido en Proyecto2, Ditales2:
-#h 11:30am-12:30pm ,10/24/17 Inicio investigacion e implementacion FIFO
-
-#h hInicio-hFin ,month/day/year actividad
+-1h 11:30am-12:30pm, 10/24/17 Inicio investigacion de posible implementacion FIFO
+-4h 8:00pm-1:00am, 10/24/17-10/25/17 busqueda de un FIFO modelo, reunion grupal,
+      agregar parte de los detalles de la reunion en la bitacora, prueba del modelo sintetizado,
+      generar gtkw, trabajo en overleaf.
+      
+#h hInicio-hFin, month/day/year actividad
