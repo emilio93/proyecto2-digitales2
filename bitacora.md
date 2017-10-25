@@ -7,8 +7,8 @@
 	_Se inicia a las 10:04_
 	_Boa se desconecta a las 10:56_
 	_Emilio se desconecta a las 12:34_
-	_Robin se desconecta a las 1:00_
-	_Son h_
+	_Robin se desconecta a la 1:00_
+	_Son 2:30 h_
 
 	- Revision del enunciado
 
@@ -50,14 +50,19 @@ _Se inicia a las 9:30_
 _Boa se desconecta a las 10:06_
 _Emilio se desconecta a las 10:08_
 _Robin se desconecta a las 10:06_
-_Son h_
+_Son 0:36 h_
 	Consideraciones para el trabajo:
 	- Pruebas de modulos especificas para el modulo
 	- Luego de unirlos, buscar en especificaciones
 		y hacer pruebas que cumplan especificaciones
 	- Implementar el envio de hash
+	- Emilio y Robin ayudaran a Boa si necesita ayuda con el tester del fifo.
 
 	Boanerges:
 		- Presento un posible modulo base para el fifo
 		- Agregara referencias al pdf, consideraciones y observaciones sobre el modelo encontrado
-		-	Comprobar el modelo sintetizado base en un testbench
+		- Comprobar el modelo sintetizado base en un testbench
+	Robin:
+		- Hara los dibujos de todos los bloques a poner en el PDF
+	Emilio:
+		- Ya ha investigado algo del round robin. 
