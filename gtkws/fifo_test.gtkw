@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.66 (w)1999-2015 BSI
-[*] Wed Oct 25 04:59:04 2017
+[*] Sun Oct 29 09:18:26 2017
 [*]
-[dumpfile] "/home/ubuntu/BMC_git/proyecto1-digitalesii/gtkws/fifo_test.vcd"
-[dumpfile_mtime] "Wed Oct 25 04:54:36 2017"
-[dumpfile_size] 103953
+[dumpfile] "/home/ubuntu/BMC_git/proyecto2-digitales2/gtkws/fifo_test.vcd"
+[dumpfile_mtime] "Sun Oct 29 09:11:55 2017"
+[dumpfile_size] 66366
 [savefile] "/home/ubuntu/BMC_git/proyecto2-digitales2/gtkws/fifo_test.gtkw"
 [timestart] 0
 [size] 1000 600
 [pos] -1 -1
-*-15.639227 75000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-16.436766 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [sst_width] 225
 [signals_width] 206
 [sst_expanded] 1
@@ -17,10 +17,27 @@
 @28
 fifo_test.clk
 fifo_test.rst
-fifo_test.wr_en
 fifo_test.rd_en
+fifo_test.wr_en
 @22
-fifo_test.buf_in[7:0]
+fifo_test.buf_in[3:0]
+[color] 3
+fifo_test.buf_out[3:0]
+@23
+[color] 2
+fifo_test.buf_outSynth[3:0]
+@22
+[color] 3
+fifo_test.fifo_counter[3:0]
+@23
+[color] 2
+fifo_test.fifo_counterSynth[3:0]
+@28
+[color] 3
+fifo_test.buf_full
+@29
+[color] 2
+fifo_test.buf_fullSynth
 @28
 [color] 3
 fifo_test.buf_empty
@@ -29,21 +46,15 @@ fifo_test.buf_empty
 fifo_test.buf_emptySynth
 @28
 [color] 3
-fifo_test.buf_full
+fifo_test.almost_empty
 @29
 [color] 2
-fifo_test.buf_fullSynth
-@22
+fifo_test.almost_emptySynth
+@28
 [color] 3
-fifo_test.buf_out[7:0]
-@23
+fifo_test.almost_full
+@29
 [color] 2
-fifo_test.buf_outSynth[7:0]
-@22
-[color] 3
-fifo_test.fifo_counter[3:0]
-@23
-[color] 2
-fifo_test.fifo_counterSynth[3:0]
+fifo_test.almost_fullSynth
 [pattern_trace] 1
 [pattern_trace] 0
