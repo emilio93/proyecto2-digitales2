@@ -28,21 +28,21 @@ opt
 show -prefix pdfs/$vlogModuleName-memory_opt -format pdf -colors 3 -viewer echo $vlogModuleName
 
 techmap
-show -prefix pdfs/$vlogModuleName-techmap -format pdf -colors 3 -viewer echo $vlogModuleName
+# show -prefix pdfs/$vlogModuleName-techmap -format pdf -colors 3 -viewer echo $vlogModuleName
 
 opt
-show -prefix pdfs/$vlogModuleName-techmap_opt -format pdf -colors 3 -viewer echo $vlogModuleName
+# show -prefix pdfs/$vlogModuleName-techmap_opt -format pdf -colors 3 -viewer echo $vlogModuleName
 
 write_verilog ./build/$vlogModuleName-rtlil.v
 
 dfflibmap -liberty ./lib/cmos_cells.lib
 
-show -prefix pdfs/$vlogModuleName-dff_seq -lib ./lib/cmos_cells.v -format pdf -colors 3 -viewer echo $vlogModuleName
+# show -prefix pdfs/$vlogModuleName-dff_seq -lib ./lib/cmos_cells.v -format pdf -colors 3 -viewer echo $vlogModuleName
 
 abc -liberty ./lib/cmos_cells.lib
-show -prefix pdfs/$vlogModuleName-abc_comb -lib ./lib/cmos_cells.v -format pdf -colors 3 -viewer echo $vlogModuleName
+# show -prefix pdfs/$vlogModuleName-abc_comb -lib ./lib/cmos_cells.v -format pdf -colors 3 -viewer echo $vlogModuleName
 
 clean
 
-show -prefix pdfs/$vlogModuleName-synth -lib ./lib/cmos_cells.v -viewer echo -format pdf -colors 3 -viewer echo $vlogModuleName
+# show -prefix pdfs/$vlogModuleName-synth -lib ./lib/cmos_cells.v -viewer echo -format pdf -colors 3 -viewer echo $vlogModuleName
 write_verilog ./build/$vlogModuleName-sintetizado.v

@@ -1,3 +1,6 @@
+folder=build
+# folder=$1
+
 cd build
 for file in ./*-sintetizado.v; do
   moduleName=${file/.\//}
@@ -5,6 +8,6 @@ for file in ./*-sintetizado.v; do
   newModuleName=${moduleName}Synth
   echo "${file}:"
   echo "    ${moduleName} -> ${newModuleName}"
-  echo "sed -i \"s/module ${moduleName}/module  ${newModuleName}/\" \"${file}\""
+  echo "sed -i \"s/module ${moduleName}/module  ${newModuleName}/g\" \"${file}\""
   sed -i "s/module ${moduleName}/module  ${newModuleName}/" "${file}"
 done
