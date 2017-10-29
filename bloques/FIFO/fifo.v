@@ -15,13 +15,18 @@ parameter BUF_SIZE = ( 1<<BUF_WIDTH ); // 1 << 3 = 100 binario = 8 decimal, 8 po
 reg [(BUF_WIDTH-1):0]  rd_ptr, wr_ptr; // pointer to read and write addresses
 reg [3:0] buf_mem [(BUF_SIZE-1) : 0]; // Memoria: 4bits * (BUF_SIZE-1)posiciones
 
-//banderas segun conteo de datos en el fifo
-always @(fifo_counter)
-begin
+//banderas empty, full segun conteo de datos en el fifo
+always @(fifo_counter) begin
    buf_empty = (fifo_counter==0);
    buf_full = (fifo_counter== BUF_SIZE);
-
 end
+//banderas almost_empty, almost_full segun conteo de datos en el fifo
+always @(fifo_counter) begin
+   almost_full = (fifo_counter == (BUF_SIZE-2));//se activa cuando faltan 2 espacios para lleno
+   almost_empty = (fifo_counter == 3);//se activa cuando lleva mas de 2 posiciones llenas
+end
+
+
 
 //conteo de datos en el fifo ingresados o sacados
 always @(posedge clk or posedge rst)
