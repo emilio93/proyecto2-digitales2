@@ -14,11 +14,46 @@ Emilio Rojas
 Propuesta de diseño
 ===
 
-Sqwertyuio:
-- wertyu
-- asd
+A seguir la especificación del proyecto
+<br >
+<br >
+
+
+
+Algunos conceptos importantes:
+===
 
 ---
+
+Quality of Service
+===
+<br >
+<br >
+
+<img style="float: right;" src="https://www.howtogeek.com/wp-content/uploads/2016/03/img_56eed7b28119c.png"  height="400" width="520">
+
+- Latencia
+ <br >
+- Ancho de banda efectivo
+ <br >
+- Razon de transmision
+
+---
+
+Arbitraje en sistemas digitales
+===
+<br >
+<br >
+<br >
+
+<img style="float: right;" src="http://www.snapptraffic.com/wp-content/uploads/2013/07/Round_Robin_Distribution_Graphic1.jpg">
+
+- Arbitraje de canal virtual
+ <br >
+- Arbitraje de puertos
+
+---
+
 
 ![center](presentacion-1/Proyecto2.svg)
 
