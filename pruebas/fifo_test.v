@@ -5,7 +5,7 @@
 `endif
 //include de design under test(DUT), units under test(UUT)
 `ifndef fifo
-  `include "../bloques/FIFO/fifo.v"
+  `include "../bloques/fifo/fifo.v"
 `endif
 `ifndef fifoSynth
   `include "../build/fifo-sintetizado.v"
