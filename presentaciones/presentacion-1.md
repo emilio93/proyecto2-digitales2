@@ -67,7 +67,7 @@ Evita desconexiones, reintentos y estados de espera en el enlace.
 # Creditos
 
 Se reportan _flow control credits_ (FCCs) al dispositivo conectado indicando espacio disponible en el _buffer_.
-Se reciben los FFCs en forma de paquetes en el _data link layer_ (DLLP) y se actualiza un contador de creditos.
+Se reciben los FCCs en forma de paquetes en el _data link layer_ (DLLP) y se actualiza un contador de creditos.
 Se chequea la cantidad de creditos disponibles, si no hay suficientes para el paquete, bloquea el envio hasta que sea posible continuar.
 
 ---
