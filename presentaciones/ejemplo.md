@@ -229,3 +229,24 @@ $$I_{xx}=\int\int_Ry^2f(x,y)\cdot{}dydx$$
 
 Copyright &copy; 2016 [Yuki Hattori](https://github.com/yhatt)
 This software released under the [MIT License](https://github.com/yhatt/marp/blob/master/LICENSE).
+
+---
+###### usa hashtahgs yeah
+> Use asterisks to **bold**
+# Oeded
+3. sd
+
+* dsds
+
+> - dash
+- ASHASHASHASH
+
+
+<rn@nt.com>
+
+inline lin, <http://hola.com>, sdsdssds
+
+
+this link [MakeUseOf](http://hola.com).
+
+![center](http://www.mundiario.com/media/mundiario/images/2017/01/31/2017013119131124026.png)

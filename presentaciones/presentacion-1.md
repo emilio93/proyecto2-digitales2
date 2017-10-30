@@ -1,6 +1,8 @@
 <!-- $theme: default -->
 
-Diseño de de QoS
+# Diseño de de QoS para PCI
+
+`Primera entrega`
 ===
 
 Robin Gonzalez
@@ -31,6 +33,21 @@ Sqwertyuio:
 ---
 
 # Bloque ```FIFO```
+<br >
+
+#### Diagrama de bloque   
+<br >
+<br >
+
+
+![center 150%](presentacion-1/fifodia.png)
+<br >
+
+---
+
+# Bloque ```FIFO```
+<br >
+
 #### Puertos y parametros
 ```verilog
 module fifo #(parameter BUF_WIDTH = 3)
@@ -46,8 +63,9 @@ parameter BUF_SIZE = ( 1<<BUF_WIDTH );
   
 ---
 
-
 # Bloque ```FIFO```
+<br >
+
 #### Banderas
 ```verilog
 //banderas dependientes de conteo de datos en el fifo
@@ -62,6 +80,8 @@ end
 ---  
 
 # Bloque ```FIFO```
+<br >
+
 #### Test_fifo
 
 ```verilog
@@ -86,8 +106,13 @@ endtask
 
 
 # Bloque ```FIFO```
-#### Imagen
 
+## Archivo .gtkw de las señales del FIFO
+
+
+![center](presentacion-1/fifo.png)
+
+_De: ```fifo_test.v```_
 
 
 ---  
@@ -104,6 +129,13 @@ endtask
 
  
  - __Robin__: Isdfsdfsdfsd.
- 
  - __Emilio__: Rasdsfsgfdfgfg.
  - __Boanerges__: Modulo FIFO y su tester.
+
+
+
+
+
+
+
+
