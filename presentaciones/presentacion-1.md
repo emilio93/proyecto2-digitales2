@@ -22,7 +22,7 @@ Sqwertyuio:
 
 ---
 
-### [FIFO](http://electrosofts.com/verilog/fifo.html)
+### [Bloque FIFO](http://electrosofts.com/verilog/fifo.html)
 
 - __Modelo de referencia__ 
 - __http://electrosofts.com/verilog/fifo.html__
@@ -30,64 +30,67 @@ Sqwertyuio:
 
 ---
 
-### [XIO1100 x1 PCI Express PHY](http://www.ti.com/product/XIO1100)
-  - __Frecuencia:__ De la hoja del fabricante: 
-  >fIN–DIFF
-  >Differential input frequency
-  >REFCLK+
-  >REFCLK−
-  >100 MHz The input frequency is 100 MHz + 300 ppm and
-  >− 2800 ppm including SSC–dictated variations.
-  
-  - __Potencia:__ La hoja del fabricante no indica consumo de potencia(unidades W), sin embargo indica consumo de potencia bajo. Tres modos de potencia P0, P0s y P1.
-
----
-
-### [TUSB1310A USB 3.0 Transceiver](http://www.ti.com/product/TUSB1310A)
-- __Precio:__ $9.60 por unidad al comprar 1000 unidades.
-- __Diagrama de bloques:__
-![80% center](presentacion-1/fbd_sllse32.gif)
-
----
-
-### [TUSB1310A USB 3.0 Transceiver](http://www.ti.com/product/TUSB1310A)
-  - __Frecuencia:__ 
-  Seleccionables desde 20 a 40 Mhz
-  - __Potencia:__ 
-  Desde 13 hasta 128mW
+# Bloque ```FIFO```
+#### Puertos y parametros
+```verilog
+module fifo #(parameter BUF_WIDTH = 3)
+ (
+  output buf_empty, buf_full, almost_full, almost_empty, 
+  output [3:0] buf_out,
+  output [BUF_WIDTH :0] fifo_counter, 
+  input clk, rst, wr_en, rd_en, 
+  input [3:0] buf_in
+);
+parameter BUF_SIZE = ( 1<<BUF_WIDTH );
+```
   
 ---
 
- ![center](https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/NXP_Semiconductors_Logo.svg/1200px-NXP_Semiconductors_Logo.svg.png)
- 
----
 
-### [PX1011B: PCI Express stand-alone X1 PHY](https://www.nxp.com/products/interfaces/pci-express/pci-express-stand-alone-x1-phy:PX1011B)
+# Bloque ```FIFO```
+#### Banderas
+```verilog
+//banderas dependientes de conteo de datos en el fifo
+always @(fifo_counter) begin
+   buf_empty = (fifo_counter==0);
+   buf_full = (fifo_counter== BUF_SIZE);
+   almost_full = (fifo_counter == (BUF_SIZE-2));
+   almost_empty = (fifo_counter == 3);
+end
+```
 
-- __Precio:__ $6.88 por unidad al comprar 1000 unidades.
-- __Diagrama de Bloques:__
+---  
 
-  ![center](https://www.nxp.com/assets/images/en/block-diagrams/002aac211.gif)
+# Bloque ```FIFO```
+#### Test_fifo
 
----
+```verilog
+push(13);
+pop(tempdata);
+task push;
+input [3:0] data;
+   if( buf_full )
+        $display("---Cannot push: Buffer Full---");
+        else
+        begin
+           $display("Pushed ",data );
+			buf_in = data;
+			wr_en = 1;
+            @(posedge clk);
+                #1 wr_en = 0;
+        end
+endtask
+```
 
-### [PX1011B: PCI Express stand-alone X1 PHY](https://www.nxp.com/products/interfaces/pci-express/pci-express-stand-alone-x1-phy:PX1011B)
+--- 
 
-- __Frecuencia:__ De la hoja del fabricante: 
-   > fclk(ref) 
-   > reference clock frequency 
-   > min:99.97 MHz
-   > typ:100 MHz
-   > max:100.03 MHz
 
-- __Potencia:__ De la hoja del fabricante:
+# Bloque ```FIFO```
+#### Imagen
 
-  > Power management
-    - Dissipates < 300 mW in L0 normal mode
-    - Support power management of L0, L0s and L1
 
----
 
+---  
 
 # Conclusiones del Estudio de Mercado
 
@@ -103,4 +106,4 @@ Sqwertyuio:
  - __Robin__: Isdfsdfsdfsd.
  
  - __Emilio__: Rasdsfsgfdfgfg.
- -  - __Boanerges__: Modulo FIFO y su tester.
+ - __Boanerges__: Modulo FIFO y su tester.
