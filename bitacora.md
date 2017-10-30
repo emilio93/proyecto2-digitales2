@@ -65,4 +65,25 @@ _Son 0:36 h_
 	Robin:
 		- Hara los dibujos de todos los bloques a poner en el PDF
 	Emilio:
-		- Ya ha investigado algo del round robin. 
+		- Ya ha investigado algo del round robin.
+
+
+
+### Reunion 3:
+_29/10/17_
+
+_Se inicia a las 5:45_
+_Boa se desconecta a las 0:0_
+_Robin se desconecta a las 0:0_
+_Son 0:0 h_
+
+	El modulo fifo se haya listo
+	
+	Boanerges:
+		- Modifico Fifo para cumplir con necesidares, modifico TB para cumplir con necesidades.
+		- Presentacion a exponer el lunes
+	Robin:
+		- Hara dibujo del fifo, makefile, investigara acerca de los bloques faltantes
+	Emilio:
+		-
+
