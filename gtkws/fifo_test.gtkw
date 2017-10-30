@@ -1,19 +1,20 @@
 [*]
-[*] GTKWave Analyzer v3.3.66 (w)1999-2015 BSI
-[*] Sun Oct 29 22:48:38 2017
+[*] GTKWave Analyzer v3.3.82 (w)1999-2017 BSI
+[*] Mon Oct 30 00:15:18 2017
 [*]
-[dumpfile] "/home/ubuntu/BMC_git/proyecto2-digitales2/gtkws/fifo_test.vcd"
-[dumpfile_mtime] "Sun Oct 29 22:45:11 2017"
-[dumpfile_size] 66836
-[savefile] "/home/ubuntu/BMC_git/proyecto2-digitales2/gtkws/fifo_test.gtkw"
+[dumpfile] "/root/Documents/2proydigitales/gtkws/fifo_test.vcd"
+[dumpfile_mtime] "Mon Oct 30 00:10:29 2017"
+[dumpfile_size] 66366
+[savefile] "/root/Documents/2proydigitales/gtkws/fifo_test.gtkw"
 [timestart] 0
-[size] 1000 600
-[pos] -1 -1
-*-16.436766 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[size] 1920 1021
+[pos] -44 -44
+*-15.436766 25000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] fifo_test.
 [sst_width] 225
-[signals_width] 206
+[signals_width] 244
 [sst_expanded] 1
-[sst_vpaned_height] 160
+[sst_vpaned_height] 318
 @28
 fifo_test.clk
 fifo_test.rst
@@ -21,40 +22,44 @@ fifo_test.rd_en
 fifo_test.wr_en
 @22
 fifo_test.buf_in[3:0]
-[color] 3
-fifo_test.buf_out[3:0]
-@23
-[color] 2
-fifo_test.buf_outSynth[3:0]
+@200
+-
 @22
 [color] 3
-fifo_test.fifo_counter[3:0]
-@23
-[color] 2
-fifo_test.fifo_counterSynth[3:0]
-@28
+fifo_test.buf_out[3:0]
 [color] 3
-fifo_test.buf_full
-@29
-[color] 2
-fifo_test.buf_fullSynth
+fifo_test.fifo_counter[3:0]
 @28
 [color] 3
 fifo_test.buf_empty
-@29
-[color] 2
-fifo_test.buf_emptySynth
-@28
+fifo_test.ff.almost_empty
+fifo_test.ff.almost_full
+fifo_test.ffSynth.almost_empty
+fifo_test.ffSynth.almost_full
+[color] 3
+fifo_test.buf_full
 [color] 3
 fifo_test.almost_empty
-@29
-[color] 2
-fifo_test.almost_emptySynth
-@28
 [color] 3
 fifo_test.almost_full
-@29
+@200
+-
+@22
+[color] 2
+fifo_test.buf_outSynth[3:0]
+[color] 2
+fifo_test.fifo_counterSynth[3:0]
+@28
+[color] 2
+fifo_test.buf_fullSynth
+[color] 2
+fifo_test.buf_emptySynth
+[color] 2
+fifo_test.almost_emptySynth
 [color] 2
 fifo_test.almost_fullSynth
+@23
+[color] 2
+fifo_test.buf_outSynth[3:0]
 [pattern_trace] 1
 [pattern_trace] 0
