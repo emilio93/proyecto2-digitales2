@@ -1,4 +1,8 @@
 `timescale 1ns/1ps
+
+`ifndef fifo
+`define fifo
+
 //para estaciar se usar el siguiente orden
 //fifo #(.BUF_WIDTH(4)) instancia_fifo1 (asignacion de puertos .clk(clk1),... ) ;
 module fifo #(parameter BUF_WIDTH = 3)//cantidad de bits de direccionamiento a/y posiciones de memoria del fifo
@@ -93,3 +97,5 @@ begin
 
 end
 endmodule
+
+`endif
