@@ -1,0 +1,53 @@
+[*]
+[*] GTKWave Analyzer v3.3.83 (w)1999-2017 BSI
+[*] Sun Nov  5 23:06:04 2017
+[*]
+[dumpfile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/roundRobin_test.vcd"
+[dumpfile_mtime] "Sun Nov  5 23:02:51 2017"
+[dumpfile_size] 11536
+[savefile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/roundRobin_test.gtkw"
+[timestart] 0
+[size] 1638 995
+[pos] -1 -1
+*-14.729944 11800 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] roundRobin_test.
+[treeopen] roundRobin_test.roundRobinTester.
+[sst_width] 291
+[signals_width] 196
+[sst_expanded] 1
+[sst_vpaned_height] 280
+@29
+[color] 4
+roundRobin_test.roundRobinTester.clk
+[color] 4
+roundRobin_test.roundRobinTester.enb
+[color] 4
+roundRobin_test.roundRobinTester.rst
+@200
+-Entradas
+@800022
+[color] 4
+roundRobin_test.roundRobinTester.buf_empty[3:0]
+@28
+(0)roundRobin_test.roundRobinTester.buf_empty[3:0]
+(1)roundRobin_test.roundRobinTester.buf_empty[3:0]
+(2)roundRobin_test.roundRobinTester.buf_empty[3:0]
+(3)roundRobin_test.roundRobinTester.buf_empty[3:0]
+@1001200
+-group_end
+@200
+-Conductual
+@28
+[color] 3
+roundRobin_test.roundRobinTester.out_enb
+[color] 3
+roundRobin_test.roundRobinTester.selector[1:0]
+@200
+-Estructural
+@28
+[color] 2
+roundRobin_test.roundRobinTester.sint_out_enb
+[color] 2
+roundRobin_test.roundRobinTester.sint_selector[1:0]
+[pattern_trace] 1
+[pattern_trace] 0
