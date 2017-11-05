@@ -37,7 +37,7 @@ module roundRobin_test #(parameter QUEUE_QUANTITY = 4, parameter DATA_BITS = 8);
     buf_empty <= 4'b0000;
 
     # 15
-    @(posedge clk) rst = 0;
+    @(posedge clk) rst <= 0;
 
     # 40
     @(posedge clk) buf_empty[0] <= 1;
