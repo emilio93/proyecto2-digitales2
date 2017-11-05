@@ -14,7 +14,6 @@ module roundRobin_test #(parameter QUEUE_QUANTITY = 4, parameter DATA_BITS = 8);
   wire out_enb;
   wire sint_out_enb;
 
-
   roundRobinTester roundRobinTester(
     .clk(clk), .rst(rst), .enb(enb),
     .buf_empty(buf_empty),
@@ -45,6 +44,10 @@ module roundRobin_test #(parameter QUEUE_QUANTITY = 4, parameter DATA_BITS = 8);
 
     # 40
     @(posedge clk) buf_empty[0] <= 0;
+
+    # 40
+    @(posedge clk) buf_empty[2] <= 0;
+
 
     # 15 $finish;
   end
