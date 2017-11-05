@@ -26,7 +26,7 @@ roundRobin #(.QUEUE_QUANTITY(QUEUE_QUANTITY), .DATA_BITS(DATA_BITS)) roundRobinT
   .out_enb(out_enb) // Salida de dato del roundRobin
 );
 
-roundRobinSynth /*#(.QUEUE_QUANTITY(QUEUE_QUANTITY), .DATA_BITS(DATA_BITS))*/ roundRobinSynthTest(
+roundRobinSynth roundRobinSynthTest(
   .clk(clk), .rst(rst), .enb(enb),
   .buf_empty(buf_empty), // Selector de queue al cual entra el dato
   .selector(sint_selector), // dato que entra al queue

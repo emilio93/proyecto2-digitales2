@@ -14,7 +14,6 @@ module roundRobin_test #(parameter QUEUE_QUANTITY = 4, parameter DATA_BITS = 8);
   wire out_enb;
   wire sint_out_enb;
 
-
   roundRobinTester roundRobinTester(
     .clk(clk), .rst(rst), .enb(enb),
     .buf_empty(buf_empty),
@@ -29,7 +28,7 @@ module roundRobin_test #(parameter QUEUE_QUANTITY = 4, parameter DATA_BITS = 8);
   initial
   begin
     $dumpfile("gtkws/roundRobin_test.vcd");
-//    $dumpvars(0, clk, rst, enb, buf_empty, out_enb, selector, sint_selector, sint_out_enb);
+    $dumpvars();
     $display("roundRobin_test");
 
     clk <= 0;
@@ -45,6 +44,10 @@ module roundRobin_test #(parameter QUEUE_QUANTITY = 4, parameter DATA_BITS = 8);
 
     # 40
     @(posedge clk) buf_empty[0] <= 0;
+
+    # 40
+    @(posedge clk) buf_empty[2] <= 0;
+
 
     # 15 $finish;
   end
