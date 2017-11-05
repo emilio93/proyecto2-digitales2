@@ -31,13 +31,13 @@ module demux #(parameter DATA_BITS = 4) (
 
   //Funcionamiento
   always @ ( * ) begin
-	  if (enb) begin
-		  if (selector == s0 ) salida0 = entrada; 
-		  else if (selector == s1 ) salida1 = entrada; 
-		  else if (selector == s2 ) salida2 = entrada;
-		  else salida3 = entrada;
-	  end
-	  else begin
+//	  if (enb) begin
+		  if (selector == s0 ) salida0 = entrada&&enb; 
+		  else if (selector == s1 ) salida1 = entrada&&enb;
+		  else if (selector == s2 ) salida2 = entrada&&enb;
+		  else if (selector == s3 ) salida3 = entrada&&enb;
+//	  end
+			else begin
 			salida0 = 0;
 			salida1 = 0;
 		      	salida2 = 0;

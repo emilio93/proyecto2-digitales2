@@ -33,16 +33,16 @@ module mux #(parameter DATA_BITS = 4) (
   always @ ( * ) begin
 //	  case(selector)
 //if(enb) begin
-	if(selector == s0) salida = entrada0;
+	if(selector == s0) salida = entrada0&&enb;
 	else
 //		else salida = 0;
-        if(selector == s1) salida = entrada1;
+        if(selector == s1) salida = entrada1&&enb;
 	else
 //		else salida = 0;
-	if(selector == s2) salida = entrada2;
+	if(selector == s2) salida = entrada2&&enb;
 	else
 //		else salida = 0;
-	if(selector == s3) salida = entrada3;
+	if(selector == s3) salida = entrada3&enb;
 		else salida = 0;
 //	default : salida <= 0;
 //	endcase
