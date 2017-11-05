@@ -29,7 +29,7 @@ module roundRobin_test #(parameter QUEUE_QUANTITY = 4, parameter DATA_BITS = 8);
   initial
   begin
     $dumpfile("gtkws/roundRobin_test.vcd");
-    $dumpvars();
+//    $dumpvars(0, clk, rst, enb, buf_empty, out_enb, selector, sint_selector, sint_out_enb);
     $display("roundRobin_test");
 
     clk <= 0;
