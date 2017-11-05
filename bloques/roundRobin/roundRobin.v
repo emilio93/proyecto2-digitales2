@@ -26,30 +26,18 @@ module roundRobin #(parameter QUEUE_QUANTITY = 4, parameter DATA_BITS = 8) (
 
   always @ ( * ) begin
     out_enb = !buf_empty[contador];
+    selector = contador;
   end
 
-  // En modo reset
   always @ (posedge clk) begin
+    // En modo reset
     if (rst) begin
       contador <= 0 ;
+    // Contando
     end else if (enb) begin
       contador <= contador < QUEUE_QUANTITY-1? contador + 1: 0;
     end
   end
-
-  genvar i;
-  generate
-    for (i = 0; i < QUEUE_QUANTITY ; i = i + 1) begin
-      always @(posedge clk) begin
-        if (enb) begin
-          if (contador == i && !buf_empty[i]) begin
-            selector <= contador;
-            out_enb <= 1;
-          end
-        end
-      end
-    end
-  endgenerate
 
 endmodule // roundRobin
 `endif
