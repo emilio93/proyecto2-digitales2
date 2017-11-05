@@ -24,10 +24,14 @@ module roundRobin #(parameter QUEUE_QUANTITY = 4, parameter DATA_BITS = 8) (
   reg [$clog2(QUEUE_QUANTITY)-1:0] selector;
   reg out_enb;
 
+  always @ ( * ) begin
+    out_enb = !buf_empty[contador];
+  end
+
   // En modo reset
   always @ (posedge clk) begin
     if (rst) begin
-      contador <= 0-1;
+      contador <= 0 ;
     end else if (enb) begin
       contador <= contador < QUEUE_QUANTITY-1? contador + 1: 0;
     end
@@ -38,9 +42,7 @@ module roundRobin #(parameter QUEUE_QUANTITY = 4, parameter DATA_BITS = 8) (
     for (i = 0; i < QUEUE_QUANTITY ; i = i + 1) begin
       always @(posedge clk) begin
         if (enb) begin
-          if (buf_empty[i]) begin
-            out_enb <= 0;
-          end else if (contador == i && !buf_empty[i]) begin
+          if (contador == i && !buf_empty[i]) begin
             selector <= contador;
             out_enb <= 1;
           end
