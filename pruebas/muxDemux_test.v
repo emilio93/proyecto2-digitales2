@@ -27,47 +27,47 @@ reg [$clog2(DATA_BITS)-1:0] selectorMux, selectorDemux;
 reg [DATA_BITS-1:0] e0, e1, e2, e3;
 wire [DATA_BITS-1:0] s0, s1, s2, s3;
 wire [DATA_BITS-1:0] s0Synth, s1Synth, s2Synth, s3Synth;
-wire [DATA_BITS-1:0] salida;
-wire [DATA_BITS-1:0] salidaSynth;
+wire [DATA_BITS-1:0] salidaMux;
+wire [DATA_BITS-1:0] salidaSynthMux;
 
 mux #(.DATA_BITS(DATA_BITS)) mux(
 	.enb(enb),
-	.entrada0(e0),
-	.entrada1(e1),
-	.entrada2(e2),
-	.entrada3(e3),
-	.selector(selectorMux),
-	.salida(salida)
+	.entrada0_mux(e0),
+	.entrada1_mux(e1),
+	.entrada2_mux(e2),
+	.entrada3_mux(e3),
+	.selector_mux(selectorMux),
+	.salida_mux(salidaMux)
 	);
 
 muxSynth muxSynth(
 	.enb(enb),
-	.entrada0(e0),
-	.entrada1(e1),
-	.entrada2(e2),
-	.entrada3(e3),
-	.selector(selectorMux),
-	.salida(salidaSynth)
+	.entrada0_mux(e0),
+	.entrada1_mux(e1),
+	.entrada2_mux(e2),
+	.entrada3_mux(e3),
+	.selector_mux(selectorMux),
+	.salida_mux(salidaSynthMux)
 	);
 
 demux #(.DATA_BITS(DATA_BITS)) demux(
 	.enb(enb),
-	.entrada(salida),
-	.selector(selectorDemux),
-	.salida0(s0),
-	.salida1(s1),
-	.salida2(s2),
-	.salida3(s3)
+	.entrada_dmux(salidaMux),
+	.selector_dmux(selectorDemux),
+	.salida0_dmux(s0),
+	.salida1_dmux(s1),
+	.salida2_dmux(s2),
+	.salida3_dmux(s3)
 	);
 
 demuxSynth demuxSynth(
 	.enb(enb),
-	.entrada(salidaSynth),
-	.selector(selectorDemux),
-	.salida0(s0Synth),
-	.salida1(s1Synth),
-	.salida2(s2Synth),
-	.salida3(s3Synth)
+	.entrada_dmux(salidaSynthMux),
+	.selector_dmux(selectorDemux),
+	.salida0_dmux(s0Synth),
+	.salida1_dmux(s1Synth),
+	.salida2_dmux(s2Synth),
+	.salida3_dmux(s3Synth)
 	);
 
 parameter delay = 10;
@@ -76,7 +76,7 @@ initial
 begin
   $dumpfile("gtkws/muxDemux_test.vcd");
   $dumpvars();
-       
+
 	enb = 0;
 	#delay
 	selectorDemux = 2'b10;
