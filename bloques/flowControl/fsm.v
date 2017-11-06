@@ -36,7 +36,6 @@ module fsm(
   //Codificacion binario ordinario
 
   //Variables internas
-  reg [1:0] estados;
   /*
   * active7
   * pause5
@@ -87,7 +86,7 @@ module fsm(
 			pausa = 0;
 			error_full = 0;
 			idle = 0;
-			if(full >0) proximo = error;
+			if(full > 0) proximo = error;
 				else proximo =  active;
 		end
 
@@ -109,12 +108,12 @@ module fsm(
 		end
 
 		init : begin 
-			continuar = 0;
-			pausa = 0;
-			error_full = 0;
-			idle = 0;
-			if(iniciar) proximo = idleEmpty;
-				else proximo = actual;
+			continuar <= 0;
+			pausa <= 0;
+			error_full <= 0;
+			idle <= 0;
+			if(iniciar) proximo <= idleEmpty;
+				else proximo <= actual;
 		end
 
 		error : begin  

@@ -51,8 +51,10 @@ module fsm_test();
     $dumpvars();
     $display("fsm_test");
 
+    clk <= 0;
+    reset <= 1;
+
     iniciar <= 0;
-    reset <= 0;
     aFull <= 0;
     full <= 0;
     aEmpty <= 1;
@@ -60,9 +62,6 @@ module fsm_test();
     full <= 0;
 
     #delay;
-	
-    clk <= 0;
-    reset <= 1;
 
     #delay;
 
