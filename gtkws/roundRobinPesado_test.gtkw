@@ -1,0 +1,63 @@
+[*]
+[*] GTKWave Analyzer v3.3.83 (w)1999-2017 BSI
+[*] Mon Nov  6 06:08:27 2017
+[*]
+[dumpfile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/roundRobinPesado_test.vcd"
+[dumpfile_mtime] "Mon Nov  6 05:56:46 2017"
+[dumpfile_size] 17765
+[savefile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/roundRobinPesado_test.gtkw"
+[timestart] 0
+[size] 1638 995
+[pos] -1 -1
+*-15.664183 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] roundRobinPesado_test.
+[treeopen] roundRobinPesado_test.rrpTester.
+[sst_width] 223
+[signals_width] 174
+[sst_expanded] 1
+[sst_vpaned_height] 281
+@29
+[color] 4
+roundRobinPesado_test.clk
+[color] 4
+roundRobinPesado_test.enb
+[color] 4
+roundRobinPesado_test.rst
+@22
+[color] 4
+roundRobinPesado_test.almost_empty[3:0]
+[color] 4
+roundRobinPesado_test.buf_empty[3:0]
+@28
+[color] 4
+roundRobinPesado_test.selector[1:0]
+[color] 4
+roundRobinPesado_test.sint_selector[1:0]
+@200
+-TEST
+@28
+[color] 3
+roundRobinPesado_test.rrpTester.test.contador[1:0]
+@22
+[color] 3
+roundRobinPesado_test.rrpTester.test.pesos[23:0]
+@28
+[color] 3
+roundRobinPesado_test.rrpTester.test.selector[1:0]
+[color] 3
+roundRobinPesado_test.rrpTester.test.selector_enb
+@200
+-SINT
+@28
+[color] 2
+roundRobinPesado_test.rrpTester.synthTest.contador[1:0]
+@22
+[color] 2
+roundRobinPesado_test.rrpTester.synthTest.pesos[23:0]
+@28
+[color] 2
+roundRobinPesado_test.rrpTester.synthTest.selector[1:0]
+[color] 2
+roundRobinPesado_test.rrpTester.synthTest.selector_enb
+[pattern_trace] 1
+[pattern_trace] 0
