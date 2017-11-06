@@ -4,10 +4,10 @@
 	`include "../lib/cmos_cells.v"
 `endif
 //include de design under test(DUT), units under test(UUT)
-`ifndef fifo
+`ifndef fifo16
   `include "../bloques/fifo/fifo16.v"
 `endif
-`ifndef fifoSynth
+`ifndef fifo16Synth
   `include "../build/fifo16-sintetizado.v"
 `endif
 
@@ -38,7 +38,7 @@ fifo16Synth ff16Synth(
 
 initial
 begin
-  $dumpfile("gtkws/fifo_test.vcd");
+  $dumpfile("gtkws/fifo16_test.vcd");
   $dumpvars();
    clk = 0;
    rst = 1;
@@ -68,7 +68,9 @@ begin
         push(11);
         push(12);
         push(13);
-
+				push(14);
+				push(15);
+				push(13);
         pop(tempdata);
         push(tempdata);
         pop(tempdata);

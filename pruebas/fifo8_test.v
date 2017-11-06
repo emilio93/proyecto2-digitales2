@@ -5,10 +5,10 @@
 `endif
 //include de design under test(DUT), units under test(UUT)
 `ifndef fifo8
-  `include "../bloques/fifo/fifo.v"
+  `include "../bloques/fifo/fifo8.v"
 `endif
 `ifndef fifo8Synth
-  `include "../build/fifo-sintetizado.v"
+  `include "../build/fifo8-sintetizado.v"
 `endif
 
 module fifo8_test #(parameter BUF_WIDTH = 3, parameter DATA_WIDTH = 4)();
@@ -22,7 +22,7 @@ wire buf_fullSynth, buf_emptySynth, almost_fullSynth, almost_emptySynth;
 wire [(DATA_WIDTH-1):0] buf_out, buf_outSynth;
 wire [BUF_WIDTH :0] fifo_counter, fifo_counterSynth;
 
-fifo #(.BUF_WIDTH(BUF_WIDTH)) ff(
+fifo8 #(.BUF_WIDTH(BUF_WIDTH)) ff8(
 	.buf_in(buf_in), .buf_out(buf_out),//datos entrada y salida
 	.clk(clk), .rst(rst), .wr_en(wr_en), .rd_en(rd_en),//señales de control
 	.buf_empty(buf_empty), .buf_full(buf_full),//banderas de estado del fifo
@@ -30,7 +30,7 @@ fifo #(.BUF_WIDTH(BUF_WIDTH)) ff(
 	.fifo_counter(fifo_counter) //contador de datos en fifo
 	);
 
-fifoSynth ffSynth(
+fifo8Synth ff8Synth(
 	.buf_in(buf_in), .buf_out(buf_outSynth),
 	.clk(clk), .rst(rst), .wr_en(wr_en), .rd_en(rd_en),
 	.buf_empty(buf_emptySynth), .buf_full(buf_fullSynth),
@@ -40,7 +40,7 @@ fifoSynth ffSynth(
 
 initial
 begin
-  $dumpfile("gtkws/fifo_test.vcd");
+  $dumpfile("gtkws/fifo8_test.vcd");
   $dumpvars();
    clk = 0;
    rst = 1;
