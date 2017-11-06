@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.82 (w)1999-2017 BSI
-[*] Mon Nov  6 08:20:33 2017
+[*] Mon Nov  6 09:39:52 2017
 [*]
 [dumpfile] "/root/Documents/2proydigitales/gtkws/fsm_test.vcd"
-[dumpfile_mtime] "Mon Nov  6 08:18:42 2017"
+[dumpfile_mtime] "Mon Nov  6 09:26:08 2017"
 [dumpfile_size] 3566
 [savefile] "/root/Documents/2proydigitales/gtkws/fsm_test.gtkw"
 [timestart] 0
 [size] 1920 1021
 [pos] -1 -1
-*-15.000000 210000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-15.000000 124300 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] fsm_test.
 [sst_width] 48
 [signals_width] 174

@@ -1,6 +1,6 @@
 <!-- $theme: default -->
 
-# Diseĺo de QoS para PCI
+# Diseño de QoS para PCI
 
 Segunda entrega
 ===
@@ -84,20 +84,16 @@ _De: ```fifo16_test.v```_
 # Bloque Mux-Demux
 <br >
 
-#### Puertos y parametros
+#### Asignaciones
 
 ```verilog
 
-module mux #(parameter DATA_BITS = 4) (
-  input enb,
-  input [DATA_BITS -1:0] entrada0_mux,
-  input [DATA_BITS -1:0] entrada1_mux,
-  input [DATA_BITS -1:0] entrada2_mux,
-  input [DATA_BITS -1:0] entrada3_mux,
-  input [$clog2(DATA_BITS) -1:0] selector_mux,
-  output [DATA_BITS -1:0] salida_mux
-);
-
+case(selector_mux)
+    2'b00 : salida_mux = entrada0_mux;
+    2'b01 : salida_mux = entrada1_mux;
+    2'b10 : salida_mux = entrada2_mux;
+    2'b11 : salida_mux = entrada3_mux;
+endcase
 ```
 ---
 
@@ -200,28 +196,34 @@ module roundRobinPesado #(
 _De: ```roundRobinPesado_test.v```_
 
 ---
-# Flow Control
+# Maquina de estados
 <br >
 
-#### Puertos y parametros
+#### Codigo
 
 ```verilog
 
-codigo
+
+always @(actual ... or init) begin
+	case(actual)
+
+		continue : begin 
+		if(full > 0) proximo = error;
+			else proximo =  active;
+	end
+		pause : begin 
+		proximo = active;
+	end  
 
 ```
 
 ---
 
-# Flow Control
-<br >
+# Maquina de estados
 
 #### Archivo .gtkw de las señales del fsm_test
-
-![center](presentacion-2/cambiar.png)
-
+![center](presentacion-2/fsm.png)
 _De: ```fsm_test.v```_
-
 ---
 
 
