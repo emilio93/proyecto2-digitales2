@@ -41,7 +41,7 @@ module roundRobinPesado_test #(parameter QUEUE_QUANTITY = 4, parameter DATA_BITS
     enb <= 1;
     buf_empty <= 4'b0000;
     fifo_counter <= {4'b1000, 4'b1000, 4'b1000, 4'b1000};
-    pesos <= {6'b100, 6'b11, 6'b10, 6'b1};
+    pesos <= {6'b110, 6'b11, 6'b10, 6'b1};
 
     # 15
     @(posedge clk) rst <= 0;
@@ -55,7 +55,7 @@ module roundRobinPesado_test #(parameter QUEUE_QUANTITY = 4, parameter DATA_BITS
     @(posedge clk) buf_empty[0] <= 0; buf_empty[1] <= 0; buf_empty[2] <= 0; buf_empty[3] <= 0;
 
 
-    # 60
+    # 160
     @(posedge clk) buf_empty[2'b11] <= 1;
     @(posedge clk) buf_empty[2'b11] <= 0;
 

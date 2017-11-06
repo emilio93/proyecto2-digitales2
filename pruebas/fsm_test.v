@@ -148,6 +148,46 @@ module fsm_test();
     empty <= 0;
     reset <= 0;
 
+    fsm.actual = 3'b100;
+    fsmSynth.actual = 3'b100;
+    #delay
+
+    fsm.actual = 3'b010;
+    fsmSynth.actual = 3'b010;
+    #delay
+
+    fsmSynth.actual = 3'b001;
+    fsm.actual = 3'b001;
+    #delay
+
+    fsmSynth.actual = 3'b110;
+    fsm.actual = 3'b110;
+    #delay
+
+    fsmSynth.actual = 3'b101;
+    fsm.actual = 3'b101;
+    #delay
+
+    fsmSynth.actual = 3'b011;
+    fsm.actual = 3'b011;
+    #delay
+
+    fsmSynth.actual = 3'b111;
+    fsm.actual = 3'b111;
+    #delay
+
+    fsmSynth.actual = 3'b101;
+    fsm.actual = 3'b101;
+    #delay
+
+    fsmSynth.actual = 3'b110;
+    fsm.actual = 3'b110;
+    #delay
+
+    fsmSynth.actual = 3'b001;
+    fsm.actual = 3'b001;
+    #delay
+
 
     # 15 $finish;
   end
