@@ -1,6 +1,6 @@
 <!-- $theme: default -->
 
-# Diseĺo de QoS para PCI
+# Diseño de QoS para PCI
 
 Segunda entrega
 ===
@@ -45,12 +45,16 @@ parameter BUF_SIZE = ( 1<<BUF_WIDTH );
 # Mux-Demux
 <br >
 
-#### Puertos y parametros
+#### Asignaciones
 
 ```verilog
 
-codigo
-
+case(selector_mux)
+    2'b00 : salida_mux = entrada0_mux;
+    2'b01 : salida_mux = entrada1_mux;
+    2'b10 : salida_mux = entrada2_mux;
+    2'b11 : salida_mux = entrada3_mux;
+endcase
 ```
 ---
 
@@ -121,23 +125,32 @@ module roundRobinPesado #(
 ![center](presentacion-2/testRoundRobinPesado.png)
 
 ---
-# Flow Control
+# Maquina de estados
 <br >
 
-#### Puertos y parametros
+#### Codigo
 
 ```verilog
 
-codigo
+
+always @(actual ... or init) begin
+	case(actual)
+
+		continue : begin 
+		if(full > 0) proximo = error;
+			else proximo =  active;
+	end
+		pause : begin 
+		proximo = active;
+	end  
 
 ```
 
 ---
 
-# Flow Control
+# Maquina de estados
 
-simulacion
-
+![center](presentacion-2/fsm.png)
 ---
 
 
