@@ -3,23 +3,26 @@
 `define isTest 1
 
 `include "../lib/cmos_cells.v"
-`include "../bloques/roundRobin/roundRobin.v"
-`include "../build/roundRobin-sintetizado.v"
-`include "../testers/roundRobinTester.v"
+`include "../bloques/roundRobin/roundRobinPesado.v"
+`include "../build/roundRobinPesado-sintetizado.v"
+`include "../testers/roundRobinPesadoTester.v"
 
-module roundRobin_test #(parameter QUEUE_QUANTITY = 4, parameter DATA_BITS = 8);
+module roundRobinPesado_test #(parameter QUEUE_QUANTITY = 4, parameter DATA_BITS = 8, MAX_WEIGHT=64, BUF_WIDTH=3);
 
   reg clk, rst, enb;
+  reg [QUEUE_QUANTITY*$clog2(MAX_WEIGHT)-1:0] pesos;
   reg [QUEUE_QUANTITY-1:0] buf_empty;
-  reg [QUEUE_QUANTITY-1:0] almost_empty;
+  reg [QUEUE_QUANTITY*BUF_WIDTH-1:0] fifo_counter;
   wire [$clog2(QUEUE_QUANTITY)-1:0] selector;
   wire [$clog2(QUEUE_QUANTITY)-1:0] sint_selector;
   wire selector_enb;
   wire sint_selector_enb;
 
-  roundRobinTester roundRobinTester(
+  roundRobinPesadoTester rrpTester(
     .clk(clk), .rst(rst), .enb(enb),
+    .pesos(pesos),
     .buf_empty(buf_empty),
+    .fifo_counter(fifo_counter),
     .selector(selector),
     .selector_enb(selector_enb),
     .sint_selector(sint_selector),
@@ -30,13 +33,15 @@ module roundRobin_test #(parameter QUEUE_QUANTITY = 4, parameter DATA_BITS = 8);
 
   initial
   begin
-    $dumpfile("gtkws/roundRobin_test.vcd");
+    $dumpfile("gtkws/roundRobinPesado_test.vcd");
     $dumpvars();
 
     clk <= 0;
     rst <= 1;
     enb <= 1;
     buf_empty <= 4'b0000;
+    fifo_counter <= {4'b1000, 4'b1000, 4'b1000, 4'b1000};
+    pesos <= {6'b100, 6'b11, 6'b10, 6'b1};
 
     # 15
     @(posedge clk) rst <= 0;
@@ -49,9 +54,6 @@ module roundRobin_test #(parameter QUEUE_QUANTITY = 4, parameter DATA_BITS = 8);
     @(posedge clk) buf_empty[0] <= 1; buf_empty[1] <= 1; buf_empty[2] <= 1; buf_empty[3] <= 1;
     @(posedge clk) buf_empty[0] <= 0; buf_empty[1] <= 0; buf_empty[2] <= 0; buf_empty[3] <= 0;
 
-    # 30
-    @(posedge clk) almost_empty[0] <= 1;
-    @(posedge clk) almost_empty[0] <= 0;
 
     # 60
     @(posedge clk) buf_empty[2'b11] <= 1;

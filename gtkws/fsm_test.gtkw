@@ -1,0 +1,85 @@
+[*]
+[*] GTKWave Analyzer v3.3.82 (w)1999-2017 BSI
+[*] Mon Nov  6 06:31:09 2017
+[*]
+[dumpfile] "/root/Documents/2proydigitales/gtkws/fsm_test.vcd"
+[dumpfile_mtime] "Mon Nov  6 06:25:25 2017"
+[dumpfile_size] 3435
+[savefile] "/root/Documents/2proydigitales/gtkws/fsm_test.gtkw"
+[timestart] 0
+[size] 1920 1021
+[pos] -44 -44
+*-15.000000 79700 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] fsm_test.
+[sst_width] 48
+[signals_width] 174
+[sst_expanded] 0
+[sst_vpaned_height] 298
+@28
+fsm_test.clk
+fsm_test.aEmpty
+fsm_test.empty
+fsm_test.aFull
+fsm_test.reset
+fsm_test.full
+fsm_test.iniciar
+@200
+-
+@800028
+[color] 3
+fsm_test.fsm.actual[2:0]
+@28
+(0)fsm_test.fsm.actual[2:0]
+(1)fsm_test.fsm.actual[2:0]
+(2)fsm_test.fsm.actual[2:0]
+@1001200
+-group_end
+@800028
+[color] 3
+fsm_test.fsm.proximo[2:0]
+@28
+(0)fsm_test.fsm.proximo[2:0]
+(1)fsm_test.fsm.proximo[2:0]
+(2)fsm_test.fsm.proximo[2:0]
+@1001200
+-group_end
+@28
+[color] 3
+fsm_test.continuar
+[color] 3
+fsm_test.error
+[color] 3
+fsm_test.pausa
+[color] 3
+fsm_test.idle
+@200
+-
+@800028
+[color] 2
+fsm_test.fsmSynth.actual[2:0]
+@28
+(0)fsm_test.fsmSynth.actual[2:0]
+(1)fsm_test.fsmSynth.actual[2:0]
+(2)fsm_test.fsmSynth.actual[2:0]
+@1001200
+-group_end
+@800028
+[color] 2
+fsm_test.fsmSynth.proximo[2:0]
+@28
+(0)fsm_test.fsmSynth.proximo[2:0]
+(1)fsm_test.fsmSynth.proximo[2:0]
+(2)fsm_test.fsmSynth.proximo[2:0]
+@1001200
+-group_end
+@28
+[color] 2
+fsm_test.continuarSynth
+[color] 2
+fsm_test.errorSynth
+[color] 2
+fsm_test.idleSynth
+[color] 2
+fsm_test.pausaSynth
+[pattern_trace] 1
+[pattern_trace] 0
