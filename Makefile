@@ -1,9 +1,11 @@
 DIRS  = build pdfs
-CC    = iverilog
-CC1   = vvp
-CC2   = gtkwave
-CC3   = yosys -c
-VPI   = -M ~/.local/install/ivl/lib/ivl
+
+CC       = iverilog
+CCFLAGS  = -Ttyp -g specify -g2005-sv
+CC1      = vvp
+CC2      = gtkwave
+CC3      = yosys -c
+VPI      = -M ~/.local/install/ivl/lib/ivl
 
 # Evita salidas de un comando
 NO_OUTPUT = > /dev/null
@@ -24,13 +26,13 @@ all: synth compile run
 # permitir el uso de macros(ifndef, define, etc)
 # Luego compila con iverilog los archivos preprocesados
 compile:
-	$(foreach test,$(wildcard pruebas/*.v),cd pruebas; $(CC) -E -DKEY=10 -o ../build/$(subst pruebas/,,$(subst .v,.pre.v,$(test))) $(subst pruebas/,,$(test)) -Ttyp -g specify;cd ..;)
-	$(foreach test,$(wildcard build/*.pre.v),cd build; $(CC) -o $(subst build/,,$(subst .pre.v,.o,$(test))) $(subst build/,,$(test)) -Ttyp -g specify;cd ..;)
+	$(foreach test,$(wildcard pruebas/*.v),cd pruebas; $(CC) -E -DKEY=10 -o ../build/$(subst pruebas/,,$(subst .v,.pre.v,$(test))) $(subst pruebas/,,$(test)) $(CCFLAGS);cd ..;)
+	$(foreach test,$(wildcard build/*.pre.v),cd build; $(CC) -o $(subst build/,,$(subst .pre.v,.o,$(test))) $(subst build/,,$(test)) $(CCFLAGS);cd ..;)
 
 # Sintetiza segun scripts de yosys dentro de las carpetas para los bloques
 synth: synthYosys renameSynths
 synthYosys:
-	$(foreach vlog,$(wildcard ./bloques/**/*.v), VLOG_FILE_NAME=$(vlog) VLOG_MODULE_NAME=$(subst .v,,$(notdir $(vlog))) CUR_DIR=$(shell pwd) $(CC3) ./yosys.tcl;)
+	$(foreach vlog,$(wildcard ./bloques/**/*.v), VLOG_FILE_NAME=$(vlog) VLOG_MODULE_NAME=$(subst .v,,$(notdir $(vlog))) CUR_DIR=$(shell pwd) $(CC3) ./yosys.tcl $(NO_OUTPUT);)
 	rm -f ./pdfs/*.dot
 # Renombra los archivos sintetizables
 renameSynths:
