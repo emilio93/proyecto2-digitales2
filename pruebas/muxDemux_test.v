@@ -25,6 +25,7 @@ parameter DATA_BITS = 4;//tamaño de words
 reg enb, selectorMux, selectorDemux;
 reg e0, e1, e2, e3;
 reg s0, s1, s2, s3;
+wire salida;
 
 mux #(.DATA_BITS(DATA_BITS)) mux(
 	.enb(enb),

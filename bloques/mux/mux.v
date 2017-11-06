@@ -24,32 +24,16 @@ module mux #(parameter DATA_BITS = 4) (
   // Salidas
   reg [DATA_BITS-1:0] salida;
 
-  parameter s0 = 2'b00,
-	    s1 = 2'b01,
-	    s2 = 2'b10,
-	    s3 = 2'b11;
-
   //Funcionamiento
   always @ ( * ) begin
-//	  case(selector)
-//if(enb) begin
-	if(selector == s0) salida = entrada0&&enb;
-	else
-//		else salida = 0;
-        if(selector == s1) salida = entrada1&&enb;
-	else
-//		else salida = 0;
-	if(selector == s2) salida = entrada2&&enb;
-	else
-//		else salida = 0;
-	if(selector == s3) salida = entrada3&enb;
-		else salida = 0;
-//	default : salida <= 0;
-//	endcase
-//	end
-//	else
-//		salida <= 0;
-
+    if (enb) begin
+      if (selector == 2'b00) salida = entrada0;
+      else if (selector == 2'b01) salida = entrada1;
+      else if (selector == 2'b10) salida = entrada2;
+      else salida = entrada3;
+    end else begin
+      salida = 0;
+    end
   end
 
 endmodule // mux
