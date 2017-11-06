@@ -51,8 +51,11 @@ module roundRobinPesado #(
 
   always @ ( * ) begin
     out_enb = !buf_empty[contador];
-    selector = contador;
-    selector_enb = 1;
+    {selector_enb, selector} = {1'b0, 2'b0};
+    if (!buf_empty[contador]) {selector_enb, selector} = {1'b1, contador};
+    else if (!buf_empty[contador+2'd1]) {selector_enb, selector} = {1'b1, contador+2'd1};
+    else if (!buf_empty[contador+2'd2]) {selector_enb, selector} = {1'b1, contador+2'd2};
+    else if (!buf_empty[contador+2'd3]) {selector_enb, selector} = {1'b1, contador+2'd3};
   end
 
   always @ (posedge clk) begin
@@ -67,7 +70,7 @@ module roundRobinPesado #(
 
     // Contando
     end else if (enb) begin
-      if (contador < QUEUE_QUANTITY-1) begin
+      if (contador < (QUEUE_QUANTITY-1)) begin
         if (contadoresPeso[contador] == 0) contador <= contador+1;
       end else begin
         if (contadoresPeso[contador] == 0) contador <= 0;
