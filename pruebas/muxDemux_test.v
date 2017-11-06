@@ -22,17 +22,18 @@ module muxDemux_test();
 
 parameter DATA_BITS = 4;//tamaño de words
 
-reg enb, selectorMux, selectorDemux;
-reg e0, e1, e2, e3;
-reg s0, s1, s2, s3;
-wire salida;
+reg enb;
+reg [$clog2(DATA_BITS)-1:0] selectorMux, selectorDemux;
+reg [DATA_BITS-1:0] e0, e1, e2, e3;
+wire [DATA_BITS-1:0] s0, s1, s2, s3;
+wire [DATA_BITS-1:0] salida;
 
 mux #(.DATA_BITS(DATA_BITS)) mux(
 	.enb(enb),
 	.entrada0(e0),
-	.entrada0(e1),
-	.entrada0(e2),
-	.entrada0(e3),
+	.entrada1(e1),
+	.entrada2(e2),
+	.entrada3(e3),
 	.selector(selectorMux),
 	.salida
 	);
@@ -40,9 +41,9 @@ mux #(.DATA_BITS(DATA_BITS)) mux(
 muxSynth muxSynth(
 	.enb(enb),
 	.entrada0(e0),
-	.entrada0(e1),
-	.entrada0(e2),
-	.entrada0(e3),
+	.entrada1(e1),
+	.entrada2(e2),
+	.entrada3(e3),
 	.selector(selectorMux),
 	.salida
 	);
@@ -104,8 +105,5 @@ begin
 	#delay
      #15 $finish;
 end
-
-always
-   #5 clk = ~clk;
 
 endmodule
