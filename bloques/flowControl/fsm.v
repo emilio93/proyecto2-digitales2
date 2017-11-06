@@ -59,81 +59,115 @@ module fsm(
 //	  if (!rst) atual <= active;
 //	  else actual <= proximo;
 //end
+  always @(posedge clk)begin
+	  actual <= proximo;
+  end
 
   always @(posedge clk)begin
-	actual <= proximo;
-	if (rst) actual <= init;
+	  if (rst) actual <= init;
+  end
+
+//  always @(posedge clk)begin
 
 //v	  else actual <= proximo;
 
-//	  always @(actual or full or almost_full or empty or almost_empty or reset or init) begin
+	always @(actual or full or almost_full or empty or almost_empty or reset or init) begin
+		case(actual)
+
+			active : begin
+				if(full > 0) proximo = error;
+					else if(almost_full > 0) proximo = pausa;
+					else if(empty > 0) proximo = idleEmpty;
+					else if(almost_empty > 0) proximo = continue;
+				else proximo = actual;
+			end
+
+			continue : begin 
+				if(full > 0) proximo = error;
+					else proximo =  active;
+			end
+
+			pause : begin 
+				proximo = active;
+			end  
+
+			idleEmpty : begin 
+				if(empty > 0) proximo = active;
+					else proximo = actual;
+			end
+
+			init : begin 
+				if(iniciar) begin 
+					proximo = 3'b011;//idleEmpty
+				end
+					else proximo = actual;
+			end
+
+			error : begin  
+				proximo = rst;
+			end
+
+			rst :  begin 
+				proximo = idleEmpty;
+			end
+
+		endcase
+	end
+
+	always @(posedge clk) begin
 	case(actual)
 
-		active : begin
-			continuar = 0;
-			pausa = 0;
-			error_full = 0;
-			idle = 0;
-			if(full > 0) proximo = error;
-				else if(almost_full > 0) proximo = pausa;
-				else if(empty > 0) proximo = idleEmpty;
-				else if(almost_empty > 0) proximo = continue;
-			else proximo = actual;
-		end
-
-		continue : begin 
-			continuar = 1;
-			pausa = 0;
-			error_full = 0;
-			idle = 0;
-			if(full > 0) proximo = error;
-				else proximo =  active;
-		end
-
-		pause : begin 
-			continuar = 0;
-			pausa = 1;
-			error_full = 0;
-			idle = 0;
-			proximo = active;
-		end  
-
-		idleEmpty : begin 
-			continuar = 0;
-			pausa = 0;
-			error_full = 0;
-			idle = 1;
-			if(empty < 0) proximo = active;
-				else proximo = actual;
-		end
-
-		init : begin 
+		init, active : begin
 			continuar <= 0;
 			pausa <= 0;
 			error_full <= 0;
 			idle <= 0;
-			if(iniciar) proximo <= idleEmpty;
-				else proximo <= actual;
 		end
 
-		error : begin  
-			continuar = 0;
-			pausa = 0;
-			error_full = 1;
-			idle = 0;
-			proximo = rst;
+		continue : begin 
+			continuar <= 1;
+			pausa <= 0;
+			error_full <= 0;
+			idle <= 0;
 		end
 
-		rst :  begin 
-			continuar = 0;
-			pausa = 0;
-			error_full = 1;
-			idle = 0;
-			proximo = idleEmpty;
+		pause : begin 
+			continuar <= 0;
+			pausa <= 1;
+			error_full <= 0;
+			idle <= 0;
+		end  
+
+		idleEmpty : begin 
+			continuar <= 0;
+			pausa <= 0;
+			error_full <= 0;
+			idle <= 1;
 		end
+
+	/*	init : begin 
+			continuar <= 0;
+			pausa <= 0;
+			error_full <= 0;
+			idle <= 0;
+		end
+	*/
+		error, rst : begin  
+			continuar <= 0;
+			pausa <= 0;
+			error_full <= 1;
+			idle <= 0;
+		end
+
+/*		rst :  begin 
+			continuar <= 0;
+			pausa <= 0;
+			error_full <= 1;
+			idle <= 0;
+		end
+		*/
 
 	endcase
-
 end
 
 endmodule // fsm
