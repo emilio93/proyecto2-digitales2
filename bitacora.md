@@ -113,7 +113,18 @@ _Son 12:30 h_
 
 
 Clase del lunes:
+
+	los 3 tipos de RR son:
+		-plano: pasa todos los vc por igual, uno por uno en orden, puede brincarse un VC sin perder un ciclo
+		-Con pesos: varias formas de implementar: enviar x cantidad seguida de un VC y luego alternar, pesos son entradas, los pesos ya estan en hardware solo se eligen
+la cantidad de ciclos necesaria	
+		-con tabla: tabla tiene escrito el VC que toca en ese momento, cuando cuando esta en init se puede cambiar tabla de arbitraje 
+
+		PUNTOS EXTRA: si se hacen los 3 RR y una pequenya logica que permita elegir entre ellos en el tb durante ejecucion
 	Faltantes:
 		hacer interfaz: mux y un ff que recibe init y tabla de RR
 		Senal init sale del estado init de la fsm
-		
+		Hacer FSM con vectores un bit por fifo, igual senales de salida...
+		Logica de flow control no hace casi nada...
+		En teoria nunca hay errores, hacer uno al propio en probador	
+	
