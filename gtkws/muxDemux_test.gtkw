@@ -1,0 +1,78 @@
+[*]
+[*] GTKWave Analyzer v3.3.66 (w)1999-2015 BSI
+[*] Mon Nov  6 07:04:37 2017
+[*]
+[dumpfile] "/home/ubuntu/BMC_git/proyecto2-digitales2/gtkws/muxDemux_test.vcd"
+[dumpfile_mtime] "Mon Nov  6 06:50:21 2017"
+[dumpfile_size] 11910
+[savefile] "/home/ubuntu/BMC_git/proyecto2-digitales2/gtkws/muxDemux_test.gtkw"
+[timestart] 0
+[size] 1317 716
+[pos] -1 -1
+*-14.000000 8430 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] muxDemux_test.
+[sst_width] 43
+[signals_width] 310
+[sst_expanded] 0
+[sst_vpaned_height] 313
+@28
+muxDemux_test.mux.enb
+muxDemux_test.demuxSynth.enb
+muxDemux_test.demux.enb
+muxDemux_test.demux.enb
+muxDemux_test.selectorMux[1:0]
+muxDemux_test.selectorDemux[1:0]
+@200
+-Mux Conductual
+@22
+[color] 3
+muxDemux_test.mux.entrada0_mux[3:0]
+[color] 3
+muxDemux_test.mux.entrada1_mux[3:0]
+[color] 3
+muxDemux_test.mux.entrada2_mux[3:0]
+[color] 3
+muxDemux_test.mux.entrada3_mux[3:0]
+[color] 3
+muxDemux_test.mux.salida_mux[3:0]
+@200
+-Mux Estructural
+@22
+[color] 2
+muxDemux_test.muxSynth.entrada0_mux[3:0]
+[color] 2
+muxDemux_test.muxSynth.entrada1_mux[3:0]
+[color] 2
+muxDemux_test.muxSynth.entrada2_mux[3:0]
+[color] 2
+muxDemux_test.muxSynth.entrada3_mux[3:0]
+[color] 2
+muxDemux_test.muxSynth.salida_mux[3:0]
+@200
+-Demux Conductual
+@22
+[color] 3
+muxDemux_test.demux.entrada_dmux[3:0]
+[color] 3
+muxDemux_test.demux.salida0_dmux[3:0]
+[color] 3
+muxDemux_test.demux.salida1_dmux[3:0]
+[color] 3
+muxDemux_test.demux.salida2_dmux[3:0]
+[color] 3
+muxDemux_test.demux.salida3_dmux[3:0]
+@200
+-Demux Estructural
+@22
+[color] 2
+muxDemux_test.demuxSynth.entrada_dmux[3:0]
+[color] 2
+muxDemux_test.demuxSynth.salida0_dmux[3:0]
+[color] 2
+muxDemux_test.demuxSynth.salida1_dmux[3:0]
+[color] 2
+muxDemux_test.demuxSynth.salida2_dmux[3:0]
+[color] 2
+muxDemux_test.demuxSynth.salida3_dmux[3:0]
+[pattern_trace] 1
+[pattern_trace] 0

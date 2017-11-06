@@ -4,25 +4,23 @@
 	`include "../lib/cmos_cells.v"
 `endif
 //include de design under test(DUT), units under test(UUT)
-`ifndef fifo
-  `include "../bloques/fifo/fifo.v"
+`ifndef fifo16
+  `include "../bloques/fifo/fifo16.v"
 `endif
-`ifndef fifoSynth
-  `include "../build/fifo-sintetizado.v"
+`ifndef fifo16Synth
+  `include "../build/fifo16-sintetizado.v"
 `endif
 
-module fifo_test();
-parameter BUF_WIDTH3 =3;//fifo 8posiciones de memoria
-parameter BUF_WIDTH4 =4;//fifo 16posiciones de memoria
+module fifo16_test #(parameter BUF_WIDTH = 4, parameter DATA_WIDTH = 4) ();
 reg clk, rst, wr_en, rd_en ;
-reg[3:0] buf_in;
-reg[3:0] tempdata;
+reg[(DATA_WIDTH-1):0] buf_in;
+reg[(DATA_WIDTH-1):0] tempdata;
 wire buf_full, buf_empty, almost_full, almost_empty;
 wire buf_fullSynth, buf_emptySynth, almost_fullSynth, almost_emptySynth;
-wire [3:0] buf_out, buf_outSynth;
-wire [BUF_WIDTH3 :0] fifo_counter, fifo_counterSynth;
+wire [(DATA_WIDTH-1):0] buf_out, buf_outSynth;
+wire [BUF_WIDTH :0] fifo_counter, fifo_counterSynth;
 
-fifo #(.BUF_WIDTH(BUF_WIDTH3)) ff(
+fifo16 #(.BUF_WIDTH(BUF_WIDTH), .DATA_WIDTH(DATA_WIDTH)) ff16(
 	.buf_in(buf_in), .buf_out(buf_out),//datos entrada y salida
 	.clk(clk), .rst(rst), .wr_en(wr_en), .rd_en(rd_en),//señales de control
 	.buf_empty(buf_empty), .buf_full(buf_full),//banderas de estado del fifo
@@ -30,7 +28,7 @@ fifo #(.BUF_WIDTH(BUF_WIDTH3)) ff(
 	.fifo_counter(fifo_counter) //contador de datos en fifo
 	);
 
-fifoSynth ffSynth(
+fifo16Synth ff16Synth(
 	.buf_in(buf_in), .buf_out(buf_outSynth),
 	.clk(clk), .rst(rst), .wr_en(wr_en), .rd_en(rd_en),
 	.buf_empty(buf_emptySynth), .buf_full(buf_fullSynth),
@@ -40,7 +38,7 @@ fifoSynth ffSynth(
 
 initial
 begin
-  $dumpfile("gtkws/fifo_test.vcd");
+  $dumpfile("gtkws/fifo16_test.vcd");
   $dumpvars();
    clk = 0;
    rst = 1;
@@ -70,7 +68,9 @@ begin
         push(11);
         push(12);
         push(13);
-
+				push(14);
+				push(15);
+				push(13);
         pop(tempdata);
         push(tempdata);
         pop(tempdata);
@@ -100,7 +100,7 @@ always
    #5 clk = ~clk;
 
 task push;
-input [3:0] data;
+input [(DATA_WIDTH-1):0] data;
    if( buf_full )
             $display("---Cannot push: Buffer Full---");
         else
@@ -114,7 +114,7 @@ input [3:0] data;
 endtask
 
 task pop;
-output [3:0] data;
+output [(DATA_WIDTH-1):0] data;
 
    if( buf_empty )
             $display("---Cannot Pop: Buffer Empty---");
