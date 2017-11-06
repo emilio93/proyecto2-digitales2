@@ -29,7 +29,7 @@ module roundRobinPesado_test #(parameter QUEUE_QUANTITY = 4, parameter DATA_BITS
     .sint_selector_enb(sint_selector_enb)
   );
 
-  always # 5 clk = ~clk;
+  always # 5 clk <= ~clk;
 
   initial
   begin
@@ -54,6 +54,9 @@ module roundRobinPesado_test #(parameter QUEUE_QUANTITY = 4, parameter DATA_BITS
     @(posedge clk) buf_empty[0] <= 1; buf_empty[1] <= 1; buf_empty[2] <= 1; buf_empty[3] <= 1;
     @(posedge clk) buf_empty[0] <= 0; buf_empty[1] <= 0; buf_empty[2] <= 0; buf_empty[3] <= 0;
 
+    # 20
+    @(posedge clk) buf_empty[0] <= 1; buf_empty[1] <= 1; buf_empty[2] <= 1; buf_empty[3] <= 1;
+    @(posedge clk) buf_empty[0] <= 0; buf_empty[1] <= 0; buf_empty[2] <= 0; buf_empty[3] <= 0;
 
     # 160
     @(posedge clk) buf_empty[2'b11] <= 1;
