@@ -1,13 +1,13 @@
 `timescale 1ns/1ps
 
-`ifndef fifo8
-`define fifo8
+`ifndef fifo16
+`define fifo16
 
 //para estaciar en conductual o estructural se usa el siguiente orden
 //fifo instancia_fifo1 (asignacion de puertos .clk(clk1),... ) ;
 //si solo conductual, se puede variar los parametros para obtenr distintos tamaños del buffer o cantidad de bits/palabra
 //fifo #(.BUF_WIDTH(4), .DATA_WIDTH(8)) instancia_fifo1 (asignacion de puertos .clk(clk1),... ) ;
-module fifo8 #(parameter BUF_WIDTH = 3, parameter DATA_WIDTH = 4)//cantidad de bits de direccionamiento a/y posiciones de memoria del fifo
+module fifo16 #(parameter BUF_WIDTH = 4, parameter DATA_WIDTH = 4)//cantidad de bits de direccionamiento a/y posiciones de memoria del fifo
  (
   output reg buf_empty, buf_full, almost_full, almost_empty, //banderas de estatus
   output reg [(DATA_WIDTH-1):0] buf_out,//port to output the data using pop.
