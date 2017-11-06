@@ -20,13 +20,15 @@
 module muxDemux_test();
 
 
-parameter DATA_BITS = 4;//tamaño de words
+parameter DATA_BITS = 4;//tamaño de palabras
 
 reg enb;
 reg [$clog2(DATA_BITS)-1:0] selectorMux, selectorDemux;
 reg [DATA_BITS-1:0] e0, e1, e2, e3;
 wire [DATA_BITS-1:0] s0, s1, s2, s3;
+wire [DATA_BITS-1:0] s0Synth, s1Synth, s2Synth, s3Synth;
 wire [DATA_BITS-1:0] salida;
+wire [DATA_BITS-1:0] salidaSynth;
 
 mux #(.DATA_BITS(DATA_BITS)) mux(
 	.enb(enb),
@@ -35,7 +37,7 @@ mux #(.DATA_BITS(DATA_BITS)) mux(
 	.entrada2(e2),
 	.entrada3(e3),
 	.selector(selectorMux),
-	.salida
+	.salida(salida)
 	);
 
 muxSynth muxSynth(
@@ -45,7 +47,7 @@ muxSynth muxSynth(
 	.entrada2(e2),
 	.entrada3(e3),
 	.selector(selectorMux),
-	.salida
+	.salida(salidaSynth)
 	);
 
 demux #(.DATA_BITS(DATA_BITS)) demux(
@@ -60,12 +62,12 @@ demux #(.DATA_BITS(DATA_BITS)) demux(
 
 demuxSynth demuxSynth(
 	.enb(enb),
-	.entrada(salida),
+	.entrada(salidaSynth),
 	.selector(selectorDemux),
-	.salida0(s0),
-	.salida1(s1),
-	.salida2(s2),
-	.salida3(s3)
+	.salida0(s0Synth),
+	.salida1(s1Synth),
+	.salida2(s2Synth),
+	.salida3(s3Synth)
 	);
 
 parameter delay = 10;
@@ -77,6 +79,7 @@ begin
        
 	enb = 0;
 	#delay
+	selectorDemux = 2'b10;
 	e0 = 4'b0010;
 	selectorMux = 2'b01;
 	e1 = 4'b1010;

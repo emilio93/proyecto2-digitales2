@@ -26,17 +26,19 @@ module demux #(parameter DATA_BITS = 4) (
 
   //Funcionamiento
   always @ ( * ) begin
-    salida0 = 0;
-    salida1 = 0;
-    salida2 = 0;
-    salida3 = 0;
-    if (enb) begin
-      if (selector == 2'b00) salida0 = entrada;
-      else if (selector == 2'b01) salida1 = entrada;
-      else if (selector == 2'b10) salida2 = entrada;
-      else salida3 = entrada;
-    end
-  end
+		  salida0 = 0;
+		  salida1 = 0;
+		  salida2 = 0;
+		  salida3 = 0;
+	  if (enb) begin
+		  case(selector)
+			  2'b00 : salida0 = entrada;
+			  2'b01 : salida1 = entrada;
+			  2'b10 : salida2 = entrada;
+			  2'b11 : salida3 = entrada;
+		  endcase
+	  end
+end
 
 endmodule // demux
 `endif

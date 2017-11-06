@@ -1,0 +1,98 @@
+[*]
+[*] GTKWave Analyzer v3.3.82 (w)1999-2017 BSI
+[*] Mon Nov  6 01:37:34 2017
+[*]
+[dumpfile] "/root/Documents/2proydigitales/gtkws/muxDemux_test.vcd"
+[dumpfile_mtime] "Mon Nov  6 01:36:31 2017"
+[dumpfile_size] 11796
+[savefile] "/root/Documents/2proydigitales/gtkws/muxDemux_test.gtkw"
+[timestart] 0
+[size] 1920 1021
+[pos] -1 -1
+*-14.000000 8430 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] muxDemux_test.
+[sst_width] 48
+[signals_width] 209
+[sst_expanded] 0
+[sst_vpaned_height] 298
+@28
+muxDemux_test.mux.enb
+muxDemux_test.demuxSynth.enb
+muxDemux_test.demux.enb
+muxDemux_test.demux.enb
+muxDemux_test.selectorMux[1:0]
+muxDemux_test.selectorDemux[1:0]
+@200
+-
+@c00022
+[color] 3
+muxDemux_test.mux.entrada0[3:0]
+@28
+(0)muxDemux_test.mux.entrada0[3:0]
+(1)muxDemux_test.mux.entrada0[3:0]
+(2)muxDemux_test.mux.entrada0[3:0]
+(3)muxDemux_test.mux.entrada0[3:0]
+@1401200
+-group_end
+@22
+[color] 3
+muxDemux_test.mux.entrada1[3:0]
+[color] 3
+muxDemux_test.mux.entrada2[3:0]
+[color] 3
+muxDemux_test.mux.entrada3[3:0]
+[color] 3
+muxDemux_test.mux.salida[3:0]
+@200
+-
+@22
+[color] 2
+muxDemux_test.muxSynth.entrada0[3:0]
+[color] 2
+muxDemux_test.muxSynth.entrada1[3:0]
+[color] 2
+muxDemux_test.muxSynth.entrada2[3:0]
+[color] 2
+muxDemux_test.muxSynth.entrada3[3:0]
+[color] 2
+muxDemux_test.salidaSynth[3:0]
+@200
+-
+@22
+[color] 3
+muxDemux_test.demux.entrada[3:0]
+[color] 3
+muxDemux_test.demux.salida0[3:0]
+[color] 3
+muxDemux_test.demux.salida1[3:0]
+[color] 3
+muxDemux_test.demux.salida2[3:0]
+[color] 3
+muxDemux_test.demux.salida3[3:0]
+@200
+-
+@c00022
+[color] 2
+muxDemux_test.demuxSynth.entrada[3:0]
+@28
+[color] 2
+(0)muxDemux_test.demuxSynth.entrada[3:0]
+[color] 2
+(1)muxDemux_test.demuxSynth.entrada[3:0]
+[color] 2
+(2)muxDemux_test.demuxSynth.entrada[3:0]
+[color] 2
+(3)muxDemux_test.demuxSynth.entrada[3:0]
+@1401200
+-group_end
+@22
+[color] 2
+muxDemux_test.s0Synth[3:0]
+[color] 2
+muxDemux_test.s1Synth[3:0]
+[color] 2
+muxDemux_test.s2Synth[3:0]
+[color] 2
+muxDemux_test.s3Synth[3:0]
+[pattern_trace] 1
+[pattern_trace] 0
