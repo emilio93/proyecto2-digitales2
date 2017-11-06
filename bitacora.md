@@ -1,4 +1,4 @@
-#Bitácora del proyecto 2
+#itácora del proyecto 2
 
 ### Reunion 1:
 
@@ -87,3 +87,33 @@ _Son 0:0 h_
 	Emilio:
 		-
 
+
+### Reunion 4:
+_6/11/17_
+_Se inicia a las 16:00_
+_Boa se haya presente entre las 16:00 y las 20:00 y entre las 11:40 y 3:30_
+_Robin se desconecta a las 3:50_
+_Emilio se desconecta a las 4:20_
+_Son 12:30 h_
+
+	Boanergers:
+		Boanergers inicia la presentacion
+		Termina detalles del fifo
+		Crea el fif16
+		Ayuda en problemas varios
+
+	Robin:
+		Crea los modulox mex y demux y tb
+		Crea el modulo fsm y tb, aun falta corregirlo
+		Hace diagrama de bloques para modulos listos
+		
+	Emilio:
+		Hace RR y tb
+		Hace RR con pesos y tb
+
+
+Clase del lunes:
+	Faltantes:
+		hacer interfaz: mux y un ff que recibe init y tabla de RR
+		Senal init sale del estado init de la fsm
+		
