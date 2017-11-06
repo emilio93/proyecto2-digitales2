@@ -15,21 +15,20 @@ module roundRobinPesadoTester (
   input enb,
   input [QUEUE_QUANTITY*$clog2(MAX_WEIGHT)-1:0] pesos,
   input [QUEUE_QUANTITY-1:0] buf_empty,
-  input [QUEUE_QUANTITY-1:0] fifo_counter,
+  input [QUEUE_QUANTITY*BUF_WIDTH-1:0] fifo_counter,
   output [$clog2(QUEUE_QUANTITY)-1:0] selector,
   output selector_enb,
   output [$clog2(QUEUE_QUANTITY)-1:0] sint_selector,
   output sint_selector_enb
 );
+
 parameter QUEUE_QUANTITY = 4;
 parameter DATA_BITS = 8;
+parameter BUF_WIDTH  = 3;
 parameter MAX_WEIGHT = 64;
-wire data_out;
-wire sint_data_out;
 
 reg errSelector;
 reg errSelector_enb;
-
 always @ ( * ) begin
   errSelector_enb = sint_selector_enb != selector_enb;
   errSelector = sint_selector != selector;
@@ -49,8 +48,8 @@ roundRobinPesadoSynth synthTest(
   .pesos(pesos),
   .buf_empty(buf_empty),
   .fifo_counter(fifo_counter),
-  .selector(selector),
-  .selector_enb(selector_enb)
+  .selector(sint_selector),
+  .selector_enb(sint_selector_enb)
 );
 
 endmodule

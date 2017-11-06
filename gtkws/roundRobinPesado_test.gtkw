@@ -1,22 +1,22 @@
 [*]
 [*] GTKWave Analyzer v3.3.83 (w)1999-2017 BSI
-[*] Mon Nov  6 06:08:27 2017
+[*] Mon Nov  6 07:48:40 2017
 [*]
 [dumpfile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/roundRobinPesado_test.vcd"
-[dumpfile_mtime] "Mon Nov  6 05:56:46 2017"
-[dumpfile_size] 17765
+[dumpfile_mtime] "Mon Nov  6 07:47:22 2017"
+[dumpfile_size] 3708
 [savefile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/roundRobinPesado_test.gtkw"
 [timestart] 0
 [size] 1638 995
 [pos] -1 -1
-*-15.664183 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-15.664183 45000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] roundRobinPesado_test.
 [treeopen] roundRobinPesado_test.rrpTester.
 [sst_width] 223
-[signals_width] 174
+[signals_width] 234
 [sst_expanded] 1
 [sst_vpaned_height] 281
-@29
+@28
 [color] 4
 roundRobinPesado_test.clk
 [color] 4
@@ -25,20 +25,104 @@ roundRobinPesado_test.enb
 roundRobinPesado_test.rst
 @22
 [color] 4
-roundRobinPesado_test.almost_empty[3:0]
-[color] 4
 roundRobinPesado_test.buf_empty[3:0]
 @28
 [color] 4
 roundRobinPesado_test.selector[1:0]
 [color] 4
 roundRobinPesado_test.sint_selector[1:0]
+@c00030
+roundRobinPesado_test.rrpTester.pesos[23:0]
+@200
+-D
+@28
+(0)roundRobinPesado_test.rrpTester.pesos[23:0]
+(1)roundRobinPesado_test.rrpTester.pesos[23:0]
+(2)roundRobinPesado_test.rrpTester.pesos[23:0]
+(3)roundRobinPesado_test.rrpTester.pesos[23:0]
+(4)roundRobinPesado_test.rrpTester.pesos[23:0]
+(5)roundRobinPesado_test.rrpTester.pesos[23:0]
+@200
+-C
+@28
+(6)roundRobinPesado_test.rrpTester.pesos[23:0]
+(7)roundRobinPesado_test.rrpTester.pesos[23:0]
+(8)roundRobinPesado_test.rrpTester.pesos[23:0]
+(9)roundRobinPesado_test.rrpTester.pesos[23:0]
+(10)roundRobinPesado_test.rrpTester.pesos[23:0]
+(11)roundRobinPesado_test.rrpTester.pesos[23:0]
+@200
+-B
+@28
+(12)roundRobinPesado_test.rrpTester.pesos[23:0]
+(13)roundRobinPesado_test.rrpTester.pesos[23:0]
+(14)roundRobinPesado_test.rrpTester.pesos[23:0]
+(15)roundRobinPesado_test.rrpTester.pesos[23:0]
+(16)roundRobinPesado_test.rrpTester.pesos[23:0]
+(17)roundRobinPesado_test.rrpTester.pesos[23:0]
+@200
+-A
+@28
++{roundRobinPesado_test.rrpTester.pesos[5]} (18)roundRobinPesado_test.rrpTester.pesos[23:0]
+(19)roundRobinPesado_test.rrpTester.pesos[23:0]
+(20)roundRobinPesado_test.rrpTester.pesos[23:0]
+(21)roundRobinPesado_test.rrpTester.pesos[23:0]
+(22)roundRobinPesado_test.rrpTester.pesos[23:0]
+(23)roundRobinPesado_test.rrpTester.pesos[23:0]
+@1401200
+-group_end
 @200
 -TEST
+@c00031
+roundRobinPesado_test.rrpTester.test.pesos[23:0]
+@28
+(0)roundRobinPesado_test.rrpTester.test.pesos[23:0]
+(1)roundRobinPesado_test.rrpTester.test.pesos[23:0]
+(2)roundRobinPesado_test.rrpTester.test.pesos[23:0]
+(3)roundRobinPesado_test.rrpTester.test.pesos[23:0]
+(4)roundRobinPesado_test.rrpTester.test.pesos[23:0]
+(5)roundRobinPesado_test.rrpTester.test.pesos[23:0]
+(6)roundRobinPesado_test.rrpTester.test.pesos[23:0]
+(7)roundRobinPesado_test.rrpTester.test.pesos[23:0]
+(8)roundRobinPesado_test.rrpTester.test.pesos[23:0]
+(9)roundRobinPesado_test.rrpTester.test.pesos[23:0]
+(10)roundRobinPesado_test.rrpTester.test.pesos[23:0]
+(11)roundRobinPesado_test.rrpTester.test.pesos[23:0]
+(12)roundRobinPesado_test.rrpTester.test.pesos[23:0]
+(13)roundRobinPesado_test.rrpTester.test.pesos[23:0]
+(14)roundRobinPesado_test.rrpTester.test.pesos[23:0]
+(15)roundRobinPesado_test.rrpTester.test.pesos[23:0]
+(16)roundRobinPesado_test.rrpTester.test.pesos[23:0]
+(17)roundRobinPesado_test.rrpTester.test.pesos[23:0]
+(18)roundRobinPesado_test.rrpTester.test.pesos[23:0]
+(19)roundRobinPesado_test.rrpTester.test.pesos[23:0]
+(20)roundRobinPesado_test.rrpTester.test.pesos[23:0]
+(21)roundRobinPesado_test.rrpTester.test.pesos[23:0]
+(22)roundRobinPesado_test.rrpTester.test.pesos[23:0]
+(23)roundRobinPesado_test.rrpTester.test.pesos[23:0]
+@1401211
+-group_end
+@c00022
+roundRobinPesado_test.rrpTester.test.fifo_counter[11:0]
+@28
+(0)roundRobinPesado_test.rrpTester.test.fifo_counter[11:0]
+(1)roundRobinPesado_test.rrpTester.test.fifo_counter[11:0]
+(2)roundRobinPesado_test.rrpTester.test.fifo_counter[11:0]
+(3)roundRobinPesado_test.rrpTester.test.fifo_counter[11:0]
+(4)roundRobinPesado_test.rrpTester.test.fifo_counter[11:0]
+(5)roundRobinPesado_test.rrpTester.test.fifo_counter[11:0]
+(6)roundRobinPesado_test.rrpTester.test.fifo_counter[11:0]
+(7)roundRobinPesado_test.rrpTester.test.fifo_counter[11:0]
+(8)roundRobinPesado_test.rrpTester.test.fifo_counter[11:0]
+(9)roundRobinPesado_test.rrpTester.test.fifo_counter[11:0]
+(10)roundRobinPesado_test.rrpTester.test.fifo_counter[11:0]
+(11)roundRobinPesado_test.rrpTester.test.fifo_counter[11:0]
+@1401200
+-group_end
 @28
 [color] 3
 roundRobinPesado_test.rrpTester.test.contador[1:0]
-@22
+@30
 [color] 3
 roundRobinPesado_test.rrpTester.test.pesos[23:0]
 @28
@@ -48,10 +132,11 @@ roundRobinPesado_test.rrpTester.test.selector[1:0]
 roundRobinPesado_test.rrpTester.test.selector_enb
 @200
 -SINT
-@28
-[color] 2
-roundRobinPesado_test.rrpTester.synthTest.contador[1:0]
+@30
+roundRobinPesado_test.rrpTester.synthTest.pesos[23:0]
 @22
+roundRobinPesado_test.rrpTester.synthTest.fifo_counter[11:0]
+@30
 [color] 2
 roundRobinPesado_test.rrpTester.synthTest.pesos[23:0]
 @28
