@@ -56,9 +56,10 @@ module fsm(
   reg [2:0] proximo, actual;
 
 //  always @(posedge clk or negedge reset)begin
-//	  if (!rst) atual <= active;
+//	  if (!rst) actual <= active;
 //	  else actual <= proximo;
 //end
+
   always @(posedge clk)begin
 	  actual <= proximo;
   end
@@ -71,7 +72,8 @@ module fsm(
 
 //v	  else actual <= proximo;
 
-	always @(actual or full or almost_full or empty or almost_empty or reset or init) begin
+	always @(actual or full or almost_full or empty or almost_empty or reset or init or iniciar) begin
+//		proximo = actual;
 		case(actual)
 
 			active : begin
