@@ -1,5 +1,10 @@
 `timescale 1ns/1ps
 
+<<<<<<< HEAD:bloques/fifo/fifo.v
+//para estaciar se usar el siguiente orden
+//fifo #(.BUF_WIDTH(4)) instancia_fifo1 (asignacion de puertos .clk(clk1),... ) ;
+module fifo #(parameter BUF_WIDTH = 3)//cantidad de bits de direccionamiento a/y posiciones de memoria del fifo
+=======
 `ifndef fifo8
 `define fifo8
 
@@ -8,6 +13,7 @@
 //si solo conductual, se puede variar los parametros para obtenr distintos tamaños del buffer o cantidad de bits/palabra
 //fifo #(.BUF_WIDTH(4), .DATA_WIDTH(8)) instancia_fifo1 (asignacion de puertos .clk(clk1),... ) ;
 module fifo8 #(parameter BUF_WIDTH = 3, parameter DATA_WIDTH = 4)//cantidad de bits de direccionamiento a/y posiciones de memoria del fifo
+>>>>>>> 98d161424dfbbfb7aca75b73c4f58a18f54ed25c:bloques/fifo/fifo8.v
  (
   output reg buf_empty, buf_full, almost_full, almost_empty, //banderas de estatus
   output reg [(DATA_WIDTH-1):0] buf_out,//port to output the data using pop.
@@ -54,7 +60,10 @@ begin
       fifo_counter <= fifo_counter;
 end
 
+<<<<<<< HEAD
+=======
 //pop, leer datos desde el fifo
+>>>>>>> daf26a54d487094759be039724b5086bf93b3fe8
 always @( posedge clk or posedge rst)
 begin
    if( rst )

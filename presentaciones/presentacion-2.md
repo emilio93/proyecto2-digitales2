@@ -23,26 +23,65 @@ Emilio Rojas
 ### ```deMux 1 a 4```, ```roundRobin```, ```roundRobinPesado```, ```fsm```
 
 ---
+ 
+ # Bloque fifo16
+<br >
+
+#### Diagrama de bloque
+
+![110% center](presentacion-2/fifo.png)
+  
+---
 
 # Bloque fifo16
 <br >
 
 #### Puertos y parametros
 ```verilog
-module fifo #(parameter BUF_WIDTH = 3)
- (
-  output buf_empty, buf_full, almost_full, almost_empty, 
-  output [3:0] buf_out,sss
-  output [BUF_WIDTH :0] fifo_counter, 
+module fifo16 #(
+parameter BUF_WIDTH = 4, 
+parameter DATA_WIDTH = 4
+)(
+  output reg buf_empty, buf_full, almost_full, almost_empty, 
+  output reg [(DATA_WIDTH-1):0] buf_out,
+  output reg [BUF_WIDTH :0] fifo_counter,
   input clk, rst, wr_en, rd_en, 
-  input [3:0] buf_in
+  input [(DATA_WIDTH-1):0] buf_in
 );
 parameter BUF_SIZE = ( 1<<BUF_WIDTH );
 ```
   
 ---
 
-# Mux-Demux
+ # Bloque fifo16
+<br >
+
+#### Archivo .gtkw de las señales del fifo16
+
+![95% center](presentacion-2/fifos_8_16.png)
+
+_De: ```fifo16_test.v```_
+
+---
+
+ # Bloque Mux
+<br >
+
+#### Diagrama de bloque
+
+![150% center](presentacion-2/mux.png)
+
+---
+ # Bloque Demux
+<br >
+
+#### Diagrama de bloque
+
+![150% center](presentacion-2/demux.png)
+  
+---
+
+# Bloque Mux-Demux
 <br >
 
 #### Asignaciones
@@ -58,12 +97,25 @@ endcase
 ```
 ---
 
-# Mux-Demux
+# Bloque Mux-Demux
+<br >
 
+#### Archivo .gtkw de las señales del muxDemux_test
 
-![center](presentacion-2/TestMuxDemux.png)
+![80% center](presentacion-2/TestMuxDemux.png)
+_De: ```muxDemux_test.v```_
 
 ---
+
+ # Bloque Round Robin
+<br >
+
+#### Diagrama de bloque
+
+![150% center](presentacion-2/rr.png)
+  
+---
+
 
 # Round Robin
 
@@ -89,9 +141,24 @@ module roundRobin #(
 
 # Round Robin
 
+<br >
+
+#### Archivo .gtkw de las señales del roundRobin_test
 
 ![center](presentacion-2/testRoundRobin.png)
 
+_De: ```roundRobin_test.v```_
+
+---
+
+
+ # Bloque Round Robin Pesado
+<br >
+
+#### Diagrama de bloque
+
+![150% center](presentacion-2/rrpesado.png)
+  
 ---
 
 
@@ -120,9 +187,13 @@ module roundRobinPesado #(
 
 
 # Round Robin Pesado
+<br >
 
+#### Archivo .gtkw de las señales del roundRobinPesado_test
 
 ![center](presentacion-2/testRoundRobinPesado.png)
+
+_De: ```roundRobinPesado_test.v```_
 
 ---
 # Maquina de estados
@@ -150,7 +221,9 @@ always @(actual ... or init) begin
 
 # Maquina de estados
 
+#### Archivo .gtkw de las señales del fsm_test
 ![center](presentacion-2/fsm.png)
+_De: ```fsm_test.v```_
 ---
 
 

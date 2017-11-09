@@ -1,4 +1,4 @@
-#Bitácora del proyecto 2
+#itácora del proyecto 2
 
 ### Reunion 1:
 
@@ -87,3 +87,44 @@ _Son 0:0 h_
 	Emilio:
 		-
 
+
+### Reunion 4:
+_6/11/17_
+_Se inicia a las 16:00_
+_Boa se haya presente entre las 16:00 y las 20:00 y entre las 11:40 y 3:30_
+_Robin se desconecta a las 3:50_
+_Emilio se desconecta a las 4:20_
+_Son 12:30 h_
+
+	Boanergers:
+		Boanergers inicia la presentacion
+		Termina detalles del fifo
+		Crea el fif16
+		Ayuda en problemas varios
+
+	Robin:
+		Crea los modulox mex y demux y tb
+		Crea el modulo fsm y tb, aun falta corregirlo
+		Hace diagrama de bloques para modulos listos
+		
+	Emilio:
+		Hace RR y tb
+		Hace RR con pesos y tb
+
+
+Clase del lunes:
+
+	los 3 tipos de RR son:
+		-plano: pasa todos los vc por igual, uno por uno en orden, puede brincarse un VC sin perder un ciclo
+		-Con pesos: varias formas de implementar: enviar x cantidad seguida de un VC y luego alternar, pesos son entradas, los pesos ya estan en hardware solo se eligen
+la cantidad de ciclos necesaria	
+		-con tabla: tabla tiene escrito el VC que toca en ese momento, cuando cuando esta en init se puede cambiar tabla de arbitraje 
+
+		PUNTOS EXTRA: si se hacen los 3 RR y una pequenya logica que permita elegir entre ellos en el tb durante ejecucion
+	Faltantes:
+		hacer interfaz: mux y un ff que recibe init y tabla de RR
+		Senal init sale del estado init de la fsm
+		Hacer FSM con vectores un bit por fifo, igual senales de salida...
+		Logica de flow control no hace casi nada...
+		En teoria nunca hay errores, hacer uno al propio en probador	
+	
