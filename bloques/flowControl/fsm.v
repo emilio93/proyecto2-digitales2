@@ -72,7 +72,7 @@ module fsm(
 
 //v	  else actual <= proximo;
 
-	always @(actual or full or almost_full or empty or almost_empty or reset or init or iniciar) begin
+	always @(*) begin
 //		proximo = actual;
 		case(actual)
 
