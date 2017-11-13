@@ -13,7 +13,7 @@ Emilio Rojas
 
 # ```Avances```
 
-###  ```Round Robin```, ```FSM```, ```Makefile```
+###  ```Round Robin Arbitrado```, ```FSM```, ```Makefile```
 
 ### ```transmisor```
 
@@ -27,6 +27,27 @@ Emilio Rojas
 ![110% center](presentacion-2/fifo.png)
   
 
+---
+
+# Bloque Round Robin Arbitrado
+
+```verilog
+module roundRobinArbitrado #(
+  parameter QUEUE_QUANTITY = 4,
+  parameter DATA_BITS = 8,
+  parameter BUF_WIDTH = 3,
+  parameter MAX_WEIGHT = 64,
+  parameter TABLE_SIZE = 8
+) (
+  input clk, rst, enb,
+  [((QUEUE_QUANTITY)*($clog2(MAX_WEIGHT)))-1:0] pesos,
+  [(TABLE_SIZE*$clog2(QUEUE_QUANTITY))-1:0] selecciones,
+  [QUEUE_QUANTITY-1:0] buf_empty, 
+  [(QUEUE_QUANTITY*BUF_WIDTH)-1:0] fifo_counter,
+  output [$clog2(QUEUE_QUANTITY)-1:0] selector, 
+  selector_enb
+);
+```
   
 ---
 
@@ -55,7 +76,7 @@ Emilio Rojas
 
 <br >
 
-#### Archivo .gtkw de las señales del roundRobin_test
+#### Archivo .gtkw de las se単ales del roundRobin_test
 
 ![center](presentacion-2/testRoundRobin.png)
 
@@ -66,7 +87,7 @@ _De: ```roundRobin_test.v```_
 
 # Maquina de estados
 
-#### Archivo .gtkw de las señales del fsm_test
+#### Archivo .gtkw de las se単ales del fsm_test
 ![center](presentacion-2/fsm.png)
 _De: ```fsm_test.v```_
 ---
