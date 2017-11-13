@@ -12,8 +12,8 @@
 `endif
 
 module fifo16_test #(parameter BUF_WIDTH = 4, parameter DATA_WIDTH = 4) ();
-parameter uH=2;
-parameter uL=3;
+parameter [(DATA_WIDTH-1):0] uH=2;
+parameter [(DATA_WIDTH-1):0] uL=3;
 reg clk, rst, wr_en, rd_en ;
 reg[(DATA_WIDTH-1):0] buf_in;
 reg[(DATA_WIDTH-1):0] tempdata;

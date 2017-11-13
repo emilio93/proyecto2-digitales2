@@ -14,8 +14,8 @@
 module fifo8_test #(parameter BUF_WIDTH = 3, parameter DATA_WIDTH = 4)();
 parameter BUF_WIDTH3 =3;//fifo 8posiciones de memoria
 parameter BUF_WIDTH4 =4;//fifo 16posiciones de memoria
-parameter uH=2;
-parameter uL=3;
+parameter [(DATA_WIDTH-1):0] uH=2;
+parameter [(DATA_WIDTH-1):0] uL=3;
 
 reg clk, rst, wr_en, rd_en ;
 reg[(DATA_WIDTH-1):0] buf_in;

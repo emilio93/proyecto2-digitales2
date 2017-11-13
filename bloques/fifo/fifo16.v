@@ -13,7 +13,7 @@ module fifo16 #(parameter BUF_WIDTH = 4, parameter DATA_WIDTH = 4)//cantidad de 
   output reg [(DATA_WIDTH-1):0] buf_out,//port to output the data using pop.
   output reg [BUF_WIDTH :0] fifo_counter, // number of data pushed in to buffer
   input clk, rst, wr_en, rd_en, // reset, system clock, write enable and read enable.
-  input [(DATA_WIDTH-1):0] buf_in//data input to be pushed to buffer
+  input [(DATA_WIDTH-1):0] buf_in,//data input to be pushed to buffer
   input [(DATA_WIDTH-1):0] uH, uL //umbrales de almost_full, almost_empty
 );
 //Parametros y varibles internas
@@ -31,7 +31,7 @@ end
 //banderas almost_empty, almost_full segun conteo de datos en el fifo
 always @(fifo_counter) begin
    almost_full = (fifo_counter == (BUF_SIZE-uH));//se activa cuando faltan 2 espacios para lleno
-   almost_empty = (fifo_counter == uF);//se activa cuando lleva mas de 2 posiciones llenas
+   almost_empty = (fifo_counter == uL);//se activa cuando lleva mas de 2 posiciones llenas
 end
 
 
