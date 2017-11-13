@@ -14,7 +14,7 @@ CC1      = vvp
 CC2      = gtkwave
 CC3      = yosys -c
 VPI      = -M ~/.local/install/ivl/lib/ivl
-
+DIRS  = build pdfs
 
 # Evita salidas de un comando
 NO_OUTPUT = > /dev/null
@@ -35,6 +35,8 @@ USEDCMDS := $(filter $(ARGS), $(CMDS))#obtiene los comandos pasados como argumen
 MAKECMDGOALS := $(filter-out $(USEDARGS), $(MAKECMDGOALS))
 USEDVERILOGSRC = $(filter %$(USEDARGS)%, $(VERILOGSRC))#obtiene las direcciones usadas por los argumentos
 
+
+#h := $(filter %fsm.v, $(VERILOGSRC))
 h := $(foreach dir, $(USEDARGS), $(filter %dir.v ,$(VERILOGSRC)))
 #h := $(filter $(foreach dir, $(USEDARGS) , %dir.v) ,$(VERILOGSRC))
 
@@ -60,7 +62,7 @@ all:
 
 synth: synthYosys renameSynths
 synthYosys:
-	$(foreach vlog, $(OBJS) , VLOG_FILE_NAME=$(vlog) VLOG_MODULE_NAME=$(vlog) CUR_DIR=$(shell pwd) $(CC3) ./yosys.tcl $(NO_OUTPUT);)
+	$(foreach vlog, $(OBJS) , VLOG_FILE_NAME=$(./bloques/fifo/fifo.v) VLOG_MODULE_NAME=$(vlog) CUR_DIR=$(shell pwd) $(CC3) ./yosys.tcl $(NO_OUTPUT);)
 	rm -f ./pdfs/*.dot
 # Renombra los archivos sintetizables
 renameSynths:
