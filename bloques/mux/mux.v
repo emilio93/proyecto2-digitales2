@@ -9,7 +9,7 @@ module mux #(parameter DATA_BITS = 4) (
   input [DATA_BITS -1:0] entrada1_mux,
   input [DATA_BITS -1:0] entrada2_mux,
   input [DATA_BITS -1:0] entrada3_mux,
-  input [$clog2(DATA_BITS) -1:0] selector_mux,//La cantidad de bits tiene q ver con el selector?
+  input [$clog2(DATA_BITS) -1:0] selector_mux,
   output [DATA_BITS -1:0] salida_mux
 );
 

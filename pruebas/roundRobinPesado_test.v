@@ -2,7 +2,7 @@
 
 `define isTest 1
 
-`include "../lib/cmos_cells.v"
+`include "../lib/osu018_stdcells.v"
 `include "../bloques/roundRobin/roundRobinPesado.v"
 `include "../build/roundRobinPesado-sintetizado.v"
 `include "../testers/roundRobinPesadoTester.v"

@@ -2,7 +2,7 @@
 
 `define isTest 1
 
-`include "../lib/cmos_cells.v"
+`include "../lib/osu018_stdcells.v"
 `include "../bloques/flowControl/fsm.v"
 `include "../build/fsm-sintetizado.v"
 

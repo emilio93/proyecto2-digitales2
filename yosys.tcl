@@ -35,14 +35,14 @@ opt
 
 write_verilog ./build/$vlogModuleName-rtlil.v
 
-dfflibmap -liberty ./lib/cmos_cells.lib
+dfflibmap -liberty ./lib/osu018_stdcells.lib
 
-# show -prefix pdfs/$vlogModuleName-dff_seq -lib ./lib/cmos_cells.v -format pdf -colors 3 -viewer echo $vlogModuleName
+# show -prefix pdfs/$vlogModuleName-dff_seq -lib ./lib/osu018_stdcells.v -format pdf -colors 3 -viewer echo $vlogModuleName
 
-abc -liberty ./lib/cmos_cells.lib
-# show -prefix pdfs/$vlogModuleName-abc_comb -lib ./lib/cmos_cells.v -format pdf -colors 3 -viewer echo $vlogModuleName
+abc -liberty ./lib/osu018_stdcells.lib
+# show -prefix pdfs/$vlogModuleName-abc_comb -lib ./lib/osu018_stdcells.v -format pdf -colors 3 -viewer echo $vlogModuleName
 
 clean
 
-# show -prefix pdfs/$vlogModuleName-synth -lib ./lib/cmos_cells.v -viewer echo -format pdf -colors 3 -viewer echo $vlogModuleName
+# show -prefix pdfs/$vlogModuleName-synth -lib ./lib/osu018_stdcells.v -viewer echo -format pdf -colors 3 -viewer echo $vlogModuleName
 write_verilog ./build/$vlogModuleName-sintetizado.v
