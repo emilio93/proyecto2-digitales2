@@ -8,9 +8,17 @@
 
 module fsm_test();
 
-  reg clk, reset, aFull, full , aEmpty, empty, iniciar;
-  wire continuar, error, pausa, idle;
-  wire continuarSynth, errorSynth, pausaSynth, idleSynth;
+  reg clk, reset, iniciar;
+  reg [4:0] aFull;
+  reg [4:0] full;
+  reg [4:0] aEmpty;
+  reg [4:0] empty;
+  wire error, idle;
+  wire [3:0] pausa;
+  wire [3:0] continuar;
+  wire errorSynth, idleSynth;
+  wire [3:0] pausaSynth;
+  wire [3:0] continuarSynth;
 
   parameter delay = 10;
 
@@ -55,98 +63,131 @@ module fsm_test();
     reset <= 1;
 
     iniciar <= 0;
-    aFull <= 0;
-    full <= 0;
-    aEmpty <= 1;
-    empty <= 0;
-    full <= 0;
+    aFull <= 4'b0000;
+    full <= 4'b0000;
+    aEmpty <= 4'b0001;
+    empty <= 4'b0000;
+    full <= 4'b0000;
 
     #delay;
 
     #delay;
+    iniciar <= 0;
+    aFull <= 4'b0000;
+    full <= 4'b0000;
+    aEmpty <= 4'b0001;
+    empty <= 4'b0000;
+    full <= 4'b0000;
+
+    #delay;
+    reset <= 0;
+    iniciar <= 1;
+    #delay
+    iniciar <= 0;
+
+    #delay;
+    iniciar <= 0;
+    aFull <= 4'b0000;
+    full <= 4'b0000;
+    aEmpty <= 4'b0001;
+    empty <= 4'b0000;
+    full <= 4'b0000;
+
+    #delay;
+    iniciar <= 0;
+    aFull <= 4'b0000;
+    full <= 4'b0000;
+    aEmpty <= 4'b0001;
+    empty <= 4'b0000;
+    full <= 4'b0000;
+
+
 
     iniciar <= 0;
-    aFull <= 0;
-    full <= 0;
-    aEmpty <= 0;
-    empty <= 0;
-    reset <= 0;
+    aFull <= 4'b0000;
+    full <= 4'b0000;
+    aEmpty <= 4'b0000;
+    empty <= 4'b0001;
 
     #delay;
-    reset <= 0;
+    iniciar <= 0;
+    aFull <= 4'b0000;
+    full <= 4'b0000;
+    aEmpty <= 4'b0001;
+    empty <= 4'b0000;
+
+    #delay;
+    iniciar <= 0;
+    aFull <= 4'b0000;
+    full <= 4'b0000;
+    aEmpty <= 4'b0001;
+    empty <= 4'b0000;
+
+    #delay;
+    iniciar <= 0;
+    aFull <= 4'b0000;
+    full <= 4'b0000;
+    aEmpty <= 4'b0000;
+    empty <= 4'b0000;
+
+
+    #delay;
+    iniciar <= 0;
+    aFull <= 4'b0001;
+    full <= 4'b0000;
+    aEmpty <= 4'b0000;
+    empty <= 4'b0000;
+
+
+    #delay;
+    iniciar <= 0;
+    aFull <= 4'b0001;
+    full <= 4'b0000;
+    aEmpty <= 4'b0000;
+    empty <= 4'b0000;
+
+
+    #delay;
+    iniciar <= 0;
+    aFull <= 4'b0000;
+    full <= 4'b0001;
+    aEmpty <= 4'b0000;
+    empty <= 4'b0000;
+
+
+    #delay;
+    iniciar <= 0;
+    aFull <= 4'b0000;
+    full <= 4'b0001;
+    aEmpty <= 4'b0000;
+    empty <= 4'b0000;
+
+
+    reset = 1;
+    #delay;
+    iniciar <= 0;
+    aFull <= 4'b0000;
+    full <= 4'b0000;
+    aEmpty <= 4'b0000;
+    empty <= 4'b0000;
+
+    reset = 0;
 
     #delay;
     iniciar <= 1;
-    aFull <= 0;
-    full <= 0;
-    aEmpty <= 0;
-    empty <= 0;
-    reset <= 0;
+    aFull <= 4'b0000;
+    full <= 4'b0000;
+    aEmpty <= 4'b0000;
+    empty <= 4'b0000;
 
 
     #delay;
     iniciar <= 0;
-    aFull <= 0;
-    full <= 0;
-    aEmpty <= 0;
-    empty <= 0;
-    reset <= 0;
+    aFull <= 4'b0000;
+    full <= 4'b0000;
+    aEmpty <= 4'b0000;
+    empty <= 4'b0001;
 
-    #delay;
-    iniciar <= 0;
-    aFull <= 1;
-    full <= 0;
-    aEmpty <= 0;
-    empty <= 0;
-    reset <= 0;
-
-    #delay;
-    iniciar <= 0;
-    aFull <= 0;
-    full <= 1;
-    aEmpty <= 0;
-    empty <= 0;
-    reset <= 0;
-
-    #delay;
-    iniciar <= 0;
-    aFull <= 0;
-    full <= 0;
-    aEmpty <= 0;
-    empty <= 0;
-    reset <= 1;
-
-    #delay;
-    iniciar <= 0;
-    aFull <= 0;
-    full <= 0;
-    aEmpty <= 0;
-    empty <= 0;
-    reset <= 0;
-
-    #delay;
-    iniciar <= 0;
-    aFull <= 0;
-    full <= 0;
-    aEmpty <= 0;
-    empty <= 0;
-    reset <= 0;
-
-    #delay;
-    iniciar <= 0;
-    aFull <= 1;
-    full <= 0;
-    aEmpty <= 0;
-    empty <= 0;
-    reset <= 0;
-
-    #delay;
-    iniciar <= 0;
-    aFull <= 0;
-    full <= 1;
-    aEmpty <= 0;
-    empty <= 0;
-    reset <= 0;
 
     fsm.actual = 3'b100;
     fsmSynth.actual = 3'b100;
