@@ -3,26 +3,26 @@
 `ifndef demux
 `define demux
 
-module demux #(parameter DATA_BITS = 4) (
+module demux #(parameter DATA_WIDTH = 4) (
   input enb,
-  input [DATA_BITS -1:0] entrada_dmux,
-  input [$clog2(DATA_BITS) -1:0] selector_dmux,
-  output [DATA_BITS -1:0] salida0_dmux,
-  output [DATA_BITS -1:0] salida1_dmux,
-  output [DATA_BITS -1:0] salida2_dmux,
-  output [DATA_BITS -1:0] salida3_dmux
+  input [DATA_WIDTH -1:0] entrada_dmux,
+  input [$clog2(DATA_WIDTH) -1:0] selector_dmux,
+  output [DATA_WIDTH -1:0] salida0_dmux,
+  output [DATA_WIDTH -1:0] salida1_dmux,
+  output [DATA_WIDTH -1:0] salida2_dmux,
+  output [DATA_WIDTH -1:0] salida3_dmux
 );
 
   // Entradas
   wire enb;
-  wire [DATA_BITS-1:0] entrada_dmux;
-  wire [$clog2(DATA_BITS) -1:0] selector_dmux;
+  wire [DATA_WIDTH-1:0] entrada_dmux;
+  wire [$clog2(DATA_WIDTH) -1:0] selector_dmux;
 
   // Salidas
-  reg [DATA_BITS-1:0] salida0_dmux;
-  reg [DATA_BITS-1:0] salida1_dmux;
-  reg [DATA_BITS-1:0] salida2_dmux;
-  reg [DATA_BITS-1:0] salida3_dmux;
+  reg [DATA_WIDTH-1:0] salida0_dmux;
+  reg [DATA_WIDTH-1:0] salida1_dmux;
+  reg [DATA_WIDTH-1:0] salida2_dmux;
+  reg [DATA_WIDTH-1:0] salida3_dmux;
 
   //Funcionamiento
   always @ ( * ) begin

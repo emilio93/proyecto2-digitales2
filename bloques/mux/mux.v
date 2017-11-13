@@ -3,26 +3,26 @@
 `ifndef mux
 `define mux
 
-module mux #(parameter DATA_BITS = 4) (
+module mux #(parameter DATA_WIDTH = 4) (
   input enb,
-  input [DATA_BITS -1:0] entrada0_mux,
-  input [DATA_BITS -1:0] entrada1_mux,
-  input [DATA_BITS -1:0] entrada2_mux,
-  input [DATA_BITS -1:0] entrada3_mux,
-  input [$clog2(DATA_BITS) -1:0] selector_mux,
-  output [DATA_BITS -1:0] salida_mux
+  input [DATA_WIDTH -1:0] entrada0_mux,
+  input [DATA_WIDTH -1:0] entrada1_mux,
+  input [DATA_WIDTH -1:0] entrada2_mux,
+  input [DATA_WIDTH -1:0] entrada3_mux,
+  input [$clog2(DATA_WIDTH) -1:0] selector_mux,
+  output [DATA_WIDTH -1:0] salida_mux
 );
 
   // Entradas
   wire enb;
-  wire [DATA_BITS-1:0] entrada0_mux;
-  wire [DATA_BITS-1:0] entrada1_mux;
-  wire [DATA_BITS-1:0] entrada2_mux;
-  wire [DATA_BITS-1:0] entrada3_mux;
-  wire [$clog2(DATA_BITS) -1:0] selector_mux;
+  wire [DATA_WIDTH-1:0] entrada0_mux;
+  wire [DATA_WIDTH-1:0] entrada1_mux;
+  wire [DATA_WIDTH-1:0] entrada2_mux;
+  wire [DATA_WIDTH-1:0] entrada3_mux;
+  wire [$clog2(DATA_WIDTH) -1:0] selector_mux;
 
   // Salidas
-  reg [DATA_BITS-1:0] salida_mux;
+  reg [DATA_WIDTH-1:0] salida_mux;
 
   //Funcionamiento
   always @ ( * ) begin

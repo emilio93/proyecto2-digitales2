@@ -20,17 +20,17 @@
 module muxDemux_test();
 
 
-parameter DATA_BITS = 4;//tamaño de palabras
+parameter DATA_WIDTH = 4;//tamaño de palabras
 
 reg enb;
-reg [$clog2(DATA_BITS)-1:0] selectorMux, selectorDemux;
-reg [DATA_BITS-1:0] e0, e1, e2, e3;
-wire [DATA_BITS-1:0] s0, s1, s2, s3;
-wire [DATA_BITS-1:0] s0Synth, s1Synth, s2Synth, s3Synth;
-wire [DATA_BITS-1:0] salidaMux;
-wire [DATA_BITS-1:0] salidaSynthMux;
+reg [$clog2(DATA_WIDTH)-1:0] selectorMux, selectorDemux;
+reg [DATA_WIDTH-1:0] e0, e1, e2, e3;
+wire [DATA_WIDTH-1:0] s0, s1, s2, s3;
+wire [DATA_WIDTH-1:0] s0Synth, s1Synth, s2Synth, s3Synth;
+wire [DATA_WIDTH-1:0] salidaMux;
+wire [DATA_WIDTH-1:0] salidaSynthMux;
 
-mux #(.DATA_BITS(DATA_BITS)) mux(
+mux #(.DATA_WIDTH(DATA_WIDTH)) mux(
 	.enb(enb),
 	.entrada0_mux(e0),
 	.entrada1_mux(e1),
@@ -50,7 +50,7 @@ muxSynth muxSynth(
 	.salida_mux(salidaSynthMux)
 	);
 
-demux #(.DATA_BITS(DATA_BITS)) demux(
+demux #(.DATA_WIDTH(DATA_WIDTH)) demux(
 	.enb(enb),
 	.entrada_dmux(salidaMux),
 	.selector_dmux(selectorDemux),
