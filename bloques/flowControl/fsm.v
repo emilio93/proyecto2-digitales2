@@ -48,7 +48,7 @@ module fsm(
   * */
   parameter [2:0] rst = 3'b001, error = 3'b010, init = 3'b100, idleEmpty = 3'b011, pause = 3'b101, continuee = 3'b110,  active = 3'b111;
 
-  reg [2:0] proximo = 3'b011;	//iniciales
+  reg [2:0] proximo;	//iniciales
   reg [2:0] actual; 
 
 //  always @(posedge clk or negedge reset)begin
@@ -188,7 +188,7 @@ module fsm(
 	end*/
 
 	always @(*) begin
-//		actual = proximo;
+		proximo = actual;
 		case(actual)
 
 			active : begin
