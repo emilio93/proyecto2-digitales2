@@ -17,15 +17,6 @@ Emilio Rojas
 
 ### ```transmisor```
 
----
- 
- # Bloque Round Robin
-<br >
-
-#### Diagrama de bloque
-
-![110% center](presentacion-2/fifo.png)
-  
 
 ---
 
@@ -48,35 +39,10 @@ module roundRobinArbitrado #(
   selector_enb
 );
 ```
-  
----
 
+---  
 
- # Makefile
-<br >
-
-#### Comandos unicos para cada modulos
-
-![150% center](presentacion-2/m.png)
-
----
- # Bloque transmisor
-<br >
-
-#### Incluye otros modulos
-![150% center](presentacion-2/demux.png)
-  
----
-
-
-
-
-
-# Round Robin
-
-<br >
-
-#### Archivo .gtkw de las se単ales del roundRobin_test
+#### Archivo .gtkw de las señales del roundRobin_test
 
 ![center](presentacion-2/testRoundRobin.png)
 
@@ -85,9 +51,53 @@ _De: ```roundRobin_test.v```_
 
 
 
+---  
+
 # Maquina de estados
 
-#### Archivo .gtkw de las se単ales del fsm_test
-![center](presentacion-2/fsm.png)
+#### Archivo .gtkw de las señales del fsm_test
+![center](presentacion-3/fsm.jpg)
 _De: ```fsm_test.v```_
+
 ---
+
+
+ # Makefile
+<br >
+
+#### Comandos unicos para cada modulos
+
+![150% center](presentacion-3/m.png)
+
+---
+ # Bloque transmisor
+<br >
+
+#### Puertos y parametros
+```verilog
+module qos 
+#(parameter DATA_WIDTH = 4, parameter QUEUE_QUANTITY = 4)
+( output [DATA_WIDTH-1:0] output_qos,
+  output [QUEUE_QUANTITY-1:0] error_full_qos, pausa_qos, 
+  output [QUEUE_QUANTITY-1:0] continue_qos,
+  output idle_qos,
+  //inputs se単ales de control
+  input clk, rst, enb, init,
+  input uH,uL,
+  input [1:0] vc_id, 
+  input [QUEUE_QUANTITY-1:0] arbiterTable,
+  //inputs data
+  input [DATA_WIDTH-1:0] input_qos
+  );
+```
+
+
+
+
+
+
+
+
+
+
+
