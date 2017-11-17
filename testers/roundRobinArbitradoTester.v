@@ -1,8 +1,8 @@
 `timescale 1ns/1ps
 
 `ifndef isTest
-  `include "../bloques/roundRobin/roundRobinArbitradoTester.v"
-  `include "../build/roundRobinArbitradoTester-sintetizado.v"
+  `include "../bloques/roundRobin/roundRobinArbitrado.v"
+  `include "../build/roundRobinArbitrado-sintetizado.v"
 `endif
 
 `ifndef roundRobinArbitradoTester
@@ -13,8 +13,8 @@ module roundRobinArbitradoTester (
   input clk,
   input rst,
   input enb,
-  input [QUEUE_QUANTITY*$clog2(MAX_WEIGHT)-1:0] pesos,
-  input [(TABLE_SIZE*$clog2(QUEUE_QUANTITY))-1:0] selecciones,
+  input [((TABLE_SIZE)*($clog2(MAX_WEIGHT)))-1:0] pesos,
+  input [(TABLE_SIZE)*$clog2(QUEUE_QUANTITY)-1:0] selecciones,
   input [QUEUE_QUANTITY-1:0] buf_empty,
   input [QUEUE_QUANTITY*BUF_WIDTH-1:0] fifo_counter,
   output [$clog2(QUEUE_QUANTITY)-1:0] selector,
@@ -36,7 +36,7 @@ always @ ( * ) begin
   errSelector = sint_selector != selector;
 end
 
-roundRobinArbitradoTester #(.QUEUE_QUANTITY(QUEUE_QUANTITY), .DATA_BITS(DATA_BITS)) test(
+roundRobinArbitrado #(.QUEUE_QUANTITY(QUEUE_QUANTITY), .DATA_BITS(DATA_BITS)) test(
   .clk(clk), .rst(rst), .enb(enb),
   .pesos(pesos),
   .selecciones(selecciones),
@@ -46,7 +46,7 @@ roundRobinArbitradoTester #(.QUEUE_QUANTITY(QUEUE_QUANTITY), .DATA_BITS(DATA_BIT
   .selector_enb(selector_enb)
 );
 
-roundRobinArbitradoTesterSynth synthTest(
+roundRobinArbitradoSynth synthTest(
   .clk(clk), .rst(rst), .enb(enb),
   .pesos(pesos),
   .selecciones(selecciones),

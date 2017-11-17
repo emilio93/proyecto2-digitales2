@@ -8,10 +8,9 @@
 `include "../testers/roundRobinArbitradoTester.v"
 
 module roundRobinArbitrado_test #(parameter QUEUE_QUANTITY = 4, parameter DATA_BITS = 8, MAX_WEIGHT=64, BUF_WIDTH=3, TABLE_SIZE=8);
-
   reg clk, rst, enb;
-  reg [QUEUE_QUANTITY*$clog2(MAX_WEIGHT)-1:0] pesos;
-  reg [(TABLE_SIZE*$clog2(QUEUE_QUANTITY))-1:0] selecciones;
+  reg [((TABLE_SIZE)*($clog2(MAX_WEIGHT)))-1:0] pesos;
+  reg [(TABLE_SIZE)*$clog2(QUEUE_QUANTITY)-1:0] selecciones;
   reg [QUEUE_QUANTITY-1:0] buf_empty;
   reg [QUEUE_QUANTITY*BUF_WIDTH-1:0] fifo_counter;
   wire [$clog2(QUEUE_QUANTITY)-1:0] selector;
@@ -19,7 +18,7 @@ module roundRobinArbitrado_test #(parameter QUEUE_QUANTITY = 4, parameter DATA_B
   wire selector_enb;
   wire sint_selector_enb;
 
-  roundRobinPesadoTester rrpTester(
+  roundRobinArbitradoTester rrpTester(
     .clk(clk), .rst(rst), .enb(enb),
     .pesos(pesos),
     .selecciones(selecciones),
@@ -41,37 +40,24 @@ module roundRobinArbitrado_test #(parameter QUEUE_QUANTITY = 4, parameter DATA_B
     clk <= 0;
     rst <= 1;
     enb <= 1;
-    buf_empty <= 4'b0000;
+    buf_empty <= 8'b00000000;
     fifo_counter <= {4'b1000, 4'b1000, 4'b1000, 4'b1000};
     pesos <= {6'b110, 6'b11, 6'b10, 6'b1};
+    selecciones <= {2'b10, 2'b11, 2'b10, 2'b01, 2'b00, 2'b10, 2'b11, 2'b11};
 
-    # 15
+    # 40
     @(posedge clk) rst <= 0;
 
     # 40
-    @(posedge clk) buf_empty[0] <= 1; buf_empty[1] <= 1;
-    @(posedge clk) buf_empty[0] <= 0; buf_empty[1] <= 0;
+    @(posedge clk) buf_empty[0] <= 0;
 
     # 40
-    @(posedge clk) buf_empty[0] <= 1; buf_empty[1] <= 1; buf_empty[2] <= 1; buf_empty[3] <= 1;
     @(posedge clk) buf_empty[0] <= 0; buf_empty[1] <= 0; buf_empty[2] <= 0; buf_empty[3] <= 0;
 
     # 20
-    @(posedge clk) buf_empty[0] <= 1; buf_empty[1] <= 1; buf_empty[2] <= 1; buf_empty[3] <= 1;
-    @(posedge clk) buf_empty[0] <= 0; buf_empty[1] <= 0; buf_empty[2] <= 0; buf_empty[3] <= 0;
-
-    # 160
-    @(posedge clk) buf_empty[2'b11] <= 1;
-    @(posedge clk) buf_empty[2'b11] <= 0;
-
-    # 20
-    @(posedge clk) buf_empty[2'b10] <= 1;
-    @(posedge clk) buf_empty[2'b10] <= 0;
-
-    # 40
-    @(posedge clk) buf_empty[2] <= 0;
+    @(posedge clk) buf_empty[2] <= 0; buf_empty[3] <= 0;
 
 
-    # 15 $finish;
+    # 450 $finish;
   end
 endmodule
