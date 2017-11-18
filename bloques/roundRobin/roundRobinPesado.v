@@ -58,15 +58,23 @@ module roundRobinPesado #(
     else if (!buf_empty[contador+2'd3]) {selector_enb, selector} = {1'b1, contador+2'd3};
   end
 
+  genvar c;
+  generate
+    for (c = 0; c < QUEUE_QUANTITY; c = c + 1) begin: asignar_contadoresPeso_enb
+      always @(posedge clk) begin
+        if (rst) begin
+          contadoresPeso[c] <= arreglo_pesos[c]-1;
+        end else if (enb) begin
+          contadoresPeso[c] <= contador==c ? contadoresPeso[c]-1 : arreglo_pesos[c]-1;
+        end
+      end
+    end
+  endgenerate
+
   always @ (posedge clk) begin
     // En modo reset
     if (rst) begin
       contador <= 0;
-      // contadores descendentes.
-      contadoresPeso[0] <= arreglo_pesos[0]-1;
-      contadoresPeso[1] <= arreglo_pesos[1]-1;
-      contadoresPeso[2] <= arreglo_pesos[2]-1;
-      contadoresPeso[3] <= arreglo_pesos[3]-1;
 
     // Contando
     end else if (enb) begin
@@ -75,10 +83,6 @@ module roundRobinPesado #(
       end else begin
         if (contadoresPeso[contador] == 0) contador <= 0;
       end
-      contadoresPeso[0] <= contador==0 ? contadoresPeso[0]-1 : arreglo_pesos[0]-1;
-      contadoresPeso[1] <= contador==1 ? contadoresPeso[1]-1 : arreglo_pesos[1]-1;
-      contadoresPeso[2] <= contador==2 ? contadoresPeso[2]-1 : arreglo_pesos[2]-1;
-      contadoresPeso[3] <= contador==3 ? contadoresPeso[3]-1 : arreglo_pesos[3]-1;
     end
   end
 
