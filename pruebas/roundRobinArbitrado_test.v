@@ -2,7 +2,7 @@
 
 `define isTest 1
 
-`include "../lib/osu018_stdcells.v"
+`include "includes.v"
 `include "../bloques/roundRobin/roundRobinArbitrado.v"
 `include "../build/roundRobinArbitrado-sintetizado.v"
 `include "../testers/roundRobinArbitradoTester.v"
@@ -42,22 +42,17 @@ module roundRobinArbitrado_test #(parameter QUEUE_QUANTITY = 4, parameter DATA_B
     enb <= 1;
     buf_empty <= 8'b00000000;
     fifo_counter <= {4'b1000, 4'b1000, 4'b1000, 4'b1000};
-    pesos <= {6'b110, 6'b11, 6'b10, 6'b1};
-    selecciones <= {2'b10, 2'b11, 2'b10, 2'b01, 2'b00, 2'b10, 2'b11, 2'b11};
+    pesos <= {6'b110, 6'b11, 6'b10, 6'b1, 6'b11, 6'b111, 6'b101, 6'b110};
+    selecciones <= {2'b10, 2'b00, 2'b10, 2'b01, 2'b00, 2'b10, 2'b01, 2'b11};
 
     # 40
     @(posedge clk) rst <= 0;
 
-    # 40
-    @(posedge clk) buf_empty[0] <= 0;
+    # 1000
+    @(posedge clk)
+    selecciones <= {2'b10, 2'b10, 2'b10, 2'b01, 2'b00, 2'b10, 2'b01, 2'b11};
+    pesos <= {6'b1, 6'b1, 6'b1, 6'b1, 6'b1, 6'b1, 6'b1, 6'b1};
 
-    # 40
-    @(posedge clk) buf_empty[0] <= 0; buf_empty[1] <= 0; buf_empty[2] <= 0; buf_empty[3] <= 0;
-
-    # 20
-    @(posedge clk) buf_empty[2] <= 0; buf_empty[3] <= 0;
-
-
-    # 450 $finish;
+    # 1000 $finish;
   end
 endmodule
