@@ -1,7 +1,7 @@
 `timescale 1ns/1ps
 //liberia de celdas cmos
 `ifndef cmos_cells
-	`include "../lib/osu018_stdcells.v"
+	`include "includes.v"
 `endif
 //include de design under test(DUT), units under test(UUT)
 `ifndef fifo16
@@ -39,6 +39,19 @@ fifo16Synth ff16Synth(
 	.almost_full(almost_fullSynth), .almost_empty(almost_emptySynth),
 	.fifo_counter(fifo_counterSynth)
 	);
+
+reg error_buf_full;
+reg error_buf_empty;
+reg error_almost_full;
+reg error_almost_empty;
+reg error_fifo_counter;
+always @ ( * ) begin
+	error_buf_empty = buf_emptySynth!=buf_empty;
+	error_buf_full = buf_fullSynth!=buf_full;
+	error_almost_empty = almost_emptySynth!=almost_empty;
+	error_almost_full = almost_fullSynth!=almost_full;
+	error_fifo_counter = fifo_counterSynth!=fifo_counter;
+end
 
 initial
 begin

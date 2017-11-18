@@ -1,20 +1,20 @@
 [*]
-[*] GTKWave Analyzer v3.3.66 (w)1999-2015 BSI
-[*] Mon Nov  6 10:12:06 2017
+[*] GTKWave Analyzer v3.3.83 (w)1999-2017 BSI
+[*] Sat Nov 18 09:35:03 2017
 [*]
-[dumpfile] "/home/ubuntu/BMC_git/proyecto2-digitales2/gtkws/fifo8_test.vcd"
-[dumpfile_mtime] "Mon Nov  6 09:57:51 2017"
-[dumpfile_size] 66839
-[savefile] "/home/ubuntu/BMC_git/proyecto2-digitales2/gtkws/fifo8_test.gtkw"
+[dumpfile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/fifo8_test.vcd"
+[dumpfile_mtime] "Sat Nov 18 09:33:16 2017"
+[dumpfile_size] 91140
+[savefile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/fifo8_test.gtkw"
 [timestart] 0
-[size] 1317 744
-[pos] -1 -117
+[size] 1680 1022
+[pos] -1 -1
 *-15.897379 73500 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] fifo8_test.
 [sst_width] 225
-[signals_width] 166
+[signals_width] 174
 [sst_expanded] 1
-[sst_vpaned_height] 211
+[sst_vpaned_height] 317
 @28
 fifo8_test.ff8.clk
 fifo8_test.ff8.rst
@@ -40,7 +40,7 @@ fifo8_test.ff8.almost_full
 fifo8_test.ff8.buf_full
 @200
 -Fifo8 Estructural
-@23
+@22
 [color] 2
 fifo8_test.ff8Synth.\buf_mem[0][3:0]
 [color] 2
@@ -61,7 +61,7 @@ fifo8_test.ff8Synth.\buf_mem[7][3:0]
 fifo8_test.ff8Synth.fifo_counter[3:0]
 [color] 2
 fifo8_test.ff8Synth.buf_out[3:0]
-@29
+@28
 [color] 2
 fifo8_test.ff8Synth.buf_empty
 [color] 2
@@ -70,5 +70,19 @@ fifo8_test.ff8Synth.almost_empty
 fifo8_test.ff8Synth.almost_full
 [color] 2
 fifo8_test.ff8Synth.buf_full
+@200
+-
+-ERRORES
+@28
+[color] 4
+fifo8_test.error_almost_empty
+[color] 4
+fifo8_test.error_buf_empty
+[color] 4
+fifo8_test.error_almost_full
+[color] 4
+fifo8_test.error_buf_full
+[color] 4
+fifo8_test.error_fifo_counter
 [pattern_trace] 1
 [pattern_trace] 0

@@ -1,0 +1,117 @@
+[*]
+[*] GTKWave Analyzer v3.3.83 (w)1999-2017 BSI
+[*] Sat Nov 18 11:08:55 2017
+[*]
+[dumpfile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/roundRobinArbitrado_test.vcd"
+[dumpfile_mtime] "Sat Nov 18 11:00:42 2017"
+[dumpfile_size] 262658
+[savefile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/roundRobinArbitrado_test.gtkw"
+[timestart] 0
+[size] 1680 1022
+[pos] -1 -1
+*-18.327915 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] roundRobinArbitrado_test.
+[treeopen] roundRobinArbitrado_test.rrpTester.test.
+[sst_width] 45
+[signals_width] 345
+[sst_expanded] 0
+[sst_vpaned_height] 290
+@28
+roundRobinArbitrado_test.rrpTester.clk
+roundRobinArbitrado_test.rrpTester.rst
+roundRobinArbitrado_test.rrpTester.enb
+@200
+-
+@c00022
+roundRobinArbitrado_test.rrpTester.test.buf_empty[3:0]
+@28
+(0)roundRobinArbitrado_test.rrpTester.test.buf_empty[3:0]
+(1)roundRobinArbitrado_test.rrpTester.test.buf_empty[3:0]
+(2)roundRobinArbitrado_test.rrpTester.test.buf_empty[3:0]
+(3)roundRobinArbitrado_test.rrpTester.test.buf_empty[3:0]
+@1401200
+-group_end
+@200
+-
+@c00023
++{selecciones/pesos} roundRobinArbitrado_test.rrpTester.buf_empty[3:0]
+@24
+roundRobinArbitrado_test.rrpTester.synthTest.\arreglo_selecciones[0][1:0]
+@22
+roundRobinArbitrado_test.rrpTester.synthTest.\arreglo_pesos[0][5:0]
+@200
+-
+@24
+roundRobinArbitrado_test.rrpTester.synthTest.\arreglo_selecciones[1][1:0]
+@22
+roundRobinArbitrado_test.rrpTester.synthTest.\arreglo_pesos[1][5:0]
+@200
+-
+@24
+roundRobinArbitrado_test.rrpTester.synthTest.\arreglo_selecciones[2][1:0]
+@22
+roundRobinArbitrado_test.rrpTester.synthTest.\arreglo_pesos[2][5:0]
+@200
+-
+@24
+roundRobinArbitrado_test.rrpTester.synthTest.\arreglo_selecciones[3][1:0]
+@22
+roundRobinArbitrado_test.rrpTester.synthTest.\arreglo_pesos[3][5:0]
+@200
+-
+@24
+roundRobinArbitrado_test.rrpTester.synthTest.\arreglo_selecciones[4][1:0]
+@22
+roundRobinArbitrado_test.rrpTester.synthTest.\arreglo_pesos[4][5:0]
+@200
+-
+@24
+roundRobinArbitrado_test.rrpTester.synthTest.\arreglo_selecciones[5][1:0]
+@22
+roundRobinArbitrado_test.rrpTester.synthTest.\arreglo_pesos[5][5:0]
+@200
+-
+@24
+roundRobinArbitrado_test.rrpTester.synthTest.\arreglo_selecciones[6][1:0]
+@22
+roundRobinArbitrado_test.rrpTester.synthTest.\arreglo_pesos[6][5:0]
+@200
+-
+@24
+roundRobinArbitrado_test.rrpTester.synthTest.\arreglo_selecciones[7][1:0]
+@22
+roundRobinArbitrado_test.rrpTester.synthTest.\arreglo_pesos[7][5:0]
+@1401201
+-group_end
+@200
+-
+-Conductual
+@24
+[color] 3
+roundRobinArbitrado_test.rrpTester.test.contador[2:0]
+[color] 3
+roundRobinArbitrado_test.rrpTester.test.selector[1:0]
+@28
+[color] 3
+roundRobinArbitrado_test.rrpTester.test.selector_enb
+@200
+-
+-Estructural
+@24
+[color] 2
+roundRobinArbitrado_test.rrpTester.synthTest.contador[2:0]
+[color] 2
+roundRobinArbitrado_test.rrpTester.synthTest.selector[1:0]
+@28
+[color] 2
+roundRobinArbitrado_test.rrpTester.synthTest.selector_enb
+@200
+-
+-ERRORES
+@28
+[color] 4
+roundRobinArbitrado_test.rrpTester.errSelector
+[color] 4
+roundRobinArbitrado_test.rrpTester.errSelector_enb
+[pattern_trace] 1
+[pattern_trace] 0

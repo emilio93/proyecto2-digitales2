@@ -1,7 +1,7 @@
 `timescale 1ns/1ps
 //liberia de celdas cmos
 `ifndef cmos_cells
-	`include "../lib/osu018_stdcells.v"
+	`include "includes.v"
 `endif
 //include de design under test(DUT), units under test(UUT)
 `ifndef mux
@@ -69,6 +69,19 @@ demuxSynth demuxSynth(
 	.salida2_dmux(s2Synth),
 	.salida3_dmux(s3Synth)
 	);
+
+reg error_salida_mux;
+reg error_salida0;
+reg error_salida1;
+reg error_salida2;
+reg error_salida3;
+always @ ( * ) begin
+	error_salida_mux = salidaMux != salidaSynthMux;
+	error_salida0 = s0Synth != s0;
+	error_salida1 = s1Synth != s1;
+	error_salida2 = s2Synth != s2;
+	error_salida3 = s3Synth != s3;
+end
 
 parameter delay = 10;
 
