@@ -2,7 +2,7 @@
 
 `define isTest 1
 
-`include "../lib/osu018_stdcells.v"
+`include "includes.v"
 `include "../bloques/flowControl/fsm.v"
 `include "../build/fsm-sintetizado.v"
 

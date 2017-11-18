@@ -1,7 +1,7 @@
 `timescale 1ns/1ps
 //liberia de celdas cmos
 `ifndef cmos_cells
-	`include "../lib/osu018_stdcells.v"
+	`include "includes.v"
 `endif
 //include de design under test(DUT), units under test(UUT)
 `ifndef mux

@@ -7,6 +7,7 @@ CCFLAGS  = -Ttyp -g specify -g2005-sv
 CC1      = vvp
 CC2      = gtkwave
 CC3      = yosys -c
+CC3_FLAGS= -q
 VPI      = -M ~/.local/install/ivl/lib/ivl
 
 # Evita salidas de un comando
@@ -61,9 +62,9 @@ synthYosys:
 	@echo ""
 	@echo "****************************"
 	@echo ""
-	@$(foreach module,$(MAKECMDGOALS:synth%=%),$(foreach vlog, $(wildcard ./bloques/**/$(module).v), echo VLOG_FILE_NAME=$(vlog) VLOG_MODULE_NAME=$(module) CUR_DIR=$(shell pwd) $(CC3) ./yosys.tcl -q))
+	@$(foreach module,$(MAKECMDGOALS:synth%=%),$(foreach vlog, $(wildcard ./bloques/**/$(module).v), echo VLOG_FILE_NAME=$(vlog) VLOG_MODULE_NAME=$(module) CUR_DIR=$(shell pwd) $(CC3) ./yosys.tcl $(CC3_FLAGS)))
 	@echo ""
-	@$(foreach module,$(MAKECMDGOALS:synth%=%),$(foreach vlog, $(wildcard ./bloques/**/$(module).v), VLOG_FILE_NAME=$(vlog) VLOG_MODULE_NAME=$(module) CUR_DIR=$(shell pwd) $(CC3) ./yosys.tcl -q;))
+	@$(foreach module,$(MAKECMDGOALS:synth%=%),$(foreach vlog, $(wildcard ./bloques/**/$(module).v), VLOG_FILE_NAME=$(vlog) VLOG_MODULE_NAME=$(module) CUR_DIR=$(shell pwd) $(CC3) ./yosys.tcl $(CC3_FLAGS);))
 	@echo ""
 	rm -f ./pdfs/*.dot
 else
@@ -72,9 +73,9 @@ synthYosys:
 	@echo "*** SINTETIZANDO TODO EL PROYECTO ***"
 	@echo "*************************************"
 	@echo ""
-	@$(foreach vlog, $(wildcard ./bloques/**/*.v), echo VLOG_FILE_NAME=$(vlog) VLOG_MODULE_NAME=$(subst .v,,$(notdir $(vlog))) CUR_DIR=$(shell pwd) $(CC3) ./yosys.tcl -q;)
+	@$(foreach vlog, $(wildcard ./bloques/**/*.v), echo VLOG_FILE_NAME=$(vlog) VLOG_MODULE_NAME=$(subst .v,,$(notdir $(vlog))) CUR_DIR=$(shell pwd) $(CC3) ./yosys.tcl $(CC3_FLAGS);)
 	@echo ""
-	@$(foreach vlog, $(wildcard ./bloques/**/*.v), VLOG_FILE_NAME=$(vlog) VLOG_MODULE_NAME=$(subst .v,,$(notdir $(vlog))) CUR_DIR=$(shell pwd) $(CC3) ./yosys.tcl -q;echo "";)
+	@$(foreach vlog, $(wildcard ./bloques/**/*.v), VLOG_FILE_NAME=$(vlog) VLOG_MODULE_NAME=$(subst .v,,$(notdir $(vlog))) CUR_DIR=$(shell pwd) $(CC3) ./yosys.tcl $(CC3_FLAGS);echo "";)
 	@echo ""
 	rm -f ./pdfs/*.dot
 endif
