@@ -43,6 +43,19 @@ fifo8Synth ff8Synth(
 	.fifo_counter(fifo_counterSynth)
 	);
 
+reg error_buf_full;
+reg error_buf_empty;
+reg error_almost_full;
+reg error_almost_empty;
+reg error_fifo_counter;
+always @ ( * ) begin
+	error_buf_empty = buf_emptySynth!=buf_empty;
+	error_buf_full = buf_fullSynth!=buf_full;
+	error_almost_empty = almost_emptySynth!=almost_empty;
+	error_almost_full = almost_fullSynth!=almost_full;
+	error_fifo_counter = fifo_counterSynth!=fifo_counter;
+end
+
 initial
 begin
   $dumpfile("gtkws/fifo8_test.vcd");
