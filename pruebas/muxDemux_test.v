@@ -70,6 +70,19 @@ demuxSynth demuxSynth(
 	.salida3_dmux(s3Synth)
 	);
 
+reg error_salida_mux;
+reg error_salida0;
+reg error_salida1;
+reg error_salida2;
+reg error_salida3;
+always @ ( * ) begin
+	error_salida_mux = salidaMux != salidaSynthMux;
+	error_salida0 = s0Synth != s0;
+	error_salida1 = s1Synth != s1;
+	error_salida2 = s2Synth != s2;
+	error_salida3 = s3Synth != s3;
+end
+
 parameter delay = 10;
 
 initial
