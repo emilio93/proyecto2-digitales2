@@ -208,7 +208,7 @@ makeEnd:
 ifneq ($(MAKECMDGOALS:view%=%),)
 view:
 	@$(foreach test,$(MAKECMDGOALS:view%=%), $(foreach gtkw, $(wildcard ./gtkws/$(test)_test.gtkw),echo $(CC2) $(gtkw);))
-	@$(foreach test,$(MAKECMDGOALS:view%=%), $(foreach gtkw, $(wildcard ./gtkws/$(test)_test.gtkw), $(CC2) $(gtkw);))
+	@$(foreach test,$(MAKECMDGOALS:view%=%), $(foreach gtkw, $(wildcard ./gtkws/$(test)_test.gtkw), $(CC2) $(gtkw) &))
 else
 view:
 	$(error make view requiere argumento(s))
