@@ -50,6 +50,16 @@ module fsm_test();
 	.idle(idleSynth)
   );
 
+  reg error_continuar;
+  reg error_error_full;
+  reg error_pausa;
+  reg error_idle;
+  always @ ( * ) begin
+    error_continuar = continuar != continuarSynth;
+    error_error_full = error != errorSynth;
+    error_pausa = pausa != pausaSynth;
+    error_idle = idle != idleSynth;
+  end
 
   always # 5 clk = ~clk;
 
