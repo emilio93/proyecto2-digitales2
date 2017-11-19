@@ -48,7 +48,7 @@ all: synth compile run
 # USO:
 #   make synth <nombre-del-modulo-1> <nombre-del-modulo-2> ...
 ifeq ($(MAKECMDGOALS:synth%=%),$(MAKECMDGOALS))
-synth: synthYosys synthDot2Pdf synthRename
+synth: synthYosys synthRename
 else
 synth: synthYosys synthRename synthEnd
 endif
@@ -62,7 +62,7 @@ synthYosys:
 	@echo ""
 	@echo "****************************"
 	@echo ""
-	@$(foreach module,$(MAKECMDGOALS:synth%=%),$(foreach vlog, $(wildcard ./bloques/**/$(module).v), echo VLOG_FILE_NAME=$(vlog) VLOG_MODULE_NAME=$(module) CUR_DIR=$(shell pwd) $(CC3) ./yosys.tcl $(CC3_FLAGS); VLOG_FILE_NAME=$(vlog) VLOG_MODULE_NAME=$(module) CUR_DIR=$(shell pwd) $(CC3) ./yosys.tcl $(CC3_FLAGS);))
+	@$(foreach module,$(MAKECMDGOALS:synth%=%),$(foreach vlog, $(wildcard ./bloques/**/$(module).v), echo VLOG_FILE_NAME=$(vlog) VLOG_MODULE_NAME=$(module) CUR_DIR=$(shell pwd) $(CC3) ./yosys.tcl $(CC3_FLAGS); VLOG_FILE_NAME=$(vlog) VLOG_MODULE_NAME=$(module) CUR_DIR=$(shell pwd) $(CC3) ./yosys.tcl $(CC3_FLAGS);echo "";))
 	@echo ""
 else
 synthYosys:
@@ -182,8 +182,7 @@ runRun:
 	@echo "************"
 	@echo "CORRIENDO..."
 	@echo "************"
-	@$(foreach module,$(MAKECMDGOALS:run%=%), $(foreach test, $(wildcard ./build/$(module)_test.o), echo "";echo $(CC1) $(VPI) $(test);))
-	@$(foreach module,$(MAKECMDGOALS:run%=%), $(foreach test, $(wildcard ./build/$(module)_test.o), $(CC1) $(VPI) $(test);))
+	@$(foreach module,$(MAKECMDGOALS:run%=%), $(foreach test, $(wildcard ./build/$(module)_test.o), echo "";echo $(CC1) $(VPI) $(test); $(CC1) $(VPI) $(test);echo "";))
 else
 runRun:
 	@echo "************"
