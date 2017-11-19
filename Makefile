@@ -3,7 +3,7 @@ SHELL = /bin/sh
 DIRS  = build pdfs
 
 CC       = iverilog
-CCFLAGS  = -Ttyp -g specify -g2005-sv
+CCFLAGS  = -Ttyp -g specify -g2005-sv -DCOMPILACION
 CC1      = vvp
 CC2      = gtkwave
 CC3      = yosys -c
