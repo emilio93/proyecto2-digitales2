@@ -1,84 +1,84 @@
 [*]
 [*] GTKWave Analyzer v3.3.83 (w)1999-2017 BSI
-[*] Sat Nov 18 11:35:00 2017
+[*] Sun Nov 19 16:04:44 2017
 [*]
 [dumpfile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/fsm_test.vcd"
-[dumpfile_mtime] "Sat Nov 18 11:34:31 2017"
-[dumpfile_size] 4796
+[dumpfile_mtime] "Sun Nov 19 16:04:41 2017"
+[dumpfile_size] 16531
 [savefile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/fsm_test.gtkw"
 [timestart] 0
 [size] 1680 1022
 [pos] -1 -1
-*-15.247367 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-15.453701 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] fsm_test.
-[sst_width] 45
-[signals_width] 174
-[sst_expanded] 0
+[treeopen] fsm_test.fsmTester.
+[sst_width] 223
+[signals_width] 229
+[sst_expanded] 1
 [sst_vpaned_height] 298
 @28
-fsm_test.clk
-fsm_test.reset
-fsm_test.iniciar
+[color] 4
+fsm_test.fsmTester.clk
+[color] 4
+fsm_test.fsmTester.enb
+[color] 4
+fsm_test.fsmTester.rst
 @200
 -
-@c00028
-[color] 3
-fsm_test.fsm.actual[2:0]
 @28
-(0)fsm_test.fsm.actual[2:0]
-(1)fsm_test.fsm.actual[2:0]
-(2)fsm_test.fsm.actual[2:0]
-@1401200
--group_end
-@c00028
-[color] 3
-fsm_test.fsm.proximo[2:0]
-@28
-(0)fsm_test.fsm.proximo[2:0]
-(1)fsm_test.fsm.proximo[2:0]
-(2)fsm_test.fsm.proximo[2:0]
-@1401200
--group_end
-@28
-[color] 3
-fsm_test.error
-[color] 3
-fsm_test.fsm.error_full
-[color] 3
-fsm_test.idle
+[color] 4
+fsm_test.fsmTester.iniciar_in
+@22
+[color] 4
+fsm_test.fsmTester.almost_empty_in[4:0]
+[color] 4
+fsm_test.fsmTester.empty_in[4:0]
+[color] 4
+fsm_test.fsmTester.almost_full_in[4:0]
+[color] 4
+fsm_test.fsmTester.full_in[4:0]
 @200
--
-@c00028
-[color] 2
-fsm_test.fsmSynth.actual[2:0]
+-CONDUCTUAL
 @28
-(0)fsm_test.fsmSynth.actual[2:0]
-(1)fsm_test.fsmSynth.actual[2:0]
-(2)fsm_test.fsmSynth.actual[2:0]
-@1401200
--group_end
-@c00028
-[color] 2
-fsm_test.fsmSynth.proximo[2:0]
-@28
-(0)fsm_test.fsmSynth.proximo[2:0]
-(1)fsm_test.fsmSynth.proximo[2:0]
-(2)fsm_test.fsmSynth.proximo[2:0]
-@1401200
--group_end
-@28
-[color] 2
-fsm_test.errorSynth
-[color] 2
-fsm_test.fsmSynth.error_full
-[color] 2
-fsm_test.idleSynth
+[color] 3
+fsm_test.fsmTester.fsm.state[6:0]
+[color] 3
+fsm_test.fsmTester.fsm.next[6:0]
+[color] 3
+fsm_test.fsmTester.fsm.error_full
+[color] 3
+fsm_test.fsmTester.fsm.idle
+@22
+[color] 3
+fsm_test.fsmTester.fsm.pausa[3:0]
+[color] 3
+fsm_test.fsmTester.fsm.continuar[3:0]
 @200
--
+-ESTRUCTURAL
+@28
+[color] 2
+fsm_test.fsmTester.fsmSynth.state[6:0]
+[color] 2
+fsm_test.fsmTester.fsmSynth.next[6:0]
+[color] 2
+fsm_test.fsmTester.fsmSynth.error_full
+[color] 2
+fsm_test.fsmTester.fsmSynth.idle
+@22
+[color] 2
+fsm_test.fsmTester.fsmSynth.pausa[3:0]
+[color] 2
+fsm_test.fsmTester.fsmSynth.continuar[3:0]
+@200
 -ERRORES
-@28
-fsm_test.error_continuar
-fsm_test.error_error_full
-fsm_test.error_idle
+@29
+[color] 4
+fsm_test.fsmTester.errError
+[color] 4
+fsm_test.fsmTester.errIdle
+[color] 4
+fsm_test.fsmTester.errPausa
+[color] 4
+fsm_test.fsmTester.errContinuar
 [pattern_trace] 1
 [pattern_trace] 0

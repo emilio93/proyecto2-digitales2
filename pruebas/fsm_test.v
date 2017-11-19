@@ -5,61 +5,40 @@
 `include "includes.v"
 `include "../bloques/flowControl/fsm.v"
 `include "../build/fsm-sintetizado.v"
+`include "../testers/fsmTester.v"
 
 module fsm_test();
 
-  reg clk, reset, iniciar;
-  reg [4:0] aFull;
-  reg [4:0] full;
-  reg [4:0] aEmpty;
-  reg [4:0] empty;
-  wire error, idle;
-  wire [3:0] pausa;
-  wire [3:0] continuar;
+  reg clk, rst, enb, iniciar_in;
+  reg [4:0] almost_full_in;
+  reg [4:0] full_in;
+  reg [4:0] almost_empty_in;
+  reg [4:0] empty_in;
+
+  wire errorConduct, idleConduct;
+  wire [3:0] pausaConduct;
+  wire [3:0] continuarConduct;
+
   wire errorSynth, idleSynth;
   wire [3:0] pausaSynth;
   wire [3:0] continuarSynth;
 
-  parameter delay = 10;
-
-  fsm fsm(
-	.iniciar(clk),
-	.reset(reset),
-	.almost_full(aFull),
-	.full(full),
-	.almost_empty(aEmpty),
-	.empty(empty),
-	.clk(clk),
-	.continuar(continuar),
-	.error_full(error),
-	.pausa(pausa),
-	.idle(idle)
+  fsmTester fsmTester(
+    .clk(clk), .rst(rst), .enb(enb),
+    .iniciar_in(iniciar_in),
+    .almost_full_in(almost_full_in),
+    .full_in(full_in),
+    .almost_empty_in(almost_empty_in),
+    .empty_in(empty_in),
+    .continuarConduct(continuarConduct),
+    .errorConduct(errorConduct),
+    .pausaConduct(pausaConduct),
+    .idleConduct(idleConduct),
+    .continuarSynth(continuarSynth),
+    .errorSynth(errorSynth),
+    .pausaSynth(pausaSynth),
+    .idleSynth(idleSynth)
   );
-
-  fsm fsmSynth(
-	.iniciar(clk),
-	.reset(reset),
-	.almost_full(aFull),
-	.full(full),
-	.almost_empty(aEmpty),
-	.empty(empty),
-	.clk(clk),
-	.continuar(continuarSynth),
-	.error_full(errorSynth),
-	.pausa(pausaSynth),
-	.idle(idleSynth)
-  );
-
-  reg error_continuar;
-  reg error_error_full;
-  reg error_pausa;
-  reg error_idle;
-  always @ ( * ) begin
-    error_continuar = continuar != continuarSynth;
-    error_error_full = error != errorSynth;
-    error_pausa = pausa != pausaSynth;
-    error_idle = idle != idleSynth;
-  end
 
   always # 5 clk = ~clk;
 
@@ -70,176 +49,171 @@ module fsm_test();
     $display("fsm_test");
 
     clk <= 0;
-    reset <= 1;
+    rst <= 1;
+    enb <= 1;
 
-    iniciar <= 0;
-    aFull <= 4'b0000;
-    full <= 4'b0000;
-    aEmpty <= 4'b0001;
-    empty <= 4'b0000;
-    full <= 4'b0000;
+    iniciar_in <= 0;
+    almost_full_in <= 4'b0000;
+    full_in <= 4'b0000;
+    almost_empty_in <= 4'b0000;
+    empty_in <= 4'b0000;
+    full_in <= 4'b0000;
 
-    #delay;
+    # 10
+@ (posedge clk);
+;
 
-    #delay;
-    iniciar <= 0;
-    aFull <= 4'b0000;
-    full <= 4'b0000;
-    aEmpty <= 4'b0001;
-    empty <= 4'b0000;
-    full <= 4'b0000;
+    # 10
+    @ (posedge clk);
+;
+    @(posedge clk);
+    iniciar_in <= 0;
+    almost_full_in <= 4'b0000;
+    full_in <= 4'b0000;
+    almost_empty_in <= 4'b0001;
+    empty_in <= 4'b0000;
+    full_in <= 4'b0000;
+    # 10
+    @ (posedge clk);
+    ;
 
-    #delay;
-    reset <= 0;
-    iniciar <= 1;
-    #delay
-    iniciar <= 0;
+    # 20
+    @ (posedge clk);
+    rst <= 0;
 
-    #delay;
-    iniciar <= 0;
-    aFull <= 4'b0000;
-    full <= 4'b0000;
-    aEmpty <= 4'b0001;
-    empty <= 4'b0000;
-    full <= 4'b0000;
+    # 20
+    @ (posedge clk);
+    iniciar_in <= 1;
+    @ (posedge clk);
+    iniciar_in <= 0;
 
-    #delay;
-    iniciar <= 0;
-    aFull <= 4'b0000;
-    full <= 4'b0000;
-    aEmpty <= 4'b0001;
-    empty <= 4'b0000;
-    full <= 4'b0000;
+    # 10
+    @ (posedge clk);
 
+    iniciar_in <= 0;
+    almost_full_in <= 4'b0000;
+    full_in <= 4'b0000;
+    almost_empty_in <= 4'b0001;
+    empty_in <= 4'b0000;
+    full_in <= 4'b0000;
 
+    # 10
+    @ (posedge clk);
 
-    iniciar <= 0;
-    aFull <= 4'b0000;
-    full <= 4'b0000;
-    aEmpty <= 4'b0000;
-    empty <= 4'b0001;
-
-    #delay;
-    iniciar <= 0;
-    aFull <= 4'b0000;
-    full <= 4'b0000;
-    aEmpty <= 4'b0001;
-    empty <= 4'b0000;
-
-    #delay;
-    iniciar <= 0;
-    aFull <= 4'b0000;
-    full <= 4'b0000;
-    aEmpty <= 4'b0001;
-    empty <= 4'b0000;
-
-    #delay;
-    iniciar <= 0;
-    aFull <= 4'b0000;
-    full <= 4'b0000;
-    aEmpty <= 4'b0000;
-    empty <= 4'b0000;
+    iniciar_in <= 0;
+    almost_full_in <= 4'b0000;
+    full_in <= 4'b0000;
+    almost_empty_in <= 4'b0001;
+    empty_in <= 4'b0000;
+    full_in <= 4'b0000;
 
 
-    #delay;
-    iniciar <= 0;
-    aFull <= 4'b0001;
-    full <= 4'b0000;
-    aEmpty <= 4'b0000;
-    empty <= 4'b0000;
+
+    iniciar_in <= 0;
+    almost_full_in <= 4'b0000;
+    full_in <= 4'b0000;
+    almost_empty_in <= 4'b0000;
+    empty_in <= 4'b0001;
+
+    # 10
+    @ (posedge clk);
+
+    iniciar_in <= 0;
+    almost_full_in <= 4'b0000;
+    full_in <= 4'b0000;
+    almost_empty_in <= 4'b0001;
+    empty_in <= 4'b0000;
+
+    # 10
+    @ (posedge clk);
+
+    iniciar_in <= 0;
+    almost_full_in <= 4'b0000;
+    full_in <= 4'b0000;
+    almost_empty_in <= 4'b0001;
+    empty_in <= 4'b0000;
+
+    # 10
+    @ (posedge clk);
+
+    iniciar_in <= 0;
+    almost_full_in <= 4'b0000;
+    full_in <= 4'b0000;
+    almost_empty_in <= 4'b0000;
+    empty_in <= 4'b0000;
 
 
-    #delay;
-    iniciar <= 0;
-    aFull <= 4'b0001;
-    full <= 4'b0000;
-    aEmpty <= 4'b0000;
-    empty <= 4'b0000;
+    # 10
+    @ (posedge clk);
+
+    iniciar_in <= 0;
+    almost_full_in <= 4'b0001;
+    full_in <= 4'b0000;
+    almost_empty_in <= 4'b0000;
+    empty_in <= 4'b0000;
 
 
-    #delay;
-    iniciar <= 0;
-    aFull <= 4'b0000;
-    full <= 4'b0001;
-    aEmpty <= 4'b0000;
-    empty <= 4'b0000;
+    # 10
+    @ (posedge clk);
+
+    iniciar_in <= 0;
+    almost_full_in <= 4'b0001;
+    full_in <= 4'b0000;
+    almost_empty_in <= 4'b0000;
+    empty_in <= 4'b0000;
 
 
-    #delay;
-    iniciar <= 0;
-    aFull <= 4'b0000;
-    full <= 4'b0001;
-    aEmpty <= 4'b0000;
-    empty <= 4'b0000;
+    # 10
+    @ (posedge clk);
+
+    iniciar_in <= 0;
+    almost_full_in <= 4'b0000;
+    full_in <= 4'b0001;
+    almost_empty_in <= 4'b0000;
+    empty_in <= 4'b0000;
 
 
-    reset = 1;
-    #delay;
-    iniciar <= 0;
-    aFull <= 4'b0000;
-    full <= 4'b0000;
-    aEmpty <= 4'b0000;
-    empty <= 4'b0000;
+    # 10
+    @ (posedge clk);
 
-    reset = 0;
-
-    #delay;
-    iniciar <= 1;
-    aFull <= 4'b0000;
-    full <= 4'b0000;
-    aEmpty <= 4'b0000;
-    empty <= 4'b0000;
+    iniciar_in <= 0;
+    almost_full_in <= 4'b0000;
+    full_in <= 4'b0001;
+    almost_empty_in <= 4'b0000;
+    empty_in <= 4'b0000;
 
 
-    #delay;
-    iniciar <= 0;
-    aFull <= 4'b0000;
-    full <= 4'b0000;
-    aEmpty <= 4'b0000;
-    empty <= 4'b0001;
+    rst <= 1;
+    # 10
+    @ (posedge clk);
+
+    iniciar_in <= 0;
+    almost_full_in <= 4'b0000;
+    full_in <= 4'b0000;
+    almost_empty_in <= 4'b0000;
+    empty_in <= 4'b0000;
+
+    rst <= 0;
+
+    # 10
+    @ (posedge clk);
+
+    iniciar_in <= 1;
+    almost_full_in <= 4'b0000;
+    full_in <= 4'b0000;
+    almost_empty_in <= 4'b0000;
+    empty_in <= 4'b0000;
 
 
-    fsm.actual = 3'b100;
-    fsmSynth.actual = 3'b100;
-    #delay
+    # 10
+    @ (posedge clk);
 
-    fsm.actual = 3'b010;
-    fsmSynth.actual = 3'b010;
-    #delay
+    iniciar_in <= 0;
+    almost_full_in <= 4'b0000;
+    full_in <= 4'b0000;
+    almost_empty_in <= 4'b0000;
+    empty_in <= 4'b0001;
 
-    fsmSynth.actual = 3'b001;
-    fsm.actual = 3'b001;
-    #delay
-
-    fsmSynth.actual = 3'b110;
-    fsm.actual = 3'b110;
-    #delay
-
-    fsmSynth.actual = 3'b101;
-    fsm.actual = 3'b101;
-    #delay
-
-    fsmSynth.actual = 3'b011;
-    fsm.actual = 3'b011;
-    #delay
-
-    fsmSynth.actual = 3'b111;
-    fsm.actual = 3'b111;
-    #delay
-
-    fsmSynth.actual = 3'b101;
-    fsm.actual = 3'b101;
-    #delay
-
-    fsmSynth.actual = 3'b110;
-    fsm.actual = 3'b110;
-    #delay
-
-    fsmSynth.actual = 3'b001;
-    fsm.actual = 3'b001;
-    #delay
-
-
-    # 15 $finish;
+    # 50 $finish;
   end
 endmodule
