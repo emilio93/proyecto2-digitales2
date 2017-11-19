@@ -48,7 +48,7 @@ all: synth compile run
 # USO:
 #   make synth <nombre-del-modulo-1> <nombre-del-modulo-2> ...
 ifeq ($(MAKECMDGOALS:synth%=%),$(MAKECMDGOALS))
-synth: synthYosys synthRename
+synth: synthYosys synthDot2Pdf synthRename
 else
 synth: synthYosys synthRename synthEnd
 endif
@@ -66,7 +66,6 @@ synthYosys:
 	@echo ""
 	@$(foreach module,$(MAKECMDGOALS:synth%=%),$(foreach vlog, $(wildcard ./bloques/**/$(module).v), VLOG_FILE_NAME=$(vlog) VLOG_MODULE_NAME=$(module) CUR_DIR=$(shell pwd) $(CC3) ./yosys.tcl $(CC3_FLAGS);))
 	@echo ""
-	rm -f ./pdfs/*.dot
 else
 synthYosys:
 	@echo "*************************************"
@@ -77,8 +76,17 @@ synthYosys:
 	@echo ""
 	@$(foreach vlog, $(wildcard ./bloques/**/*.v), VLOG_FILE_NAME=$(vlog) VLOG_MODULE_NAME=$(subst .v,,$(notdir $(vlog))) CUR_DIR=$(shell pwd) $(CC3) ./yosys.tcl $(CC3_FLAGS);echo "";)
 	@echo ""
-	rm -f ./pdfs/*.dot
 endif
+# Convierte dots en pdfs y elimina los dots
+synthDot2Pdf:
+	@echo ""
+	@echo "**************************"
+	@echo "*** CONVIRTIENDO A PDF ***"
+	@echo "**************************"
+	@echo ""
+	@$(foreach dot, $(wildcard ./pdfs/*.dot), echo dot -Tpdf $(dot) -o $(subst .dot,.pdf,$(dot)); dot -Tpdf $(dot) -o $(subst .dot,.pdf,$(dot));)
+	rm -f ./pdfs/*.dot
+
 # Renombra los archivos sintetizables
 synthRename:
 	@echo ""
@@ -208,10 +216,11 @@ makeEnd:
 ifneq ($(MAKECMDGOALS:view%=%),)
 view:
 	@$(foreach test,$(MAKECMDGOALS:view%=%), $(foreach gtkw, $(wildcard ./gtkws/$(test)_test.gtkw),echo $(CC2) $(gtkw);))
-	@$(foreach test,$(MAKECMDGOALS:view%=%), $(foreach gtkw, $(wildcard ./gtkws/$(test)_test.gtkw), $(CC2) $(gtkw) &))
+	@$(foreach test,$(MAKECMDGOALS:view%=%), $(foreach gtkw, $(wildcard ./gtkws/$(test)_test.gtkw), $(CC2) $(gtkw) & cd .;))
+	$(warning *** Abriendo Visualizador *** ***)
 else
 view:
-	$(error make view requiere argumento(s))
+	$(error *** make view requiere argumento(s) *** ***)
 endif
 
 # ******************************************************************************
