@@ -24,13 +24,10 @@ module fc(
   input ef1,
   input ef2,
   input ef3,
+  input ef4,
   input clk,
   input [3:0] continuar,//negado de pausa, sera enable de fifos
   output [3:0] cf,
-//  output cf0
-//  output cf1,
-//  output cf2,
-//  output cf3,
   output [4:0] almost_full,
   output [4:0] full,
   output [4:0] almost_empty,
