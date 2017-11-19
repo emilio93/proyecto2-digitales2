@@ -10,8 +10,7 @@ module roundRobin #(parameter QUEUE_QUANTITY = 4, parameter DATA_BITS = 8, param
   input rst,
   input enb,
   input [QUEUE_QUANTITY-1:0] buf_empty, // indicadores de buf empty en el fifo, uno por cada QUEUE que exista.
-  input [QUEUE_QUANTITY-1:0] fifo_counter, // contador de datos en el buffer
-  output [$clog2(QUEUE_QUANTITY)-1:0] selector, // Selector de dato del roundRobin.
+  output [$clog2(QUEUE_QUANTITY)-1:0] selector, // Selector de fifo del roundRobin.
   output selector_enb // Indica si existe un valor de salida.
 );
 

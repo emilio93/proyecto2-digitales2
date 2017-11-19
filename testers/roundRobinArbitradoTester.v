@@ -16,7 +16,6 @@ module roundRobinArbitradoTester (
   input [((TABLE_SIZE)*($clog2(MAX_WEIGHT)))-1:0] pesos,
   input [(TABLE_SIZE)*$clog2(QUEUE_QUANTITY)-1:0] selecciones,
   input [QUEUE_QUANTITY-1:0] buf_empty,
-  input [QUEUE_QUANTITY*BUF_WIDTH-1:0] fifo_counter,
   output [$clog2(QUEUE_QUANTITY)-1:0] selector,
   output selector_enb,
   output [$clog2(QUEUE_QUANTITY)-1:0] sint_selector,
@@ -41,7 +40,6 @@ roundRobinArbitrado #(.QUEUE_QUANTITY(QUEUE_QUANTITY), .DATA_BITS(DATA_BITS)) te
   .pesos(pesos),
   .selecciones(selecciones),
   .buf_empty(buf_empty),
-  .fifo_counter(fifo_counter),
   .selector(selector),
   .selector_enb(selector_enb)
 );
@@ -51,7 +49,6 @@ roundRobinArbitradoSynth synthTest(
   .pesos(pesos),
   .selecciones(selecciones),
   .buf_empty(buf_empty),
-  .fifo_counter(fifo_counter),
   .selector(sint_selector),
   .selector_enb(sint_selector_enb)
 );

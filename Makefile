@@ -62,9 +62,7 @@ synthYosys:
 	@echo ""
 	@echo "****************************"
 	@echo ""
-	@$(foreach module,$(MAKECMDGOALS:synth%=%),$(foreach vlog, $(wildcard ./bloques/**/$(module).v), echo VLOG_FILE_NAME=$(vlog) VLOG_MODULE_NAME=$(module) CUR_DIR=$(shell pwd) $(CC3) ./yosys.tcl $(CC3_FLAGS)))
-	@echo ""
-	@$(foreach module,$(MAKECMDGOALS:synth%=%),$(foreach vlog, $(wildcard ./bloques/**/$(module).v), VLOG_FILE_NAME=$(vlog) VLOG_MODULE_NAME=$(module) CUR_DIR=$(shell pwd) $(CC3) ./yosys.tcl $(CC3_FLAGS);))
+	@$(foreach module,$(MAKECMDGOALS:synth%=%),$(foreach vlog, $(wildcard ./bloques/**/$(module).v), echo VLOG_FILE_NAME=$(vlog) VLOG_MODULE_NAME=$(module) CUR_DIR=$(shell pwd) $(CC3) ./yosys.tcl $(CC3_FLAGS); VLOG_FILE_NAME=$(vlog) VLOG_MODULE_NAME=$(module) CUR_DIR=$(shell pwd) $(CC3) ./yosys.tcl $(CC3_FLAGS);))
 	@echo ""
 else
 synthYosys:
@@ -72,9 +70,7 @@ synthYosys:
 	@echo "*** SINTETIZANDO TODO EL PROYECTO ***"
 	@echo "*************************************"
 	@echo ""
-	@$(foreach vlog, $(wildcard ./bloques/**/*.v), echo VLOG_FILE_NAME=$(vlog) VLOG_MODULE_NAME=$(subst .v,,$(notdir $(vlog))) CUR_DIR=$(shell pwd) $(CC3) ./yosys.tcl $(CC3_FLAGS);)
-	@echo ""
-	@$(foreach vlog, $(wildcard ./bloques/**/*.v), VLOG_FILE_NAME=$(vlog) VLOG_MODULE_NAME=$(subst .v,,$(notdir $(vlog))) CUR_DIR=$(shell pwd) $(CC3) ./yosys.tcl $(CC3_FLAGS);echo "";)
+	@$(foreach vlog, $(wildcard ./bloques/**/*.v), echo VLOG_FILE_NAME=$(vlog) VLOG_MODULE_NAME=$(subst .v,,$(notdir $(vlog))) CUR_DIR=$(shell pwd) $(CC3) ./yosys.tcl $(CC3_FLAGS); VLOG_FILE_NAME=$(vlog) VLOG_MODULE_NAME=$(subst .v,,$(notdir $(vlog))) CUR_DIR=$(shell pwd) $(CC3) ./yosys.tcl $(CC3_FLAGS);echo "";)
 	@echo ""
 endif
 # Convierte dots en pdfs y elimina los dots
