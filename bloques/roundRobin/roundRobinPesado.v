@@ -20,8 +20,7 @@ module roundRobinPesado #(
   // pesos[((n+1)*$clog2(MAX_WEIGHT))-1:n*$clog2(MAX_WEIGHT)]
   input [((QUEUE_QUANTITY)*($clog2(MAX_WEIGHT)))-1:0] pesos,
   input [QUEUE_QUANTITY-1:0] buf_empty, // indicadores de buf empty en el fifo, uno por cada QUEUE que exista.
-  input [(QUEUE_QUANTITY*BUF_WIDTH)-1:0] fifo_counter, // contador de datos en el fifo.
-  output [$clog2(QUEUE_QUANTITY)-1:0] selector, // Selector de dato del roundRobin.
+  output [$clog2(QUEUE_QUANTITY)-1:0] selector, // Selector de fifo del roundRobin.
   output selector_enb // Indica si existe un valor de salida.
 );
 

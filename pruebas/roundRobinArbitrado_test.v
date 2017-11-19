@@ -12,7 +12,6 @@ module roundRobinArbitrado_test #(parameter QUEUE_QUANTITY = 4, parameter DATA_B
   reg [((TABLE_SIZE)*($clog2(MAX_WEIGHT)))-1:0] pesos;
   reg [(TABLE_SIZE)*$clog2(QUEUE_QUANTITY)-1:0] selecciones;
   reg [QUEUE_QUANTITY-1:0] buf_empty;
-  reg [QUEUE_QUANTITY*BUF_WIDTH-1:0] fifo_counter;
   wire [$clog2(QUEUE_QUANTITY)-1:0] selector;
   wire [$clog2(QUEUE_QUANTITY)-1:0] sint_selector;
   wire selector_enb;
@@ -23,7 +22,6 @@ module roundRobinArbitrado_test #(parameter QUEUE_QUANTITY = 4, parameter DATA_B
     .pesos(pesos),
     .selecciones(selecciones),
     .buf_empty(buf_empty),
-    .fifo_counter(fifo_counter),
     .selector(selector),
     .selector_enb(selector_enb),
     .sint_selector(sint_selector),
@@ -41,7 +39,6 @@ module roundRobinArbitrado_test #(parameter QUEUE_QUANTITY = 4, parameter DATA_B
     rst <= 1;
     enb <= 1;
     buf_empty <= 8'b00000000;
-    fifo_counter <= {4'b1000, 4'b1000, 4'b1000, 4'b1000};
     pesos <= {6'b110, 6'b11, 6'b10, 6'b1, 6'b11, 6'b111, 6'b101, 6'b110};
     selecciones <= {2'b10, 2'b00, 2'b10, 2'b01, 2'b00, 2'b10, 2'b01, 2'b11};
 
