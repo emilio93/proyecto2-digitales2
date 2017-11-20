@@ -10,6 +10,23 @@ module memorias #(
   parameter TIPOS_ROUND_ROBIN = 3, // Tamaño máximo de los umbrales
   parameter FIFO_COUNT = 5
 )(
-  input clk, rst, enb
+  // señales de control basico
+  input clk, rst, enb,
+
+  // señales de entrada
+  input [TABLE_SIZE*$clog2(QUEUE_QUANTITY):0] selecciones_in,
+
+  // señales de salida
+  output [TABLE_SIZE*$clog2(QUEUE_QUANTITY):0] selecciones_out
 );
+
+  wire [TABLE_SIZE*$clog2(QUEUE_QUANTITY):0] selecciones_in;
+
+  // memoria de selecciones
+  reg [TABLE_SIZE*$clog2(QUEUE_QUANTITY):0] selecciones_out;
+
+  always @ (posedge clk) begin
+    selecciones_out <= selecciones_in;
+  end
+
 endmodule
