@@ -131,11 +131,11 @@ module fsm(
         end
 
         next[CONTINUE_STATE] : begin
-          continuar <= 1;
+          continuar <= almost_empty;
         end
 
         next[PAUSE] : begin
-          pausa <= 1;
+          pausa <= almost_full;
         end
 
         next[IDLE_EMPTY] : begin
@@ -145,7 +145,7 @@ module fsm(
         next[ERROR], next[RESET] : begin
           continuar <= 0;
           pausa <= 0;
-          error_full <= 1;
+          error_full <= full;
           idle <= 0;
         end
       endcase
