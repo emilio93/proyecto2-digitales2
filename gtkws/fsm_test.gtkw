@@ -1,21 +1,21 @@
 [*]
-[*] GTKWave Analyzer v3.3.66 (w)1999-2015 BSI
-[*] Sun Nov 19 16:34:45 2017
+[*] GTKWave Analyzer v3.3.83 (w)1999-2017 BSI
+[*] Sun Nov 19 16:04:44 2017
 [*]
-[dumpfile] "/home/zarion/Documents/2proydigitales/gtkws/fsm_test.vcd"
-[dumpfile_mtime] "Sun Nov 19 16:32:18 2017"
-[dumpfile_size] 16869
-[savefile] "/home/zarion/Documents/2proydigitales/gtkws/fsm_test.gtkw"
+[dumpfile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/fsm_test.vcd"
+[dumpfile_mtime] "Sun Nov 19 16:04:41 2017"
+[dumpfile_size] 16531
+[savefile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/fsm_test.gtkw"
 [timestart] 0
-[size] 1855 926
-[pos] -176 -1
-*-15.453701 65500 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[size] 1680 1022
+[pos] -1 -1
+*-15.453701 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] fsm_test.
 [treeopen] fsm_test.fsmTester.
-[sst_width] 43
-[signals_width] 253
-[sst_expanded] 0
-[sst_vpaned_height] 309
+[sst_width] 223
+[signals_width] 229
+[sst_expanded] 1
+[sst_vpaned_height] 298
 @28
 [color] 4
 fsm_test.fsmTester.clk
@@ -39,79 +39,20 @@ fsm_test.fsmTester.almost_full_in[4:0]
 fsm_test.fsmTester.full_in[4:0]
 @200
 -CONDUCTUAL
-@800028
+@28
 [color] 3
 fsm_test.fsmTester.fsm.state[6:0]
-@28
-[color] 3
-(0)fsm_test.fsmTester.fsm.state[6:0]
-[color] 3
-(1)fsm_test.fsmTester.fsm.state[6:0]
-[color] 3
-(2)fsm_test.fsmTester.fsm.state[6:0]
-[color] 3
-(3)fsm_test.fsmTester.fsm.state[6:0]
-[color] 3
-(4)fsm_test.fsmTester.fsm.state[6:0]
-[color] 3
-(5)fsm_test.fsmTester.fsm.state[6:0]
-[color] 3
-(6)fsm_test.fsmTester.fsm.state[6:0]
-@1001200
--group_end
-@800029
 [color] 3
 fsm_test.fsmTester.fsm.next[6:0]
-@29
-[color] 3
-(0)fsm_test.fsmTester.fsm.next[6:0]
-[color] 3
-(1)fsm_test.fsmTester.fsm.next[6:0]
-[color] 3
-(2)fsm_test.fsmTester.fsm.next[6:0]
-[color] 3
-(3)fsm_test.fsmTester.fsm.next[6:0]
-[color] 3
-(4)fsm_test.fsmTester.fsm.next[6:0]
-[color] 3
-(5)fsm_test.fsmTester.fsm.next[6:0]
-[color] 3
-(6)fsm_test.fsmTester.fsm.next[6:0]
-@1001201
--group_end
-@28
 [color] 3
 fsm_test.fsmTester.fsm.error_full
 [color] 3
 fsm_test.fsmTester.fsm.idle
-@800022
+@22
 [color] 3
 fsm_test.fsmTester.fsm.pausa[3:0]
-@28
-[color] 3
-(0)fsm_test.fsmTester.fsm.pausa[3:0]
-[color] 3
-(1)fsm_test.fsmTester.fsm.pausa[3:0]
-[color] 3
-(2)fsm_test.fsmTester.fsm.pausa[3:0]
-[color] 3
-(3)fsm_test.fsmTester.fsm.pausa[3:0]
-@1001200
--group_end
-@800022
 [color] 3
 fsm_test.fsmTester.fsm.continuar[3:0]
-@28
-[color] 3
-(0)fsm_test.fsmTester.fsm.continuar[3:0]
-[color] 3
-(1)fsm_test.fsmTester.fsm.continuar[3:0]
-[color] 3
-(2)fsm_test.fsmTester.fsm.continuar[3:0]
-[color] 3
-(3)fsm_test.fsmTester.fsm.continuar[3:0]
-@1001200
--group_end
 @200
 -ESTRUCTURAL
 @28
@@ -130,7 +71,7 @@ fsm_test.fsmTester.fsmSynth.pausa[3:0]
 fsm_test.fsmTester.fsmSynth.continuar[3:0]
 @200
 -ERRORES
-@28
+@29
 [color] 4
 fsm_test.fsmTester.errError
 [color] 4
