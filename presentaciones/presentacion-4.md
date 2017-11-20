@@ -33,7 +33,7 @@ Emilio Rojas
 
 ![center](presentacion-4/interfazRR.png)
 
-_De: ```roundRobin_test.v```_
+_De: ```interfazRoundRobin_test.v```_
 
 
 
@@ -43,7 +43,7 @@ _De: ```roundRobin_test.v```_
 # Maquina de estados
 
 #### Archivo .gtkw de las señales del fsm_test
-![center](presentacion-3/fsm.jpg)
+![center](presentacion-4/fsm.png)
 _De: ```fsm_test.v```_
 
 ---
@@ -54,8 +54,12 @@ _De: ```fsm_test.v```_
 
 #### Comandos unicos para cada modulos
 
-![150% center](presentacion-3/m.png)
+```verilog
+make all fifo8
+make view fifo
+make all fifo8 fifo16 fsm 
 
+```
 ---
  # Bloque transmisor
 <br >
