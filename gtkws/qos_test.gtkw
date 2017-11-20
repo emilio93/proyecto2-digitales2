@@ -1,24 +1,67 @@
 [*]
 [*] GTKWave Analyzer v3.3.83 (w)1999-2017 BSI
-[*] Mon Nov 20 10:35:42 2017
+[*] Mon Nov 20 10:57:11 2017
 [*]
 [dumpfile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/qos_test.vcd"
-[dumpfile_mtime] "Mon Nov 20 10:35:06 2017"
-[dumpfile_size] 1606595
+[dumpfile_mtime] "Mon Nov 20 10:55:07 2017"
+[dumpfile_size] 1133863
 [savefile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/qos_test.gtkw"
 [timestart] 0
-[size] 1638 995
+[size] 1680 1022
 [pos] -1 -1
-*-5.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-17.242271 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] qos_test.
-[sst_width] 223
-[signals_width] 78
+[treeopen] qos_test.qosTester.
+[sst_width] 329
+[signals_width] 262
 [sst_expanded] 1
-[sst_vpaned_height] 281
+[sst_vpaned_height] 290
 @28
 qos_test.qosTester.clk
 qos_test.qosTester.enb
-@29
 qos_test.qosTester.rst
+qos_test.qosTester.iniciar
+qos_test.qosTester.vc_id[1:0]
+@22
+qos_test.qosTester.data_word[3:0]
+qos_test.qosTester.umbral_max[3:0]
+qos_test.qosTester.umbral_min[3:0]
+@28
+qos_test.qosTester.mem_seleccion_roundRobin[1:0]
+@22
+qos_test.qosTester.mem_pesos[23:0]
+qos_test.qosTester.mem_pesosArbitraje[47:0]
+qos_test.qosTester.mem_selecciones[15:0]
+@200
+-CONDUCTUAL
+@22
+qos_test.qosTester.qos.error_full[3:0]
+qos_test.qosTester.qos.pausa[3:0]
+qos_test.qosTester.qos.continuar[3:0]
+@28
+qos_test.qosTester.qos.idle
+@22
+qos_test.qosTester.qos.dataOut[3:0]
+@200
+-ESTRUCTURAL
+@22
+qos_test.qosTester.qosSynth.error_full[3:0]
+@c00022
+qos_test.qosTester.qosSynth.pausa[3:0]
+@28
+(0)qos_test.qosTester.qosSynth.pausa[3:0]
+(1)qos_test.qosTester.qosSynth.pausa[3:0]
+(2)qos_test.qosTester.qosSynth.pausa[3:0]
+(3)qos_test.qosTester.qosSynth.pausa[3:0]
+@1401200
+-group_end
+@22
+qos_test.qosTester.qosSynth.continuar[3:0]
+@28
+qos_test.qosTester.qosSynth.idle
+@22
+qos_test.qosTester.qosSynth.dataOut[3:0]
+@200
+-
 [pattern_trace] 1
 [pattern_trace] 0
