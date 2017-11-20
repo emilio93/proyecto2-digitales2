@@ -128,15 +128,13 @@ compilePre:
 	@echo "****************"
 	@echo "PREPROCESANDO..."
 	@echo "****************"
-	@$(foreach module,$(MAKECMDGOALS:compile%=%), $(foreach test, $(wildcard ./pruebas/$(module)_test.v), echo "";echo cd pruebas;echo $(CC) -E -DKEY=10 -o ../build/$(subst ./pruebas/,,$(subst .v,.pre.v,$(test))) $(subst ./pruebas/,,$(test)) $(CCFLAGS);echo cd ..;))
-	@$(foreach module,$(MAKECMDGOALS:compile%=%), $(foreach test, $(wildcard ./pruebas/$(module)_test.v), cd pruebas;$(CC) -E -DKEY=10 -o ../build/$(subst ./pruebas/,,$(subst .v,.pre.v,$(test))) $(subst ./pruebas/,,$(test)) $(CCFLAGS);cd ..;))
+	@$(foreach module,$(MAKECMDGOALS:compile%=%), $(foreach test, $(wildcard ./pruebas/$(module)_test.v), echo "";echo cd pruebas;echo $(CC) -E -DKEY=10 -o ../build/$(subst ./pruebas/,,$(subst .v,.pre.v,$(test))) $(subst ./pruebas/,,$(test)) $(CCFLAGS);echo cd ..; cd pruebas;$(CC) -E -DKEY=10 -o ../build/$(subst ./pruebas/,,$(subst .v,.pre.v,$(test))) $(subst ./pruebas/,,$(test)) $(CCFLAGS);cd ..;))
 compileComp:
 	@echo ""
 	@echo "*************"
 	@echo "COMPILANDO..."
 	@echo "*************"
-	@$(foreach module,$(MAKECMDGOALS:compile%=%), $(foreach test, $(wildcard ./build/$(module)_test.pre.v), echo "";echo cd build;echo $(CC) -o $(subst ./build/,,$(subst .pre.v,.o,$(test))) $(subst ./build/,,$(test)) $(CCFLAGS);echo cd ..;))
-	@$(foreach module,$(MAKECMDGOALS:compile%=%), $(foreach test, $(wildcard ./build/$(module)_test.pre.v), cd build;$(CC) -o $(subst ./build/,,$(subst .pre.v,.o,$(test))) $(subst ./build/,,$(test)) $(CCFLAGS);cd ..;))
+	@$(foreach module,$(MAKECMDGOALS:compile%=%), $(foreach test, $(wildcard ./build/$(module)_test.pre.v), echo "";echo cd build;echo $(CC) -o $(subst ./build/,,$(subst .pre.v,.o,$(test))) $(subst ./build/,,$(test)) $(CCFLAGS);echo cd ..; cd build;$(CC) -o $(subst ./build/,,$(subst .pre.v,.o,$(test))) $(subst ./build/,,$(test)) $(CCFLAGS);cd ..;))
 else
 compilePre:
 	@echo "***********************************"
@@ -146,15 +144,13 @@ compilePre:
 	@echo "****************"
 	@echo "PREPROCESANDO..."
 	@echo "****************"
-	@$(foreach test,$(wildcard pruebas/*.v),echo cd pruebas; echo $(CC) -E -DKEY=10 -o ../build/$(subst pruebas/,,$(subst .v,.pre.v,$(test))) $(subst pruebas/,,$(test)) $(CCFLAGS);echo cd ..;)
-	@$(foreach test,$(wildcard pruebas/*.v),cd pruebas; $(CC) -E -DKEY=10 -o ../build/$(subst pruebas/,,$(subst .v,.pre.v,$(test))) $(subst pruebas/,,$(test)) $(CCFLAGS);cd ..;)
+	@$(foreach test,$(wildcard pruebas/*.v),echo cd pruebas; echo $(CC) -E -DKEY=10 -o ../build/$(subst pruebas/,,$(subst .v,.pre.v,$(test))) $(subst pruebas/,,$(test)) $(CCFLAGS);echo cd ..;cd pruebas; $(CC) -E -DKEY=10 -o ../build/$(subst pruebas/,,$(subst .v,.pre.v,$(test))) $(subst pruebas/,,$(test)) $(CCFLAGS);cd ..;)
 compileComp:
 	@echo ""
 	@echo "*************"
 	@echo "COMPILANDO..."
 	@echo "*************"
-	@$(foreach test,$(wildcard build/*.pre.v),echo cd build; echo $(CC) -o $(subst build/,,$(subst .pre.v,.o,$(test))) $(subst build/,,$(test)) $(CCFLAGS);echo cd ..;)
-	@$(foreach test,$(wildcard build/*.pre.v),cd build; $(CC) -o $(subst build/,,$(subst .pre.v,.o,$(test))) $(subst build/,,$(test)) $(CCFLAGS);cd ..;)
+	@$(foreach test,$(wildcard build/*.pre.v),echo cd build; echo $(CC) -o $(subst build/,,$(subst .pre.v,.o,$(test))) $(subst build/,,$(test)) $(CCFLAGS);echo cd ..; cd build; $(CC) -o $(subst build/,,$(subst .pre.v,.o,$(test))) $(subst build/,,$(test)) $(CCFLAGS);cd ..;)
 endif
 compileEnd:
 	$(error *** Fin de make compile *** ***)
