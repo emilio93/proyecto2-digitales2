@@ -1,6 +1,6 @@
 [*]
 [*] GTKWave Analyzer v3.3.83 (w)1999-2017 BSI
-[*] Sun Nov 19 16:04:44 2017
+[*] Sun Nov 19 16:07:27 2017
 [*]
 [dumpfile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/fsm_test.vcd"
 [dumpfile_mtime] "Sun Nov 19 16:04:41 2017"
@@ -9,12 +9,12 @@
 [timestart] 0
 [size] 1680 1022
 [pos] -1 -1
-*-15.453701 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-15.210346 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] fsm_test.
 [treeopen] fsm_test.fsmTester.
-[sst_width] 223
-[signals_width] 229
-[sst_expanded] 1
+[sst_width] 45
+[signals_width] 190
+[sst_expanded] 0
 [sst_vpaned_height] 298
 @28
 [color] 4
@@ -71,7 +71,7 @@ fsm_test.fsmTester.fsmSynth.pausa[3:0]
 fsm_test.fsmTester.fsmSynth.continuar[3:0]
 @200
 -ERRORES
-@29
+@28
 [color] 4
 fsm_test.fsmTester.errError
 [color] 4

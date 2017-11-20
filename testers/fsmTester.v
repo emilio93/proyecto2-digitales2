@@ -58,7 +58,7 @@ module fsmTester(
     .idle(idleConduct)
   );
 
-  fsm fsmSynth(
+  fsmSynth fsmSynth(
     .clk(clk), .rst(rst), .enb(enb),
     .iniciar(iniciar_in),
     .almost_full(almost_full_in),

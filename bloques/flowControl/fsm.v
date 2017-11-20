@@ -69,20 +69,20 @@ module fsm(
     next = 0;
     case (1'b1)
       state[ACTIVE] : begin
-        if(full > 4'b0000) next[ERROR] = 1'b1;
-        else if(almost_full > 4'b0000) next[PAUSE] = 1'b1;
-        else if(empty > 4'b0000) next[IDLE_EMPTY] = 1'b1;
-        else if(almost_empty > 4'b0000) next[CONTINUE_STATE] = 1'b1;
+        if(full > 0) next[ERROR] = 1'b1;
+        else if(almost_full > 0) next[PAUSE] = 1'b1;
+        else if(empty > 0) next[IDLE_EMPTY] = 1'b1;
+        else if(almost_empty > 0) next[CONTINUE_STATE] = 1'b1;
         else next[ACTIVE] = 1'b1;
       end
 
       state[CONTINUE_STATE] : begin
-        if(full > 4'b0000) next[ERROR] = 1'b1;
+        if(full > 0) next[ERROR] = 1'b1;
         else next[ACTIVE] = 1'b1;
       end
 
       state[PAUSE] : begin
-        if(almost_full > 4'b0000) next[PAUSE] = 1'b1;
+        if(almost_full > 0) next[PAUSE] = 1'b1;
         else next[ACTIVE] = 1'b1;
       end
 
@@ -124,31 +124,23 @@ module fsm(
     idle <= 1'b0;
     if (!rst) begin
       case (1'b1)
-        next[INIT], next[ACTIVE] : begin
-          continuar <= 0;
-          pausa <= 0;
-          error_full <= 0;
-          idle <= 0;
+        next[INIT] : begin
+          // permite la modificación de registros
+          // 'Tabla de Arbitraje' y 'Umbrales'
+        end
+
+        next[ACTIVE] : begin
         end
 
         next[CONTINUE_STATE] : begin
           continuar <= 1;
-          pausa <= 0;
-          error_full <= 0;
-          idle <= 0;
         end
 
         next[PAUSE] : begin
-          continuar <= 0;
           pausa <= 1;
-          error_full <= 0;
-          idle <= 0;
         end
 
         next[IDLE_EMPTY] : begin
-          continuar <= 0;
-          pausa <= 0;
-          error_full <= 0;
           idle <= 1;
         end
 
@@ -161,6 +153,5 @@ module fsm(
       endcase
     end
   end
-//*/
 endmodule // fsm
 `endif
