@@ -25,20 +25,20 @@ module qos #(
   parameter BUF_WIDTH = 3,         // Los datos son de 8 bits
   parameter MAX_WEIGHT = 64,       // El peso máximo es de 64 = 2^6
   parameter TABLE_SIZE = 8,        // Tamaño de la tabla de arbitraje
-  parameter MAX_MAG_UMBRAL = 16,    // Tamaño máximo de los umbrales
+  parameter MAX_MAG_UMBRAL = 16,   // Tamaño máximo de los umbrales
   parameter TIPOS_ROUND_ROBIN = 3, // Tamaño máximo de los umbrales
   parameter FIFO_COUNT = 5
 )(
   input clk, rst, enb,
   input iniciar,
   input [$clog2(QUEUE_QUANTITY)-1:0]             vc_id,
-  input [BUF_WIDTH:0]                          data_word,
+  input [BUF_WIDTH:0]                            data_word,
   input [$clog2(MAX_MAG_UMBRAL)-1:0]             umbral_max,
   input [$clog2(MAX_MAG_UMBRAL)-1:0]             umbral_min,
-  input [QUEUE_QUANTITY*$clog2(MAX_WEIGHT)-1:0]  pesos,
-  input [TABLE_SIZE*$clog2(MAX_WEIGHT)-1:0]      pesosArbitraje,
-  input [$clog2(TIPOS_ROUND_ROBIN)-1:0]          seleccion_roundRobin,
-  input [TABLE_SIZE*$clog2(QUEUE_QUANTITY)-1:0]  selecciones,
+  input [$clog2(TIPOS_ROUND_ROBIN)-1:0]          mem_seleccion_roundRobin,
+  input [QUEUE_QUANTITY*$clog2(MAX_WEIGHT)-1:0]  mem_pesos,
+  input [TABLE_SIZE*$clog2(MAX_WEIGHT)-1:0]      mem_pesosArbitraje,
+  input [TABLE_SIZE*$clog2(QUEUE_QUANTITY)-1:0]  mem_selecciones,
 
   output [QUEUE_QUANTITY-1:0] error_full,
   output [QUEUE_QUANTITY-1:0] pausa,
@@ -47,9 +47,22 @@ module qos #(
   output [BUF_WIDTH:0]        dataOut
 );
 
-
-
+  wire [$clog2(QUEUE_QUANTITY)-1:0] mem_seleccion_roundRobin_out;
+  wire [TABLE_SIZE*$clog2(QUEUE_QUANTITY)-1:0] mem_selecciones_out;
+  wire [QUEUE_QUANTITY*$clog2(MAX_WEIGHT)-1:0] mem_pesos_out;
+  wire [TABLE_SIZE*$clog2(MAX_WEIGHT)-1:0] mem_pesosArbitraje_out;
   memorias memorias(
+    .clk(clk), .rst(rst), .enb(enb),
+    .iniciar(iniciar),
+    .seleccion_roundRobin_in(mem_seleccion_roundRobin),
+    .pesos_in(mem_pesos),
+    .pesosArbitraje_in(mem_pesosArbitraje),
+    .selecciones_in(mem_selecciones),
+
+    .seleccion_roundRobin_out(mem_seleccion_roundRobin_out),
+    .pesos_out(mem_pesos_out),
+    .pesosArbitraje_out(mem_pesosArbitraje_out),
+    .selecciones_out(mem_selecciones_out)
   );
 
   fsm fsm(
@@ -87,10 +100,10 @@ module qos #(
 
   interfazRoundRobin interfazRoundRobin(
     .clk(clk), .rst(rst), .enb(enb),
-    .seleccion_roundRobin(seleccion_roundRobin),
-    .pesos(pesos),
-    .pesosArbitraje(pesosArbitraje),
-    .selecciones(selecciones),
+    .seleccion_roundRobin(mem_seleccion_roundRobin_out),
+    .pesos(mem_pesos_out),
+    .pesosArbitraje(mem_pesosArbitraje_out),
+    .selecciones(mem_selecciones_out),
     .buf_empty(buf_empty[FIFO_COUNT-2:0]),
     .selector(selector_roundRobin_out),
     .selector_enb(selector_roundRobin_enb_out)
