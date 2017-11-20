@@ -39,6 +39,7 @@ module qos #(
   input [QUEUE_QUANTITY*$clog2(MAX_WEIGHT)-1:0]  mem_pesos,
   input [TABLE_SIZE*$clog2(MAX_WEIGHT)-1:0]      mem_pesosArbitraje,
   input [TABLE_SIZE*$clog2(QUEUE_QUANTITY)-1:0]  mem_selecciones,
+  input rd_en,
 
   output [QUEUE_QUANTITY-1:0] error_full,
   output [QUEUE_QUANTITY-1:0] pausa,
@@ -97,6 +98,13 @@ module qos #(
 
   wire [BUF_WIDTH:0] buf_in;
 
+  reg wr_en;
+  wire rd_en;
+
+  always @ (posedge clk) begin
+    if (iniciar) wr_en <= !wr_en;
+  end
+
   memorias memorias(
     .clk(clk), .rst(rst), .enb(enb),
     .iniciar(iniciar),
@@ -119,15 +127,18 @@ module qos #(
 
   fsm fsm(
     .clk(clk), .rst(rst), .enb(enb),
+
     .iniciar(iniciar),
+
     .almost_full(almost_full_fsm),
     .full(buf_full_fsm),
     .almost_empty(almost_empty_fsm),
     .empty(buf_empty_fsm),
-    .continuar(continuar_fsm),
-    .error_full(error_fsm),
-    .pausa(pausa_fsm),
-    .idle(idle_fsm)
+    .continuar(continuar),
+
+    .error_full(error_full),
+    .pausa(pausa),
+    .idle(idle)
   );
 
   flowControl flowControl(
@@ -140,9 +151,9 @@ module qos #(
 
     .cf(cf),
     .almost_full_out(almost_full_fsm),
-    .full_out(full_fsm),
+    .full_out(buf_full_fsm),
     .almost_empty_out(almost_empty_fsm),
-    .empty_out(empty_fsm)
+    .empty_out(buf_empty_fsm)
   );
 
   interfazRoundRobin interfazRoundRobin(
@@ -171,7 +182,7 @@ module qos #(
     .buf_in(buf_in0),
     .buf_out(buf_out0),
     .wr_en(wr_en),
-    .rd_en(rd_en),
+    .rd_en(selector_roundRobin_enb_out),
     .uH(umbral_max),
     .uL(umbral_min),
     .buf_empty(buf_empty[0]),
@@ -187,7 +198,7 @@ module qos #(
     .buf_in(buf_in1),
     .buf_out(buf_out1),
     .wr_en(wr_en),
-    .rd_en(rd_en),
+    .rd_en(selector_roundRobin_enb_out),
     .uH(umbral_max),
     .uL(umbral_min),
     .buf_empty(buf_empty[1]),
@@ -203,7 +214,7 @@ module qos #(
     .buf_in(buf_in2),
     .buf_out(buf_out2),
     .wr_en(wr_en),
-    .rd_en(rd_en),
+    .rd_en(selector_roundRobin_enb_out),
     .uH(umbral_max),
     .uL(umbral_min),
     .buf_empty(buf_empty[2]),
@@ -219,7 +230,7 @@ module qos #(
     .buf_in(buf_in3),
     .buf_out(buf_out3),
     .wr_en(wr_en),
-    .rd_en(rd_en),
+    .rd_en(selector_roundRobin_enb_out),
     .uH(umbral_max),
     .uL(umbral_min),
     .buf_empty(buf_empty[3]),
@@ -240,13 +251,17 @@ module qos #(
     .salida_mux(buf_in)
   );
 
+  reg delayedGrant;
+  always @ (posedge clk) begin
+    delayedGrant<=selector_roundRobin_enb_out;
+  end
 
   fifo16 fifoSalida(
     .clk(clk), .rst(rst),
     .buf_in(buf_in),
     .buf_out(dataOut),
     .wr_en(wr_en),
-    .rd_en(rd_en),
+    .rd_en(delayedGrant),
     .uH(umbral_max),
     .uL(umbral_min),
     .buf_empty(buf_empty[4]),

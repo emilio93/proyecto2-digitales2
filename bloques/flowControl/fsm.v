@@ -14,7 +14,8 @@ module fsm(
   output [3:0] continuar,
   output [3:0] error_full,
   output [3:0] pausa,
-  output idle);
+  output idle
+  );
 
   // DEFINICION ONEHOT
   /*
