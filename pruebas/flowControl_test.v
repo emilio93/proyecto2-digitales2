@@ -3,10 +3,10 @@
 `define isTest 1
 
 `include "includes.v"
-`include "../bloques/flowControl/fc.v"
-`include "../build/fc-sintetizado.v"
+`include "../bloques/flowControl/flowControl.v"
+`include "../build/flowControl-sintetizado.v"
 
-module fc_test();
+module flowControl_test();
 
   // Entradas
   reg aff0;
@@ -31,7 +31,7 @@ module fc_test();
   reg ef4;
   reg clk;
   reg [3:0] continuar;//negado de pausa; sera enable de fifos
- 
+
   //Salidas
   wire [4:0] afull;//5 fifos
   wire [4:0] full;
@@ -44,9 +44,8 @@ module fc_test();
   wire [4:0] aemptySynth;
   wire [4:0] emptySynth;
   wire [3:0] cfSynth;
-  parameter delay = 10;
 
-  fc fc(
+  flowControl fc(
    .aff0(aff0),
    .aff1(aff1),
    .aff2(aff2),
@@ -76,7 +75,7 @@ module fc_test();
    .empty(empty)
   );
 
-  fc fcSynth(
+  flowControlSynth fcSynth(
    .aff0(aff0),
    .aff1(aff1),
    .aff2(aff2),
@@ -111,7 +110,7 @@ module fc_test();
 
   initial
   begin
-    $dumpfile("gtkws/fc_test.vcd");
+    $dumpfile("gtkws/flowControl_test.vcd");
     $dumpvars();
     $display("fc_test");
 
@@ -138,7 +137,7 @@ module fc_test();
 	continuar  <= 4'b1111;
 
     clk <= 0;
-    #delay;
+    # 10; @(posedge clk)
 
 
 	aff0  = 0;
@@ -162,7 +161,7 @@ module fc_test();
 	ef3  <= 1;
 	ef4  <= 1;
 	continuar  <= 4'b1111;
-   	#delay;
+    # 10; @(posedge clk)
 
 
 	aff0  = 0;
@@ -186,7 +185,7 @@ module fc_test();
 	ef3  <= 1;
 	ef4  <= 1;
 	continuar  <= 4'b1111;
-   	#delay;
+  # 10; @(posedge clk)
 
 
 	aff0  = 0;
@@ -210,7 +209,7 @@ module fc_test();
 	ef3  <= 0;
 	ef4  <= 0;
 	continuar  <= 4'b1111;
-   	#delay;
+  # 10; @(posedge clk)
 
 
 	aff0  = 1;
@@ -234,7 +233,7 @@ module fc_test();
 	ef3  <= 0;
 	ef4  <= 0;
 	continuar  <= 4'b1111;
-   	#delay;
+  # 10; @(posedge clk)
 
 
 	aff0  = 1;
@@ -258,9 +257,9 @@ module fc_test();
 	ef3  <= 0;
 	ef4  <= 0;
 	continuar  <= 4'b0001;
-   	#delay;
+  # 10; @(posedge clk)
 
 
-    # 15 $finish;
+  # 50 $finish;
   end
 endmodule

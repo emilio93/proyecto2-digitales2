@@ -1,0 +1,79 @@
+[*]
+[*] GTKWave Analyzer v3.3.83 (w)1999-2017 BSI
+[*] Mon Nov 20 06:18:51 2017
+[*]
+[dumpfile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/flowControl_test.vcd"
+[dumpfile_mtime] "Mon Nov 20 06:18:31 2017"
+[dumpfile_size] 13974
+[savefile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/flowControl_test.gtkw"
+[timestart] 0
+[size] 1680 1022
+[pos] -1 -1
+*-14.005995 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 45
+[signals_width] 190
+[sst_expanded] 0
+[sst_vpaned_height] 290
+@28
+flowControl_test.clk
+@200
+-almost empty y empty
+@28
+flowControl_test.aef0
+flowControl_test.aef1
+flowControl_test.aef2
+flowControl_test.aef3
+flowControl_test.aef4
+flowControl_test.ef0
+flowControl_test.ef1
+flowControl_test.ef2
+flowControl_test.ef3
+flowControl_test.ef4
+@200
+-almost full y full
+@28
+flowControl_test.aff0
+flowControl_test.aff1
+flowControl_test.aff2
+flowControl_test.aff3
+flowControl_test.aff4
+@200
+-
+@28
+flowControl_test.ff0
+flowControl_test.ff1
+flowControl_test.ff2
+flowControl_test.ff3
+flowControl_test.ff4
+@200
+-
+@22
+flowControl_test.continuar[3:0]
+@200
+-CONDUCTUAL
+@22
+[color] 3
+flowControl_test.fc.almost_empty[4:0]
+[color] 3
+flowControl_test.fc.empty[4:0]
+[color] 3
+flowControl_test.fc.almost_full[4:0]
+[color] 3
+flowControl_test.fc.full[4:0]
+[color] 3
+flowControl_test.fc.cf[3:0]
+@200
+-ESTRUCTURAL
+@22
+[color] 2
+flowControl_test.fcSynth.almost_empty[4:0]
+[color] 2
+flowControl_test.fcSynth.empty[4:0]
+[color] 2
+flowControl_test.fcSynth.almost_full[4:0]
+[color] 2
+flowControl_test.fcSynth.full[4:0]
+[color] 2
+flowControl_test.fcSynth.cf[3:0]
+[pattern_trace] 1
+[pattern_trace] 0

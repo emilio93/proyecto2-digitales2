@@ -4,7 +4,7 @@
 `define fc
 
 
-module fc(
+module flowControl(
   input aff0,
   input aff1,
   input aff2,
@@ -56,8 +56,8 @@ module fc(
   wire ef3;
   wire ef4;
   wire clk;
-  wire [3:0] continue;//negado de pausa; sera enable de fifos
- 
+  wire [3:0] continuar;//negado de pausa; sera enable de fifos
+
   //Salidas
   reg [4:0] almost_full;//5 fifos
   reg [4:0] full;
@@ -84,19 +84,19 @@ module fc(
 	almost_empty[2] <= aef2;
 	almost_empty[3] <= aef3;
 	almost_empty[4] <= aef4;
-	empty[0] <= ef0; 
+	empty[0] <= ef0;
 	empty[1] <= ef1;
 	empty[2] <= ef2;
 	empty[3] <= ef3;
 	empty[4] <= ef4;
-	cf[0] <= continue[0];
-	cf[1] <= continue[1];
-	cf[2] <= continue[2];
-	cf[3] <= continue[3];
+	cf[0] <= continuar[0];
+	cf[1] <= continuar[1];
+	cf[2] <= continuar[2];
+	cf[3] <= continuar[3];
 
   end
 
 
 
 endmodule
-`endif 
+`endif
