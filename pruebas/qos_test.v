@@ -30,6 +30,7 @@ reg [$clog2(TIPOS_ROUND_ROBIN)-1:0]          mem_seleccion_roundRobin;
 reg [QUEUE_QUANTITY*$clog2(MAX_WEIGHT)-1:0]  mem_pesos;
 reg [TABLE_SIZE*$clog2(MAX_WEIGHT)-1:0]      mem_pesosArbitraje;
 reg [TABLE_SIZE*$clog2(QUEUE_QUANTITY)-1:0]  mem_selecciones;
+reg wr_en, rd_en;
 
 wire [QUEUE_QUANTITY-1:0] error_full;
 wire [QUEUE_QUANTITY-1:0] pausa;
@@ -54,6 +55,7 @@ qosTester qosTester(
   .mem_pesos(mem_pesos),
   .mem_pesosArbitraje(mem_pesosArbitraje),
   .mem_selecciones(mem_selecciones),
+  .wr_en(wr_en), .rd_en(rd_en),
 
   .error_full(error_full),
   .pausa(pausa),
@@ -81,7 +83,7 @@ initial begin
   clk <= 0;
   rst <= 1;
   enb <= 1;
-  
+
   iniciar                   <= 0;
   vc_id                     <= 0;
   data_word                 <= 0;
@@ -91,9 +93,17 @@ initial begin
   mem_pesos                 <= 0;
   mem_pesosArbitraje        <= 0;
   mem_selecciones           <= 0;
+  wr_en                     <= 0;
+  rd_en                     <= 0;
   # 40
   @(posedge clk);
   rst <= 0;
+
+  # 10
+  @(posedge clk);
+  iniciar <= 1;
+  @(posedge clk);
+  iniciar <= 0;
 
   #1000
   $finish();

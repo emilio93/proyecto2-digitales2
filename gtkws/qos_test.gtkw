@@ -1,52 +1,99 @@
 [*]
 [*] GTKWave Analyzer v3.3.83 (w)1999-2017 BSI
-[*] Mon Nov 20 10:57:11 2017
+[*] Mon Nov 20 11:24:44 2017
 [*]
 [dumpfile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/qos_test.vcd"
-[dumpfile_mtime] "Mon Nov 20 10:55:07 2017"
-[dumpfile_size] 1133863
+[dumpfile_mtime] "Mon Nov 20 11:24:35 2017"
+[dumpfile_size] 1148482
 [savefile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/qos_test.gtkw"
 [timestart] 0
 [size] 1680 1022
 [pos] -1 -1
-*-17.242271 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-17.671926 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] qos_test.
 [treeopen] qos_test.qosTester.
+[treeopen] qos_test.qosTester.qos.
+[treeopen] qos_test.qosTester.qos.fsm.
+[treeopen] qos_test.qosTester.qosSynth.
 [sst_width] 329
-[signals_width] 262
+[signals_width] 284
 [sst_expanded] 1
 [sst_vpaned_height] 290
 @28
+[color] 4
 qos_test.qosTester.clk
+[color] 4
 qos_test.qosTester.enb
+[color] 4
 qos_test.qosTester.rst
+[color] 4
 qos_test.qosTester.iniciar
+[color] 4
 qos_test.qosTester.vc_id[1:0]
 @22
+[color] 4
 qos_test.qosTester.data_word[3:0]
+[color] 4
 qos_test.qosTester.umbral_max[3:0]
+[color] 4
 qos_test.qosTester.umbral_min[3:0]
 @28
+[color] 4
 qos_test.qosTester.mem_seleccion_roundRobin[1:0]
 @22
+[color] 4
 qos_test.qosTester.mem_pesos[23:0]
+[color] 4
 qos_test.qosTester.mem_pesosArbitraje[47:0]
+[color] 4
 qos_test.qosTester.mem_selecciones[15:0]
+@28
+qos_test.qosTester.rd_en
+qos_test.qosTester.wr_en
 @200
 -CONDUCTUAL
+@800022
+[color] 3
+qos_test.qosTester.qos.fsm.state[6:0]
+@28
+[color] 3
+(0)qos_test.qosTester.qos.fsm.state[6:0]
+[color] 3
+(1)qos_test.qosTester.qos.fsm.state[6:0]
+[color] 3
+(2)qos_test.qosTester.qos.fsm.state[6:0]
+[color] 3
+(3)qos_test.qosTester.qos.fsm.state[6:0]
+[color] 3
+(4)qos_test.qosTester.qos.fsm.state[6:0]
+[color] 3
+(5)qos_test.qosTester.qos.fsm.state[6:0]
+[color] 3
+(6)qos_test.qosTester.qos.fsm.state[6:0]
+@1001200
+-group_end
 @22
+[color] 3
 qos_test.qosTester.qos.error_full[3:0]
+[color] 3
 qos_test.qosTester.qos.pausa[3:0]
+[color] 3
 qos_test.qosTester.qos.continuar[3:0]
 @28
+[color] 3
 qos_test.qosTester.qos.idle
 @22
+[color] 3
 qos_test.qosTester.qos.dataOut[3:0]
 @200
 -ESTRUCTURAL
 @22
+[color] 2
+qos_test.qosTester.qosSynth.fsm.state[6:0]
+[color] 2
 qos_test.qosTester.qosSynth.error_full[3:0]
 @c00022
+[color] 2
 qos_test.qosTester.qosSynth.pausa[3:0]
 @28
 (0)qos_test.qosTester.qosSynth.pausa[3:0]
@@ -56,10 +103,13 @@ qos_test.qosTester.qosSynth.pausa[3:0]
 @1401200
 -group_end
 @22
+[color] 2
 qos_test.qosTester.qosSynth.continuar[3:0]
 @28
+[color] 2
 qos_test.qosTester.qosSynth.idle
 @22
+[color] 2
 qos_test.qosTester.qosSynth.dataOut[3:0]
 @200
 -

@@ -16,6 +16,7 @@ module qosTester(
   input [QUEUE_QUANTITY*$clog2(MAX_WEIGHT)-1:0]  mem_pesos,
   input [TABLE_SIZE*$clog2(MAX_WEIGHT)-1:0]      mem_pesosArbitraje,
   input [TABLE_SIZE*$clog2(QUEUE_QUANTITY)-1:0]  mem_selecciones,
+  input wr_en, rd_en,
 
   output [QUEUE_QUANTITY-1:0] error_full,
   output [QUEUE_QUANTITY-1:0] pausa,
@@ -39,7 +40,7 @@ module qosTester(
   parameter FIFO_COUNT = 5;
 
   wire clk, rst, enb;
-  wire iniciar_in;
+  wire iniciar;
   wire [4:0] almost_full_in;
   wire [4:0] full_in;
   wire [4:0] almost_empty_in;
@@ -63,7 +64,7 @@ module qosTester(
 
   qos qos(
     .clk(clk), .rst(rst), .enb(enb),
-    .iniciar(iniciar_in),
+    .iniciar(iniciar),
     .vc_id(vc_id),
     .data_word(data_word),
     .umbral_max(umbral_max),
@@ -72,6 +73,8 @@ module qosTester(
     .mem_pesos(mem_pesos),
     .mem_pesosArbitraje(mem_pesosArbitraje),
     .mem_selecciones(mem_selecciones),
+    .wr_en(wr_en),
+    .rd_en(ed_en),
     .error_full(error_full),
     .pausa(pausa),
     .continuar(continuar),
@@ -81,7 +84,7 @@ module qosTester(
 
   qosSynth qosSynth(
     .clk(clk), .rst(rst), .enb(enb),
-    .iniciar(iniciar_in),
+    .iniciar(iniciar),
     .vc_id(vc_id),
     .data_word(data_word),
     .umbral_max(umbral_max),
@@ -90,6 +93,8 @@ module qosTester(
     .mem_pesos(mem_pesos),
     .mem_pesosArbitraje(mem_pesosArbitraje),
     .mem_selecciones(mem_selecciones),
+    .wr_en(wr_en),
+    .rd_en(ed_en),
 
     .error_full(error_fullSynth),
     .pausa(pausaSynth),
