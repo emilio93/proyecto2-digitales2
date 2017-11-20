@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.83 (w)1999-2017 BSI
-[*] Mon Nov 20 11:34:27 2017
+[*] Mon Nov 20 12:29:09 2017
 [*]
 [dumpfile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/qos_test.vcd"
-[dumpfile_mtime] "Mon Nov 20 11:33:30 2017"
+[dumpfile_mtime] "Mon Nov 20 12:28:55 2017"
 [dumpfile_size] 1148313
 [savefile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/qos_test.gtkw"
 [timestart] 0
 [size] 1638 995
 [pos] -1 -1
-*-17.732590 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-15.984293 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] qos_test.
 [treeopen] qos_test.qosTester.
 [treeopen] qos_test.qosTester.qos.

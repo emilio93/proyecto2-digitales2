@@ -57,164 +57,67 @@ module fsm_test();
     almost_full_in <= 4'b0000;
     full_in <= 4'b0000;
     almost_empty_in <= 4'b0000;
-    empty_in <= 4'b0000;
+    empty_in <= 4'b1111;
     full_in <= 4'b0000;
 
-    # 10
-@ (posedge clk);
-;
-
-    # 10
-    @ (posedge clk);
-;
-    @(posedge clk);
-    iniciar_in <= 0;
-    almost_full_in <= 4'b0000;
-    full_in <= 4'b0000;
-    almost_empty_in <= 4'b0001;
-    empty_in <= 4'b0000;
-    full_in <= 4'b0000;
-    # 10
-    @ (posedge clk);
-    ;
-
-    # 20
+    # 30
     @ (posedge clk);
     rst <= 0;
 
-    # 20
+    # 60
     @ (posedge clk);
     iniciar_in <= 1;
     @ (posedge clk);
     iniciar_in <= 0;
 
-    # 10
-    @ (posedge clk);
+    # 40
+    empty_in <= 4'b0;
 
-    iniciar_in <= 0;
-    almost_full_in <= 4'b0000;
-    full_in <= 4'b0000;
+    # 30; @ (posedge clk);
+    almost_empty_in <= 4'b1000;
+    # 10; @ (posedge clk);
+    almost_empty_in <= 4'b0100;
+    # 10; @ (posedge clk);
+    almost_empty_in <= 4'b0010;
+    # 10; @ (posedge clk);
     almost_empty_in <= 4'b0001;
-    empty_in <= 4'b0000;
-    full_in <= 4'b0000;
-
-    # 10
-    @ (posedge clk);
-
-    iniciar_in <= 0;
-    almost_full_in <= 4'b0000;
-    full_in <= 4'b0000;
-    almost_empty_in <= 4'b0001;
-    empty_in <= 4'b0000;
-    full_in <= 4'b0000;
-
-
-
-    iniciar_in <= 0;
-    almost_full_in <= 4'b0000;
-    full_in <= 4'b0000;
+    # 10; @ (posedge clk);
     almost_empty_in <= 4'b0000;
-    empty_in <= 4'b0001;
 
-    # 10
-    @ (posedge clk);
-
-    iniciar_in <= 0;
-    almost_full_in <= 4'b0000;
-    full_in <= 4'b0000;
-    almost_empty_in <= 4'b0001;
-    empty_in <= 4'b0000;
-
-    # 10
-    @ (posedge clk);
-
-    iniciar_in <= 0;
-    almost_full_in <= 4'b0000;
-    full_in <= 4'b0000;
-    almost_empty_in <= 4'b0001;
-    empty_in <= 4'b0000;
-
-    # 10
-    @ (posedge clk);
-
-    iniciar_in <= 0;
-    almost_full_in <= 4'b0000;
-    full_in <= 4'b0000;
-    almost_empty_in <= 4'b0000;
-    empty_in <= 4'b0000;
-
-
-    # 10
-    @ (posedge clk);
-
-    iniciar_in <= 0;
+    # 40; @ (posedge clk);
+    almost_full_in <= 4'b1000;
+    # 10; @ (posedge clk);
+    almost_full_in <= 4'b0100;
+    # 10; @ (posedge clk);
+    almost_full_in <= 4'b0010;
+    # 10; @ (posedge clk);
     almost_full_in <= 4'b0001;
-    full_in <= 4'b0000;
-    almost_empty_in <= 4'b0000;
-    empty_in <= 4'b0000;
-
-
-    # 10
-    @ (posedge clk);
-
-    iniciar_in <= 0;
-    almost_full_in <= 4'b0001;
-    full_in <= 4'b0000;
-    almost_empty_in <= 4'b0000;
-    empty_in <= 4'b0000;
-
-
-    # 10
-    @ (posedge clk);
-
-    iniciar_in <= 0;
+    # 10; @ (posedge clk);
     almost_full_in <= 4'b0000;
-    full_in <= 4'b0001;
-    almost_empty_in <= 4'b0000;
-    empty_in <= 4'b0000;
+
+    # 40; @ (posedge clk);
+    full_in <= 4'b1000;
+    # 10; @ (posedge clk);
+    full_in <= 4'b1100;
+    # 10; @ (posedge clk);
+    full_in <= 4'b1110;
+    # 10; @ (posedge clk);
+    full_in <= 4'b1111;
 
 
-    # 10
-    @ (posedge clk);
+    # 30; @ (posedge clk);
+    full_in <= 4'b0000;
 
-    iniciar_in <= 0;
-    almost_full_in <= 4'b0000;
-    full_in <= 4'b0001;
-    almost_empty_in <= 4'b0000;
-    empty_in <= 4'b0000;
-
-
+    # 10; @ (posedge clk);
     rst <= 1;
-    # 10
-    @ (posedge clk);
-
-    iniciar_in <= 0;
-    almost_full_in <= 4'b0000;
-    full_in <= 4'b0000;
-    almost_empty_in <= 4'b0000;
-    empty_in <= 4'b0000;
-
+    # 10; @ (posedge clk);
     rst <= 0;
 
-    # 10
-    @ (posedge clk);
-
+    # 30; @ (posedge clk);
     iniciar_in <= 1;
-    almost_full_in <= 4'b0000;
-    full_in <= 4'b0000;
-    almost_empty_in <= 4'b0000;
-    empty_in <= 4'b0000;
-
-
-    # 10
-    @ (posedge clk);
-
+    # 10; @ (posedge clk);
     iniciar_in <= 0;
-    almost_full_in <= 4'b0000;
-    full_in <= 4'b0000;
-    almost_empty_in <= 4'b0000;
-    empty_in <= 4'b0001;
 
-    # 50 $finish;
+    # 50; $finish;
   end
 endmodule

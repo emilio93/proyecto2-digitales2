@@ -11,6 +11,7 @@ module fsm(
   input [4:0] full,
   input [4:0] almost_empty,
   input [4:0] empty,
+
   output [3:0] continuar,
   output [3:0] error_full,
   output [3:0] pausa,
@@ -18,14 +19,14 @@ module fsm(
   );
 
   // DEFINICION ONEHOT
-  /*
-  * RESET          0
-  * ERROR          1
-  * INIT           2
-  * IDLE_EMPTY     3
-  * PAUSE          4
-  * CONTINUE_STATE 5
-  * ACTIVE         6
+  /*               n  hex codificado
+  * RESET          0  01
+  * ERROR          1  02
+  * INIT           2  04
+  * IDLE_EMPTY     3  08
+  * PAUSE          4  10
+  * CONTINUE_STATE 5  20
+  * ACTIVE         6  40
   * */
   parameter
   RESET          = 0,
@@ -53,6 +54,7 @@ module fsm(
   reg idle;
 
   // ALWAYS PARA ONEHOT SECUENCIAL
+  // RST Y ACTUALIZACION DE ESTADO
   always @(posedge clk)begin
     if (rst) begin
       // ASIGNAR ESTADO DE RESET
@@ -64,25 +66,27 @@ module fsm(
     end
   end
 
+  // ALWAYS PARA ONEHOT COMBINACIONAL
+  // SELECCION DE ESTADO SIGUIENTE.
   always @(*) begin
-    next = 0;
+    next = 0; // se limpia next para tener solo un bit arriba
     case (1'b1)
+      // para estado active, puede pasar a CONTINUE_STATE, PAUSE, IDLE_EMPTY
+      // o ERROR
       state[ACTIVE] : begin
-        if(full > 0) next[ERROR] = 1'b1;
-        else if(almost_full > 0) next[PAUSE] = 1'b1;
-        else if(empty > 0) next[IDLE_EMPTY] = 1'b1;
-        else if(almost_empty > 0) next[CONTINUE_STATE] = 1'b1;
-        else next[ACTIVE] = 1'b1;
+        if(full > 0) next[ERROR] = 1'b1; // existe algun fifo con señal full en alto
+        else if(almost_full > 0) next[PAUSE] = 1'b1; // || almost_full ||
+        else if(empty > 0) next[IDLE_EMPTY] = 1'b1; // IDLE EMPTY
+        else if(almost_empty > 0) next[CONTINUE_STATE] = 1'b1; // CONTINUE_STATE
+        else next[ACTIVE] = 1'b1; // se mantiene en active
       end
 
       state[CONTINUE_STATE] : begin
-        if(full > 0) next[ERROR] = 1'b1;
-        else next[ACTIVE] = 1'b1;
+        next[ACTIVE] = 1'b1; // siempre regresa a active
       end
 
       state[PAUSE] : begin
-        if(almost_full > 0) next[PAUSE] = 1'b1;
-        else next[ACTIVE] = 1'b1;
+        next[ACTIVE] = 1'b1; // siempre regresa a active
       end
 
       state[IDLE_EMPTY] : begin
@@ -116,6 +120,8 @@ module fsm(
     endcase
   end
 
+  // ALWAYS PARA ONEHOT SECUENCIAL
+  // ASIGNACION DE SALIDAS
   always @(posedge clk) begin
     continuar <= 1'b0;
     pausa <= 1'b0;
@@ -128,26 +134,34 @@ module fsm(
           // 'Tabla de Arbitraje' y 'Umbrales'
         end
 
-        next[ACTIVE] : begin
-        end
-
-        next[CONTINUE_STATE] : begin
-          continuar <= almost_empty;
-        end
-
-        next[PAUSE] : begin
-          pausa <= almost_full;
-        end
-
+        // IDLE SE MANTINE EN 1 MIENTRAS ESTÉ EN IDLE EMPTY
         next[IDLE_EMPTY] : begin
           idle <= 1;
         end
 
+        // TRANSMISION DE DATOS POR DEFECTO
+        next[ACTIVE] : begin
+        end
+
+        // SEÑAL ALMOST FULL SE ENVIA EN PAUSA
+        // ESTO INDICA AL FIFO QUE DEBE DEJAR DE
+        // RECIBIR DATOS(wr_en en bajo)
+        // strobe
+        next[PAUSE] : begin
+          pausa <= almost_full;
+        end
+
+        // CONTINUE_STATE indica que un fifo está casi vacio
+        // por lo que evita sacar datos de este (rd_en en bajo)
+        // strobe
+        next[CONTINUE_STATE] : begin
+          continuar <= almost_empty;
+        end
+
+        // INDICA ERRORES DE FIFOS FULL SE MANTIENE EN ESTE ESTADO
+        // HASTA TENER UNA SEÑAL DE RESET
         next[ERROR], next[RESET] : begin
-          continuar <= 0;
-          pausa <= 0;
           error_full <= full;
-          idle <= 0;
         end
       endcase
     end
