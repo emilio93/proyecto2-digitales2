@@ -9,21 +9,30 @@
   `include "../../bloques/mux/demux.v"
   `include "../../bloques/roundRobin/roundRobin.v"
   `include "../../bloques/roundRobin/roundRobinPesado.v"
+  `include "../../bloques/roundRobin/roundRobinArbitrado.v"
+  `include "../../bloques/roundRobin/interfazRoundRobin.v"
 `endif
 
-module qos #(parameter DATA_WIDTH = 4, parameter QUEUE_QUANTITY = 4)(
+module qos #(
+  parameter QUEUE_QUANTITY = 4, // se utilizan 4 filas fifo
+  parameter DATA_BITS = 8,      // Los datos son de 8 bits
+  parameter BUF_WIDTH = 3,      // Los datos son de 8 bits
+  parameter MAX_WEIGHT = 64,    // El peso máximo es de 64 = 2^6
+  parameter TABLE_SIZE = 8      // Tamaño de la tabla de arbitraje
+)(
   //output hacia capa de enlace de datos
-  output wire[DATA_WIDTH-1:0] output_qos,
+  output wire[DATA_BITS-1:0] output_qos,
   //output hacia control
   output wire [QUEUE_QUANTITY-1:0] error_full_qos, pausa_qos, continue_qos,
   output wire idle_qos,
   //inputs señales de control
   input wire clk, rst, enb, init,
-  input wire uH,uL,//umbrales de almost_full, almost_empty para los fifos
-  input wire [1:0] vc_id, //identificadores de los canales virtuales
+  input wire [BUF_WIDTH:0] uH,
+  input wire [BUF_WIDTH:0] uL,//umbrales de almost_full, almost_empty para los fifos
+  input wire [$clog2(QUEUE_QUANTITY)-1:0] vc_id, //identificadores de los canales virtuales
   input wire [QUEUE_QUANTITY-1:0] arbiterTable,
   //inputs data
-  input wire[DATA_WIDTH-1:0] input_qos
+  input wire[BUF_WIDTH:0] input_qos
   );
 
 
@@ -32,24 +41,42 @@ module qos #(parameter DATA_WIDTH = 4, parameter QUEUE_QUANTITY = 4)(
   parameter BUF_WIDTH4 = 4;
   parameter BUF_SIZE8 = ( 1<<BUF_WIDTH3 );
   parameter BUF_SIZE16 = ( 1<<BUF_WIDTH4 );
+
   //Variables internas
   //fifo8
   wire wr_en, rd_en;
   wire buf_full, buf_empty, almost_full, almost_empty;
-  wire [(DATA_WIDTH-1):0] vc0_in, vc1_in, vc2_in, vc3_in;
-  wire [(DATA_WIDTH-1):0] vc0_out, vc1_out, vc2_out, vc3_out;
-  wire [(QUEUE_QUANTITY-1):0] vc_wr_en;
-  wire [(QUEUE_QUANTITY-1):0] vc_rd_en;
-  wire [(QUEUE_QUANTITY-1):0] vc_empty;
-  wire [(QUEUE_QUANTITY-1):0] vc_almost_full;
-  wire [(QUEUE_QUANTITY-1):0] vc_almost_empty;
-  wire [(QUEUE_QUANTITY-1):0] vc_full;
-  wire [(BUF_WIDTH3-1):0] vc0_fifo8_counter,vc1_fifo8_counter,vc2_fifo8_counter, vc3_fifo8_counter;
+  wire [QUEUE_QUANTITY-1:0] vc0_in;
+  wire [QUEUE_QUANTITY-1:0] vc1_in;
+  wire [QUEUE_QUANTITY-1:0] vc2_in;
+  wire [QUEUE_QUANTITY-1:0] vc3_in;
+  wire [QUEUE_QUANTITY-1:0] vc0_out, vc1_out, vc2_out, vc3_out;
+  wire [QUEUE_QUANTITY-1:0] vc_wr_en;
+  wire [QUEUE_QUANTITY-1:0] vc_rd_en;
+  wire [QUEUE_QUANTITY-1:0] vc_empty;
+  wire [QUEUE_QUANTITY-1:0] vc_almost_full;
+  wire [QUEUE_QUANTITY-1:0] vc_almost_empty;
+  wire [QUEUE_QUANTITY-1:0] vc_full;
+
+  wire [BUF_WIDTH3-1:0] vc0_fifo8_counter;
+  wire [BUF_WIDTH3-1:0] vc1_fifo8_counter;
+  wire [BUF_WIDTH3-1:0] vc2_fifo8_counter;
+  wire [BUF_WIDTH3-1:0] vc3_fifo8_counter;
   //señales retardadas desde roundRobin
+  //
+
+  wire [QUEUE_QUANTITY-1:0] vc0_fifo_counter;
+  wire [QUEUE_QUANTITY-1:0] vc1_fifo_counter;
+  wire [QUEUE_QUANTITY-1:0] vc2_fifo_counter;
+  wire [QUEUE_QUANTITY-1:0] vc3_fifo_counter;
 
   //mux
   wire [1:0] selectorMux;
-  wire [(DATA_WIDTH-1):0]salidaMux;
+  wire [(DATA_BITS-1):0]salidaMux;
+
+  wire [$clog2(QUEUE_QUANTITY)-1:0] selector;
+  wire [QUEUE_QUANTITY-1:0] selector_enb;
+
 
   //estancias
 
