@@ -2,13 +2,13 @@ SHELL = /bin/sh
 
 DIRS  = build pdfs
 
-CC       = iverilog
-CCFLAGS  = -Ttyp -g specify -g2005-sv -DCOMPILACION
-CC1      = vvp
-CC2      = gtkwave
-CC3      = yosys -c
-CC3_FLAGS= -q
-VPI      = -M ~/.local/install/ivl/lib/ivl
+CC        = iverilog
+CCFLAGS   = -Ttyp -g specify -g2005-sv -DCOMPILACION
+CC1       = vvp
+CC2       = gtkwave
+CC3       = yosys -c
+CC3_FLAGS = -q
+VPI       = -M ~/.local/install/ivl/lib/ivl
 
 # Evita salidas de un comando
 NO_OUTPUT = > /dev/null
@@ -197,8 +197,6 @@ makeEnd:
 # ******************************************************************************
 # DESCRIPCION:
 #   Abre el visualizador de ondas gtkwave con los tests especificados.
-#   Abre una onda a la vez, para visualizar varios tests a la vez se
-#   recomienda abrir sesiones de terminal nuevas.
 # ARGUMENTOS:
 # 	nombre-del-gtkw-n: nombre de un test que se muestra. Los tests se encuentran
 # 	 en la carpeta 'gtkws' y se nombran '<nombre-del-test-n>_test.gtkw'.
@@ -228,3 +226,105 @@ clean:
 	rm -r pdfs
 	rm -f ./*.dot
 	rm -f gtkws/*.vcd
+
+help:
+	@echo "*****************"
+	@echo "*** make help ***"
+	@echo "*****************"
+	@echo ""
+	@echo "EJEMPLOS DE USO:"
+	@echo ""
+	@echo "	make & make view prueba1"
+	@echo "	make all modulo1 modulo2"
+	@echo "	make synth"
+	@echo "	make compile modulo1 & make run modulo1"
+	@echo "	make run"
+	@echo "	make view prueba1 prueba2"
+	@echo "	make clean"
+	@echo ""
+	@echo "REGLAS DISPONIBLES: all, synth, compile, run, view, clean, help"
+	@echo ""
+	@echo "MODULOS DISPONIBLES:"
+	@$(foreach vlog, $(wildcard ./bloques/**/*.v), echo "	$(subst .v,,$(notdir $(vlog)))";)
+	@echo ""
+	@echo "PRUEBAS DISPONIBLES:"
+	@$(foreach vlog, $(wildcard ./pruebas/*_test.v), echo "	$(subst _test.v,,$(notdir $(vlog)))";)
+	@echo ""
+	@echo "******************************************************************************"
+	@echo "ALL"
+	@echo "******************************************************************************"
+	@echo "DESCRIPCION:"
+	@echo "	Realiza todo el proceso(synth compile run) para los modulos y pruebas"
+	@echo "	especificados, o para todos en caso de no indicarse ninguno."
+	@echo "ARGUMENTOS:"
+	@echo "	 - nombre-del-modulo-n: nombre de una modulo que se sintetiza. Los modulos se"
+	@echo "	encuentran en la carpeta 'bloques/<nombre-del-grupo>/<nombre-del-modulo>' y"
+	@echo "	se nombran <nombre-del-grupo>/<nombre-del-modulo>.v'. No existe 'make all',"
+	@echo "	para este comportamiento usar 'make'."
+	@echo "USO:"
+	@echo "	make all <nombre-del-modulo-1> <nombre-del-modulo-2> ... <nombre-de-la-prueba-1> <nombre-de-la-prueba-2> ..."
+	@echo ""
+	@echo "******************************************************************************"
+	@echo "SYNTH"
+	@echo "******************************************************************************"
+	@echo "DESCRIPCION:"
+	@echo "	Sintetiza segun scripts de yosys los modulos especificados o bien todos los"
+	@echo "	existentes en caso de no indicarse ninguno."
+	@echo "ARGUMENTOS:"
+	@echo "	 - nombre-del-modulo-n: nombre de una modulo que se sintetiza. Los modulos se"
+	@echo "	encuentran en la carpeta 'bloques/<nombre-del-grupo>/<nombre-del-modulo>' y"
+	@echo "	se nombran <nombre-del-grupo>/<nombre-del-modulo>.v'."
+	@echo "USO:"
+	@echo "	make synth <nombre-del-modulo-1> <nombre-del-modulo-2> ..."
+	@echo ""
+	@echo "******************************************************************************"
+	@echo "COMPILE"
+	@echo "******************************************************************************"
+	@echo "DESCRIPCION:"
+	@echo "	Compila con iverilog las pruebas especificadas o todas las existentes si no"
+	@echo "	se indica ninguna."
+	@echo "	Primero realiza un preprocesamiento de los módulos para"
+	@echo "	permitir el uso de macros(ifndef, define, etc)"
+	@echo "	Luego compila con iverilog los archivos preprocesados."
+	@echo "ARGUMENTOS:"
+	@echo "	 - nombre-de-la-prueba-n: nombre de una prueba que se compila. Las pruebas se"
+	@echo "	encuentran en la carpeta 'pruebas' y se nombran"
+	@echo "	<nombre-de-la-prueba-n>_test.v'. En caso de no especificarse ninguna prueba"
+	@echo "	se compilan todas las existentes."
+	@echo "USO:"
+	@echo "	make compile <nombre-de-la-prueba-1> <nombre-de-la-prueba-2> ..."
+	@echo ""
+	@echo "******************************************************************************"
+	@echo "RUN"
+	@echo "******************************************************************************"
+	@echo "DESCRIPCION:"
+	@echo "	Ejecuta el archivo compilado con vvp para las pruebas especificadas o todas"
+	@echo "	las existentes en caso de no indicarse ninguna."
+	@echo "ARGUMENTOS:"
+	@echo "	 - nombre-de-la-prueba-n: nombre de una prueba que se ejecuta. Las pruebas se"
+	@echo "	encuentran en la carpeta 'pruebas' y se nombran"
+	@echo "	<nombre-de-la-prueba-n>_test.v'."
+	@echo "USO:"
+	@echo "  make run <nombre-de-la-prueba-1> <nombre-de-la-prueba-2> ..."
+	@echo ""
+	@echo "******************************************************************************"
+	@echo "VIEW"
+	@echo "******************************************************************************"
+	@echo "DESCRIPCION:"
+	@echo "	Abre el visualizador de ondas gtkwave con los tests especificados."
+	@echo "ARGUMENTOS:"
+	@echo "	nombre-del-gtkw-n: nombre de un test que se muestra. Los tests se encuentran"
+	@echo "	 en la carpeta 'gtkws' y se nombran '<nombre-del-test-n>_test.gtkw'."
+	@echo "USO:"
+	@echo "  make view <nombre-del-gtkw-1> <nombre-del-gtkw-2> ..."
+	@echo ""
+	@echo "******************************************************************************"
+	@echo "CLEAN"
+	@echo "******************************************************************************"
+	@echo "DESCRIPCION:"
+	@echo "	Limpia el proyecto eliminando todos los archivos generados."
+	@echo "	No acepta comandos, es decir, borra todos los archivos generados"
+	@echo "	para modulos y pruebas."
+	@echo "USO:"
+	@echo "	make clean"
+	@echo ""
