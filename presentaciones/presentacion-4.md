@@ -79,31 +79,32 @@ _De: ```fsm_test.v```_
 
 ![90% center](presentacion-4/make.jpg)
 
-<<<<<<<
-```verilog
-make all fifo8
-make view fifo
-make all fifo8 fifo16 fsm 
-make view fifo8 fifo16 fsm 
-```
-
-=======
-
->>>>>>>
 ---
 
 # Libreria osu018_stdcells
 ```verilog
-  parameter 
-  QUEUE_QUANTITY = 4,   // se utilizan 4 filas fifo
-  DATA_BITS = 8,        // Los datos son de 8 bits
-  BUF_WIDTH = 3,        // Los datos son de 8 bits
-  MAX_WEIGHT = 64,      // El peso máximo es de 64 = 2^6
-  TABLE_SIZE = 8,     // Tamaño de la tabla de arbitraje
-  MAX_MAG_UMBRAL = 16,  // Tamaño máximo de los umbrales
-  TIPOS_ROUND_ROBIN = 3,// Cantidad de tipos RR
-  FIFO_COUNT = 5 // Cantidad de fifos
+`ifdef COMPILACION 
+codigo de osu018_stdcells.v 
+`endif 
+ ```
+En el makefile: 
+```
+CCFLAGS   = -Ttyp -g specify -g2005-sv -DCOMPILACION 
+```
 
+---
+
+ # Bloque transmisor
+```verilog 
+  parameter  
+  QUEUE_QUANTITY = 4,   // se utilizan 4 filas fifo 
+  DATA_BITS = 8,        // Los datos son de 8 bits 
+  BUF_WIDTH = 3,        // Los datos son de 8 bits 
+  MAX_WEIGHT = 64,      // El peso máximo es de 64 = 2^6 
+  TABLE_SIZE = 8,     // Tamaño de la tabla de arbitraje 
+  MAX_MAG_UMBRAL = 16,  // Tamaño máximo de los umbrales 
+  TIPOS_ROUND_ROBIN = 3,// Cantidad de tipos RR 
+  FIFO_COUNT = 5 // Cantidad de fifos 
 ```
 
 ---
@@ -132,24 +133,3 @@ make view fifo8 fifo16 fsm
 ---
 
 ![90% center](presentacion-4/qos.jpg)
-
----
-
- # Bloque transmisor
-<br >
-
-#### Archivo .gtkw de las señales del fsm_test
-![center](presentacion-4/fsm.png)
-_De: ```fsm_test.v```_
-
-
-
-
-
-
-<<<<<<<
-
-=======
-
-
->>>>>>>
