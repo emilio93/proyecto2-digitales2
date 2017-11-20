@@ -1,0 +1,75 @@
+[*]
+[*] GTKWave Analyzer v3.3.83 (w)1999-2017 BSI
+[*] Mon Nov 20 02:00:31 2017
+[*]
+[dumpfile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/interfazRoundRobin_test.vcd"
+[dumpfile_mtime] "Mon Nov 20 01:50:09 2017"
+[dumpfile_size] 787885
+[savefile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/interfazRoundRobin_test.gtkw"
+[timestart] 0
+[size] 1680 1022
+[pos] -1723 -28
+*-19.919933 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 45
+[signals_width] 343
+[sst_expanded] 0
+[sst_vpaned_height] 290
+@28
+[color] 4
+interfazRoundRobin_test.rrTester.clk
+[color] 4
+interfazRoundRobin_test.rrTester.enb
+[color] 4
+interfazRoundRobin_test.rrTester.rst
+@200
+-
+@28
+[color] 4
+interfazRoundRobin_test.rrTester.pesos[23:0]
+@22
+[color] 4
+interfazRoundRobin_test.rrTester.pesosArbitraje[47:0]
+@28
+[color] 4
+interfazRoundRobin_test.rrTester.selecciones[15:0]
+@22
+[color] 4
+interfazRoundRobin_test.rrTester.buf_empty[3:0]
+@28
+[color] 4
+interfazRoundRobin_test.rrTester.seleccion_roundRobin[1:0]
+@200
+-CONDUCTUAL
+@28
+[color] 3
++{contador RRRegular} interfazRoundRobin_test.rrTester.test.rrRegular.contador[1:0]
+[color] 3
++{contador RRPesado} interfazRoundRobin_test.rrTester.test.rrPesado.contador[1:0]
+[color] 3
++{contadorRRArbitrado} interfazRoundRobin_test.rrTester.test.rrArbitrado.contador[2:0]
+[color] 3
+interfazRoundRobin_test.rrTester.test.selector_enb
+[color] 3
+interfazRoundRobin_test.rrTester.test.selector[1:0]
+@200
+-ESTRUCTURAL
+@28
+[color] 2
+interfazRoundRobin_test.rrTester.synthTest.rrRegular.contador[1:0]
+[color] 2
+interfazRoundRobin_test.rrTester.synthTest.rrPesado.contador[1:0]
+[color] 2
+interfazRoundRobin_test.rrTester.synthTest.rrArbitrado.contador[2:0]
+[color] 2
+interfazRoundRobin_test.rrTester.synthTest.selector[1:0]
+[color] 2
+interfazRoundRobin_test.rrTester.synthTest.selector_enb
+@200
+-ERRORES
+@28
+[color] 4
+interfazRoundRobin_test.rrTester.errSelector
+[color] 4
+interfazRoundRobin_test.rrTester.errSelector_enb
+[pattern_trace] 1
+[pattern_trace] 0
