@@ -17,10 +17,10 @@ module qos_test #(
   parameter TABLE_SIZE = 8      // Tamaño de la tabla de arbitraje
 )();
 
-qos qos(
-);
+reg clk, rst, enb;
 
-qosSynth qosSynth(
+qos qosTester(
+  .clk(clk), .rst(rst), .enb(enb)
 );
 
 always # 5 clk = ~clk;
@@ -30,38 +30,49 @@ begin
   $dumpfile("gtkws/qos_test.vcd");
   $dumpvars();
 end
+initial begin
+  clk <= 0;
+  rst <= 1;
+  enb <= 1;
+  # 40
+  @(posedge clk);
+  rst <= 0;
+
+  #1000
+  $finish();
+end
 
 
-task push;
-input [(DATA_WIDTH-1):0] data;
-   if( buf_full )
-            $display("---Cannot push: Buffer Full---");
-        else
-        begin
-           $display("Pushed ",data );
-					 buf_in = data;
-					 wr_en = 1;
-                @(posedge clk);
-                #1 wr_en = 0;
-        end
-endtask
-
-task pop;
-output [(DATA_WIDTH-1):0] data;
-
-   if( buf_empty )
-            $display("---Cannot Pop: Buffer Empty---");
-   else
-        begin
-
-     rd_en = 1;
-          @(posedge clk);
-
-          #1 rd_en = 0;
-          data = buf_out;
-           $display("-------------------------------Poped ", data);
-
-        end
-endtask
+// task push;
+// input [(DATA_WIDTH-1):0] data;
+//    if( buf_full )
+//             $display("---Cannot push: Buffer Full---");
+//         else
+//         begin
+//            $display("Pushed ",data );
+// 					 buf_in = data;
+// 					 wr_en = 1;
+//                 @(posedge clk);
+//                 #1 wr_en = 0;
+//         end
+// endtask
+//
+// task pop;
+// output [(DATA_WIDTH-1):0] data;
+//
+//    if( buf_empty )
+//             $display("---Cannot Pop: Buffer Empty---");
+//    else
+//         begin
+//
+//      rd_en = 1;
+//           @(posedge clk);
+//
+//           #1 rd_en = 0;
+//           data = buf_out;
+//            $display("-------------------------------Poped ", data);
+//
+//         end
+// endtask
 
 endmodule

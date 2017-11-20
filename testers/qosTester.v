@@ -46,29 +46,9 @@ module qosTester(
   end
 
   qos qos(
-    .clk(clk), .rst(rst), .enb(enb),
-    .iniciar(iniciar_in),
-    .almost_full(almost_full_in),
-    .full(full_in),
-    .almost_empty(almost_empty_in),
-    .empty(empty_in),
-    .continuar(continuarConduct),
-    .error_full(errorConduct),
-    .pausa(pausaConduct),
-    .idle(idleConduct)
   );
 
   qosSynth qosSynth(
-    .clk(clk), .rst(rst), .enb(enb),
-    .iniciar(iniciar_in),
-    .almost_full(almost_full_in),
-    .full(full_in),
-    .almost_empty(almost_empty_in),
-    .empty(empty_in),
-    .continuar(continuarSynth),
-    .error_full(errorSynth),
-    .pausa(pausaSynth),
-    .idle(idleSynth)
   );
 
 endmodule
