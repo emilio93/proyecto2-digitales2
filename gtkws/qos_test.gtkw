@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.83 (w)1999-2017 BSI
-[*] Mon Nov 20 11:24:44 2017
+[*] Mon Nov 20 11:34:27 2017
 [*]
 [dumpfile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/qos_test.vcd"
-[dumpfile_mtime] "Mon Nov 20 11:24:35 2017"
-[dumpfile_size] 1148482
+[dumpfile_mtime] "Mon Nov 20 11:33:30 2017"
+[dumpfile_size] 1148313
 [savefile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/qos_test.gtkw"
 [timestart] 0
-[size] 1680 1022
+[size] 1638 995
 [pos] -1 -1
-*-17.671926 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-17.732590 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] qos_test.
 [treeopen] qos_test.qosTester.
 [treeopen] qos_test.qosTester.qos.
@@ -18,7 +18,7 @@
 [sst_width] 329
 [signals_width] 284
 [sst_expanded] 1
-[sst_vpaned_height] 290
+[sst_vpaned_height] 281
 @28
 [color] 4
 qos_test.qosTester.clk
@@ -52,7 +52,7 @@ qos_test.qosTester.rd_en
 qos_test.qosTester.wr_en
 @200
 -CONDUCTUAL
-@800022
+@c00022
 [color] 3
 qos_test.qosTester.qos.fsm.state[6:0]
 @28
@@ -70,7 +70,7 @@ qos_test.qosTester.qos.fsm.state[6:0]
 (5)qos_test.qosTester.qos.fsm.state[6:0]
 [color] 3
 (6)qos_test.qosTester.qos.fsm.state[6:0]
-@1001200
+@1401200
 -group_end
 @22
 [color] 3
@@ -111,6 +111,19 @@ qos_test.qosTester.qosSynth.idle
 @22
 [color] 2
 qos_test.qosTester.qosSynth.dataOut[3:0]
+@200
+-ERRORES
+@29
+[color] 4
+qos_test.qosTester.errContinuar
+[color] 4
+qos_test.qosTester.errDataOut
+[color] 4
+qos_test.qosTester.errError_full
+[color] 4
+qos_test.qosTester.errIdle
+[color] 4
+qos_test.qosTester.errPausa
 @200
 -
 [pattern_trace] 1

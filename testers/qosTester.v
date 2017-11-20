@@ -54,12 +54,13 @@ module qosTester(
   wire [3:0] pausaSynth;
   wire [3:0] continuarSynth;
 
-  reg errError, errIdle, errPausa, errContinuar;
+  reg errError_full, errPausa, errContinuar, errIdle, errDataOut;
   always @ ( * ) begin
-    errError = errorConduct != errorSynth;
-    errIdle = idleConduct != idleSynth;
-    errPausa = pausaConduct != pausaSynth;
-    errContinuar = continuarConduct != continuarSynth;
+    errError_full = error_full != error_fullSynth;
+    errPausa = pausa != pausaSynth;
+    errContinuar = continuar != continuarSynth;
+    errIdle = idle != idleSynth;
+    errDataOut = dataOut != dataOutSynth;
   end
 
   qos qos(

@@ -39,7 +39,6 @@ module qos #(
   input [QUEUE_QUANTITY*$clog2(MAX_WEIGHT)-1:0]  mem_pesos,
   input [TABLE_SIZE*$clog2(MAX_WEIGHT)-1:0]      mem_pesosArbitraje,
   input [TABLE_SIZE*$clog2(QUEUE_QUANTITY)-1:0]  mem_selecciones,
-  input wr_en,
   input rd_en,
 
   output [QUEUE_QUANTITY-1:0] error_full,
@@ -99,8 +98,12 @@ module qos #(
 
   wire [BUF_WIDTH:0] buf_in;
 
-  wire wr_en;
+  reg wr_en;
   wire rd_en;
+
+  always @ (posedge clk) begin
+    if (iniciar) wr_en <= !wr_en;
+  end
 
   memorias memorias(
     .clk(clk), .rst(rst), .enb(enb),
