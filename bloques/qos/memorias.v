@@ -12,21 +12,40 @@ module memorias #(
 )(
   // señales de control basico
   input clk, rst, enb,
+  input iniciar, // strobe que indica la actualizacion de la memoria
 
   // señales de entrada
-  input [TABLE_SIZE*$clog2(QUEUE_QUANTITY):0] selecciones_in,
+  input [$clog2(TIPOS_ROUND_ROBIN)-1:0] seleccion_roundRobin_in,
+  input [QUEUE_QUANTITY*$clog2(MAX_WEIGHT)-1:0] pesos_in,
+  input [TABLE_SIZE*$clog2(MAX_WEIGHT)-1:0] pesosArbitraje_in,
+  input [TABLE_SIZE*$clog2(QUEUE_QUANTITY)-1:0] selecciones_in,
 
   // señales de salida
-  output [TABLE_SIZE*$clog2(QUEUE_QUANTITY):0] selecciones_out
+  output [$clog2(TIPOS_ROUND_ROBIN)-1:0] seleccion_roundRobin_out,
+  output [QUEUE_QUANTITY*$clog2(MAX_WEIGHT)-1:0] pesos_out,
+  output [TABLE_SIZE*$clog2(MAX_WEIGHT)-1:0] pesosArbitraje_out,
+  output [TABLE_SIZE*$clog2(QUEUE_QUANTITY)-1:0] selecciones_out
 );
 
-  wire [TABLE_SIZE*$clog2(QUEUE_QUANTITY):0] selecciones_in;
+  wire [$clog2(TIPOS_ROUND_ROBIN)-1:0] seleccion_roundRobin_in;
+  wire [QUEUE_QUANTITY*$clog2(MAX_WEIGHT)-1:0] pesos_in;
+  wire [TABLE_SIZE*$clog2(MAX_WEIGHT)-1:0] pesosArbitraje_in;
+  wire [TABLE_SIZE*$clog2(QUEUE_QUANTITY)-1:0] selecciones_in;
 
   // memoria de selecciones
-  reg [TABLE_SIZE*$clog2(QUEUE_QUANTITY):0] selecciones_out;
+  //
+  reg [$clog2(TIPOS_ROUND_ROBIN)-1:0] seleccion_roundRobin_out;
+  reg [QUEUE_QUANTITY*$clog2(MAX_WEIGHT)-1:0] pesos_out;
+  reg [TABLE_SIZE*$clog2(MAX_WEIGHT)-1:0] pesosArbitraje_out;
+  reg [TABLE_SIZE*$clog2(QUEUE_QUANTITY)-1:0] selecciones_out;
 
   always @ (posedge clk) begin
-    selecciones_out <= selecciones_in;
+    if (iniciar) begin
+      seleccion_roundRobin_out <= seleccion_roundRobin_in;
+      pesos_out <= pesos_in;
+      pesosArbitraje_out <= pesosArbitraje_in;
+      selecciones_out <= selecciones_in;
+    end
   end
 
 endmodule
