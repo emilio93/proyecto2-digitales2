@@ -12,11 +12,11 @@ module fsmTester(
   input [4:0] almost_full_in,
   input [4:0] full_in,
   input [4:0] empty_in,
-  output errorConduct,
+  output[3:0] errorConduct,
   output idleConduct,
   output [3:0] pausaConduct,
   output [3:0] continuarConduct,
-  output errorSynth,
+  output [3:0] errorSynth,
   output idleSynth,
   output [3:0] pausaSynth,
   output [3:0] continuarSynth
@@ -29,13 +29,15 @@ module fsmTester(
   wire [4:0] almost_empty_in;
   wire [4:0] empty_in;
 
-  wire errorConduct, idleConduct;
+  wire idleConduct;
   wire [3:0] pausaConduct;
   wire [3:0] continuarConduct;
+  wire [3:0] errorConduct;
 
-  wire errorSynth, idleSynth;
+  wire idleSynth;
   wire [3:0] pausaSynth;
   wire [3:0] continuarSynth;
+  wire [3:0] errorSynth;
 
   reg errError, errIdle, errPausa, errContinuar;
   always @ ( * ) begin

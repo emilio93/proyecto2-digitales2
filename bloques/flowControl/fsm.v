@@ -11,12 +11,10 @@ module fsm(
   input [4:0] full,
   input [4:0] almost_empty,
   input [4:0] empty,
-
   output [3:0] continuar,
-  output error_full,
+  output [3:0] error_full,
   output [3:0] pausa,
-  output idle
-);
+  output idle);
 
   // DEFINICION ONEHOT
   /*
@@ -48,7 +46,7 @@ module fsm(
   wire [4:0] empty;
 
   //Salidas
-  reg error_full;
+  reg [3:0] error_full;
   reg [3:0] pausa;//solo 4 fifos de arriba
   reg [3:0] continuar;
   reg idle;

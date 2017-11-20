@@ -10,7 +10,7 @@ module flowControl #(parameter FIFO_COUNT = 5) (
   input [FIFO_COUNT-1:0] almost_empty_in,
   input [FIFO_COUNT-1:0] empty_in,
   input [FIFO_COUNT-2:0] continuar,//negado de pausa, sera enable de fifos
-  output [FIFO_COUNT-2:0] cf,
+  output [FIFO_COUNT-2:0] cf, //continue fifo 
   output [FIFO_COUNT-1:0] almost_full_out,
   output [FIFO_COUNT-1:0] full_out,
   output [FIFO_COUNT-1:0] almost_empty_out,

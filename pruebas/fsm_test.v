@@ -15,13 +15,15 @@ module fsm_test();
   reg [4:0] almost_empty_in;
   reg [4:0] empty_in;
 
-  wire errorConduct, idleConduct;
+  wire idleConduct;
   wire [3:0] pausaConduct;
   wire [3:0] continuarConduct;
+  wire [3:0] errorConduct;
 
-  wire errorSynth, idleSynth;
+  wire idleSynth;
   wire [3:0] pausaSynth;
   wire [3:0] continuarSynth;
+  wire [3:0] errorSynth;
 
   fsmTester fsmTester(
     .clk(clk), .rst(rst), .enb(enb),
@@ -37,8 +39,7 @@ module fsm_test();
     .continuarSynth(continuarSynth),
     .errorSynth(errorSynth),
     .pausaSynth(pausaSynth),
-    .idleSynth(idleSynth)
-  );
+    .idleSynth(idleSynth));
 
   always # 5 clk = ~clk;
 
