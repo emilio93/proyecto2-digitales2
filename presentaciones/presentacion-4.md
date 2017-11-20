@@ -66,6 +66,11 @@ _De: ```interfazRoundRobin_test.v```_
 ---  
 
 # Maquina de estados
+![center](presentacion-4/rr3.jpg)
+
+---
+
+# Maquina de estados
 
 #### Archivo .gtkw de las señales del fsm_test
 ![center](presentacion-4/fsm.jpg)
