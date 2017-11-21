@@ -78,6 +78,7 @@ begin
   $dumpfile("gtkws/qos_test.vcd");
   $dumpvars();
 end
+
 initial begin
   clk <= 0;
   rst <= 1;
@@ -136,6 +137,26 @@ initial begin
   mem_seleccion_roundRobin  <= 1; // pesado
   mem_pesos                 <= {6'b000010, 6'b000100, 6'b000001, 6'b000110};
 
+  # 20 @(posedge clk);
+  vc_id <= 1;
+  data_word <= 10;
+  # 20 @(posedge clk);
+  vc_id <= 2;
+  data_word <= 12;
+  # 20 @(posedge clk);
+  vc_id <= 3;
+  data_word <= 8;
+
+  # 20 @(posedge clk);
+  vc_id <= 0;
+  data_word <= 6;
+  # 20 @(posedge clk);
+  vc_id <= 1;
+  data_word <= 3;;
+  # 20 @(posedge clk);
+  vc_id <= 2;
+  data_word <= $urandom%15;
+
   # 50 @(posedge clk);
   rst <= 1;
   # 20 @(posedge clk);
@@ -148,7 +169,7 @@ initial begin
   # 750 @(posedge clk);
   umbral_max                <= 3;
   umbral_min                <= 3;
-  mem_seleccion_roundRobin  <= 1; // pesado
+  mem_seleccion_roundRobin  <= 2; // arbitrado
   mem_pesosArbitraje        <= {6'b10, 6'b10, 6'b10, 6'b10, 6'b10, 6'b10, 6'b10, 6'b100};
   mem_selecciones           <= {2'b11, 2'b10, 2'b00, 2'b01, 2'b10, 2'b10, 2'b01, 2'b10};
 
@@ -184,5 +205,11 @@ end
 //     data = qosTester.qos.fifoSalida.buf_out;
 //   end
 // endtask
+//
+
+task aleatorio;
+  output [DATA_WIDTH-1:0] num;
+  num=$urandom%15;
+endtask
 
 endmodule
