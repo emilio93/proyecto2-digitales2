@@ -16,7 +16,6 @@ module qosTester(
   input [QUEUE_QUANTITY*$clog2(MAX_WEIGHT)-1:0]  mem_pesos,
   input [TABLE_SIZE*$clog2(MAX_WEIGHT)-1:0]      mem_pesosArbitraje,
   input [TABLE_SIZE*$clog2(QUEUE_QUANTITY)-1:0]  mem_selecciones,
-  input wr_en, rd_en,
 
   output [QUEUE_QUANTITY-1:0] error_full,
   output [QUEUE_QUANTITY-1:0] pausa,
@@ -74,8 +73,6 @@ module qosTester(
     .mem_pesos(mem_pesos),
     .mem_pesosArbitraje(mem_pesosArbitraje),
     .mem_selecciones(mem_selecciones),
-    .wr_en(wr_en),
-    .rd_en(ed_en),
     .error_full(error_full),
     .pausa(pausa),
     .continuar(continuar),
@@ -94,8 +91,6 @@ module qosTester(
     .mem_pesos(mem_pesos),
     .mem_pesosArbitraje(mem_pesosArbitraje),
     .mem_selecciones(mem_selecciones),
-    .wr_en(wr_en),
-    .rd_en(ed_en),
 
     .error_full(error_fullSynth),
     .pausa(pausaSynth),

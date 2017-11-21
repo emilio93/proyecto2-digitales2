@@ -39,7 +39,6 @@ module qos #(
   input [QUEUE_QUANTITY*$clog2(MAX_WEIGHT)-1:0]  mem_pesos,
   input [TABLE_SIZE*$clog2(MAX_WEIGHT)-1:0]      mem_pesosArbitraje,
   input [TABLE_SIZE*$clog2(QUEUE_QUANTITY)-1:0]  mem_selecciones,
-  input rd_en,
 
   output [QUEUE_QUANTITY-1:0] error_full,
   output [QUEUE_QUANTITY-1:0] pausa,
@@ -102,7 +101,10 @@ module qos #(
   wire rd_en;
 
   always @ (posedge clk) begin
-    if (iniciar) wr_en <= !wr_en;
+    if (rst) begin
+      wr_en <= 1;
+      wr_en <= 1;
+    end
   end
 
   memorias memorias(

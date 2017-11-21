@@ -31,7 +31,6 @@ reg [$clog2(TIPOS_ROUND_ROBIN)-1:0]          mem_seleccion_roundRobin;
 reg [QUEUE_QUANTITY*$clog2(MAX_WEIGHT)-1:0]  mem_pesos;
 reg [TABLE_SIZE*$clog2(MAX_WEIGHT)-1:0]      mem_pesosArbitraje;
 reg [TABLE_SIZE*$clog2(QUEUE_QUANTITY)-1:0]  mem_selecciones;
-reg wr_en, rd_en;
 
 wire [QUEUE_QUANTITY-1:0] error_full;
 wire [QUEUE_QUANTITY-1:0] pausa;
@@ -56,7 +55,6 @@ qosTester qosTester(
   .mem_pesos(mem_pesos),
   .mem_pesosArbitraje(mem_pesosArbitraje),
   .mem_selecciones(mem_selecciones),
-  .wr_en(wr_en), .rd_en(rd_en),
 
   .error_full(error_full),
   .pausa(pausa),
@@ -87,15 +85,21 @@ initial begin
 
   iniciar                   <= 0;
   vc_id                     <= 0;
-  data_word                 <= 0;
-  umbral_max                <= 0;
-  umbral_min                <= 0;
+  data_word                 <= 8;
+
+  umbral_max                <= 2;
+  umbral_min                <= 2;
   mem_seleccion_roundRobin  <= 0;
   mem_pesos                 <= 0;
   mem_pesosArbitraje        <= 0;
   mem_selecciones           <= 0;
-  wr_en                     <= 0;
-  rd_en                     <= 0;
+
+  # 20
+  @(posedge clk);
+  iniciar <= 1;
+  @(posedge clk);
+  iniciar <= 0;
+
   # 40
   @(posedge clk);
   rst <= 0;
@@ -106,8 +110,79 @@ initial begin
   @(posedge clk);
   iniciar <= 0;
 
+  # 20 @(posedge clk);
+  vc_id <= 1;
+  data_word <= 5;
+  # 20 @(posedge clk);
+  vc_id <= 2;
+  data_word <= 2;
+  # 20 @(posedge clk);
+  vc_id <= 3;
+  data_word <= 3;
+
+  # 20 @(posedge clk);
+  vc_id <= 0;
+  data_word <= 14;
+  # 20 @(posedge clk);
+  vc_id <= 1;
+  data_word <= 10;
+  # 20 @(posedge clk);
+  vc_id <= 2;
+  data_word <= 4;
+
+  # 50 @(posedge clk);
+  umbral_max                <= 3;
+  umbral_min                <= 3;
+  mem_seleccion_roundRobin  <= 1; // pesado
+  mem_pesos                 <= {6'b000010, 6'b000100, 6'b000001, 6'b000110};
+
+  # 50 @(posedge clk);
+  rst <= 1;
+  # 20 @(posedge clk);
+  rst <= 0;
+  # 30 @(posedge clk);
+  iniciar <= 1;
+  @(posedge clk);
+  iniciar <= 0;
+
+  # 750 @(posedge clk);
+  umbral_max                <= 3;
+  umbral_min                <= 3;
+  mem_seleccion_roundRobin  <= 1; // pesado
+  mem_pesosArbitraje        <= {6'b10, 6'b10, 6'b10, 6'b10, 6'b10, 6'b10, 6'b10, 6'b100};
+  mem_selecciones           <= {2'b11, 2'b10, 2'b00, 2'b01, 2'b10, 2'b10, 2'b01, 2'b10};
+
+  # 50 @(posedge clk);
+  rst <= 1;
+  # 20 @(posedge clk);
+  rst <= 0;
+  # 30 @(posedge clk);
+  iniciar <= 1;
+  @(posedge clk);
+  iniciar <= 0;
+
   #1000
   $finish();
 end
+
+// task push;
+// input [(DATA_WIDTH-1):0] data;
+//    if( !qosTester.qos.fifoSalida.buf_full ) begin
+//       qosTester.qos.fifoSalida.buf_in = data;
+//       qosTester.qos.fifoSalida.wr_en = 1;
+//       @(posedge clk);
+//       #1 qosTester.qos.fifoSalida.wr_en = 0;
+//     end
+// endtask
+//
+// task pop;
+//   output [(DATA_WIDTH-1):0] data;
+//    if( !qosTester.qos.fifoSalida.buf_empty ) begin
+//     qosTester.rd_en = 1;
+//     @(posedge clk);
+//     #1 qosTester.rd_en = 0;
+//     data = qosTester.qos.fifoSalida.buf_out;
+//   end
+// endtask
 
 endmodule
