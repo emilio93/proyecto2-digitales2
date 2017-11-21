@@ -4,7 +4,6 @@ set curDir         "$::env(CUR_DIR)"
 set vlogModuleName "$::env(VLOG_MODULE_NAME)"
 set vlogFileName   "$::env(VLOG_FILE_NAME)"
 set cellLib        osu018_stdcells
-# set cellLib        cmos_cells
 
 yosys read_verilog $vlogFileName
 
