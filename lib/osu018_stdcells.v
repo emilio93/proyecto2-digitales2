@@ -243,6 +243,9 @@ reg NOTIFIER ;
    not (P0002, DS0000);
    buf (Q, DS0000);
 
+   //CALCULOPOTENCIA
+   always @(posedge Q) qos_test.m1.PwrCntr[0] <= qos_test.m1.PwrCntr[0]+1;
+
    specify
      // delay parameters
      specparam
@@ -280,6 +283,10 @@ reg NOTIFIER ;
    udp_dff (DS0000, D, CLK, 1'B0, 1'B0, NOTIFIER);
    not (P0002, DS0000);
    buf (Q, DS0000);
+
+  //CALCULOPOTENCIA
+  always @(posedge Q) qos_test.m1.PwrCntr[0] <= qos_test.m1.PwrCntr[0]+1;
+
 
    specify
      // delay parameters
@@ -327,6 +334,9 @@ reg NOTIFIER ;
    not (I7_out, D);
    and (\~D&R , I7_out, R);
    and (\S&R , S, R);
+
+   //CALCULOPOTENCIA
+   always @(posedge Q) qos_test.m1.PwrCntr[0] <= qos_test.m1.PwrCntr[0]+1;
 
    specify
      // delay parameters

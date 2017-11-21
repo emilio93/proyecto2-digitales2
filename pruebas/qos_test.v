@@ -1,9 +1,9 @@
 `timescale 1ns/1ps
 
 `define isTest 1
-
+`define CALCULOPOTENCIA
 `include "includes.v"
-
+`include "./contador/memTrans.v"
 `include "../bloques/qos/qos.v"
 `include "../build/qos-sintetizado.v"
 `include "../testers/qosTester.v"
@@ -17,8 +17,24 @@ module qos_test #(
   parameter TABLE_SIZE = 8,        // Tamaño de la tabla de arbitraje
   parameter MAX_MAG_UMBRAL = 16,   // Tamaño máximo de los umbrales
   parameter TIPOS_ROUND_ROBIN = 3, // Tamaño máximo de los umbrales
-  parameter FIFO_COUNT = 5
+  parameter FIFO_COUNT = 5,
+  parameter NumPwrCntr = 2,
+  parameter Ndir = 1
 )();
+
+//variables locales
+//implementacion de contadores
+reg [31:0] Contador;
+reg [`Ndir:0] dir;
+reg LE;
+wire [31:0] dato;
+//Conexion a la memoria de contadores de transicion
+memTrans m1 (dir, LE, dato);
+//Control de E/S del puerto de dato de la memoria de contadores
+assign dato = (~LE)? Contador : 32'bz;
+
+
+
 
 reg clk, rst, enb;
 
@@ -84,6 +100,7 @@ initial begin
   rst <= 1;
   enb <= 1;
 
+
   iniciar                   <= 0;
   vc_id                     <= 0;
   data_word                 <= 8;
@@ -94,6 +111,14 @@ initial begin
   mem_pesos                 <= 0;
   mem_pesosArbitraje        <= 0;
   mem_selecciones           <= 0;
+
+  //Borrar memoria del contador de transicion
+		#1 LE <= 0;
+		Contador <= 0;
+		for (dir=0; dir<=`NumPwrCntr; dir=dir+1) begin
+			#1 Contador <= 0;
+		end
+
 
   # 20
   @(posedge clk);
@@ -181,6 +206,14 @@ initial begin
   iniciar <= 1;
   @(posedge clk);
   iniciar <= 0;
+
+  //Lea y despliegue la memoria con contadores de transicion
+ 		#5 LE = 1;
+ 		for (dir=0; dir<=`NumPwrCntr; dir=dir+1)	begin
+ 			#1 Contador = dato;
+ 			$display(,,"PwrCntr[%d]: %d", dir, Contador);
+ 		end
+
 
   #1000
   $finish();
