@@ -1,17 +1,17 @@
 [*]
 [*] GTKWave Analyzer v3.3.83 (w)1999-2017 BSI
-[*] Mon Nov 20 02:00:31 2017
+[*] Tue Nov 21 03:04:14 2017
 [*]
 [dumpfile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/interfazRoundRobin_test.vcd"
-[dumpfile_mtime] "Mon Nov 20 01:50:09 2017"
+[dumpfile_mtime] "Tue Nov 21 02:59:27 2017"
 [dumpfile_size] 787885
 [savefile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/interfazRoundRobin_test.gtkw"
 [timestart] 0
 [size] 1680 1022
-[pos] -1723 -28
-*-19.919933 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -1 -1
+*-19.794596 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [sst_width] 45
-[signals_width] 343
+[signals_width] 230
 [sst_expanded] 0
 [sst_vpaned_height] 290
 @28

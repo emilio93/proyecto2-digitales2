@@ -95,6 +95,8 @@ initial begin
   mem_pesosArbitraje        <= 0;
   mem_selecciones           <= 0;
 
+
+
   # 20
   @(posedge clk);
   iniciar <= 1;
@@ -104,6 +106,26 @@ initial begin
   # 40
   @(posedge clk);
   rst <= 0;
+
+  # 20 @(posedge clk);
+  vc_id <= 1;
+  data_word <= 5;
+  # 20 @(posedge clk);
+  vc_id <= 2;
+  data_word <= 2;
+  # 20 @(posedge clk);
+  vc_id <= 3;
+  data_word <= 3;
+
+  # 20 @(posedge clk);
+  vc_id <= 0;
+  data_word <= 14;
+  # 20 @(posedge clk);
+  vc_id <= 1;
+  data_word <= 10;
+  # 20 @(posedge clk);
+  vc_id <= 2;
+  data_word <= 4;
 
   # 10
   @(posedge clk);
@@ -156,6 +178,19 @@ initial begin
   # 20 @(posedge clk);
   vc_id <= 2;
   data_word <= $urandom%15;
+
+  # 20 @(posedge clk);
+  vc_id <= 0;
+  data_word <= 14;
+  # 20 @(posedge clk);
+  vc_id <= 1;
+  data_word <= 13;
+  # 20 @(posedge clk);
+  vc_id <= 2;
+  data_word <= 11;
+  # 20 @(posedge clk);
+  vc_id <= 3;
+  data_word <= 5;
 
   # 50 @(posedge clk);
   rst <= 1;

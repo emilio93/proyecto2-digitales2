@@ -1,21 +1,21 @@
 [*]
 [*] GTKWave Analyzer v3.3.83 (w)1999-2017 BSI
-[*] Tue Nov 21 01:22:21 2017
+[*] Tue Nov 21 04:29:28 2017
 [*]
 [dumpfile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/qos_test.vcd"
-[dumpfile_mtime] "Tue Nov 21 01:22:04 2017"
-[dumpfile_size] 3101469
+[dumpfile_mtime] "Tue Nov 21 04:28:44 2017"
+[dumpfile_size] 3328815
 [savefile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/qos_test.gtkw"
 [timestart] 0
 [size] 1680 1022
 [pos] -1 -1
-*-18.816799 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-18.580021 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] qos_test.
 [treeopen] qos_test.qosTester.
 [treeopen] qos_test.qosTester.qos.
-[sst_width] 329
+[sst_width] 45
 [signals_width] 284
-[sst_expanded] 1
+[sst_expanded] 0
 [sst_vpaned_height] 459
 @28
 [color] 4
@@ -88,6 +88,7 @@ qos_test.qosTester.qos.vc0.buf_out[3:0]
 qos_test.qosTester.qos.vc1.fifo_counter[3:0]
 @28
 qos_test.qosTester.qos.vc1.rd_en
+@29
 qos_test.qosTester.qos.vc1.wr_en
 @22
 qos_test.qosTester.qos.vc1.buf_in[3:0]
@@ -98,7 +99,6 @@ qos_test.qosTester.qos.vc1.buf_out[3:0]
 qos_test.qosTester.qos.vc2.fifo_counter[3:0]
 @28
 qos_test.qosTester.qos.vc2.rd_en
-@29
 qos_test.qosTester.qos.vc2.wr_en
 @22
 qos_test.qosTester.qos.vc2.buf_in[3:0]

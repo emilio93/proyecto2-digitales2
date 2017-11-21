@@ -103,8 +103,12 @@ module qos #(
   always @ (posedge clk) begin
     if (rst) begin
       wr_en <= 1;
-      wr_en <= 1;
     end
+  end
+
+  reg delayedGrant;
+  always @ (posedge clk) begin
+    delayedGrant<=selector_roundRobin_enb_out;
   end
 
   memorias memorias(
@@ -253,10 +257,7 @@ module qos #(
     .salida_mux(buf_in)
   );
 
-  reg delayedGrant;
-  always @ (posedge clk) begin
-    delayedGrant<=selector_roundRobin_enb_out;
-  end
+
 
   fifo16 fifoSalida(
     .clk(clk), .rst(rst),

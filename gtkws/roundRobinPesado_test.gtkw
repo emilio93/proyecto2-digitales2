@@ -1,18 +1,18 @@
 [*]
 [*] GTKWave Analyzer v3.3.83 (w)1999-2017 BSI
-[*] Sat Nov 18 11:07:01 2017
+[*] Tue Nov 21 03:05:54 2017
 [*]
 [dumpfile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/roundRobinPesado_test.vcd"
-[dumpfile_mtime] "Sat Nov 18 11:05:09 2017"
-[dumpfile_size] 61443
+[dumpfile_mtime] "Tue Nov 21 02:59:26 2017"
+[dumpfile_size] 69170
 [savefile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/roundRobinPesado_test.gtkw"
 [timestart] 0
 [size] 1680 1022
 [pos] -1 -1
-*-15.831435 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-15.820958 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] roundRobinPesado_test.
 [sst_width] 45
-[signals_width] 214
+[signals_width] 206
 [sst_expanded] 0
 [sst_vpaned_height] 281
 @28
@@ -74,23 +74,6 @@ roundRobinPesado_test.rrpTester.pesos[23:0]
 (21)roundRobinPesado_test.rrpTester.pesos[23:0]
 (22)roundRobinPesado_test.rrpTester.pesos[23:0]
 (23)roundRobinPesado_test.rrpTester.pesos[23:0]
-@1401200
--group_end
-@c00022
-roundRobinPesado_test.rrpTester.test.fifo_counter[11:0]
-@28
-(0)roundRobinPesado_test.rrpTester.test.fifo_counter[11:0]
-(1)roundRobinPesado_test.rrpTester.test.fifo_counter[11:0]
-(2)roundRobinPesado_test.rrpTester.test.fifo_counter[11:0]
-(3)roundRobinPesado_test.rrpTester.test.fifo_counter[11:0]
-(4)roundRobinPesado_test.rrpTester.test.fifo_counter[11:0]
-(5)roundRobinPesado_test.rrpTester.test.fifo_counter[11:0]
-(6)roundRobinPesado_test.rrpTester.test.fifo_counter[11:0]
-(7)roundRobinPesado_test.rrpTester.test.fifo_counter[11:0]
-(8)roundRobinPesado_test.rrpTester.test.fifo_counter[11:0]
-(9)roundRobinPesado_test.rrpTester.test.fifo_counter[11:0]
-(10)roundRobinPesado_test.rrpTester.test.fifo_counter[11:0]
-(11)roundRobinPesado_test.rrpTester.test.fifo_counter[11:0]
 @1401200
 -group_end
 @200

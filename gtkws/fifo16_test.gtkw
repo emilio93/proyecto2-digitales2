@@ -1,19 +1,19 @@
 [*]
 [*] GTKWave Analyzer v3.3.83 (w)1999-2017 BSI
-[*] Sat Nov 18 11:18:07 2017
+[*] Tue Nov 21 03:17:12 2017
 [*]
 [dumpfile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/fifo16_test.vcd"
-[dumpfile_mtime] "Sat Nov 18 11:16:49 2017"
-[dumpfile_size] 125427
+[dumpfile_mtime] "Tue Nov 21 03:16:43 2017"
+[dumpfile_size] 141292
 [savefile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/fifo16_test.gtkw"
 [timestart] 0
 [size] 1680 1022
-[pos] -51 -51
-*-16.135292 411000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -1 -1
+*-15.827072 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] fifo16_test.
-[sst_width] 225
+[sst_width] 45
 [signals_width] 174
-[sst_expanded] 1
+[sst_expanded] 0
 [sst_vpaned_height] 317
 @28
 fifo16_test.ff16.clk

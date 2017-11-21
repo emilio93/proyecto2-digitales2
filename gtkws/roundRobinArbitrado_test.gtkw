@@ -1,19 +1,20 @@
 [*]
 [*] GTKWave Analyzer v3.3.83 (w)1999-2017 BSI
-[*] Sat Nov 18 11:08:55 2017
+[*] Tue Nov 21 03:07:12 2017
 [*]
 [dumpfile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/roundRobinArbitrado_test.vcd"
-[dumpfile_mtime] "Sat Nov 18 11:00:42 2017"
-[dumpfile_size] 262658
+[dumpfile_mtime] "Tue Nov 21 02:59:27 2017"
+[dumpfile_size] 330066
 [savefile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/roundRobinArbitrado_test.gtkw"
 [timestart] 0
 [size] 1680 1022
 [pos] -1 -1
-*-18.327915 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-18.225983 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] roundRobinArbitrado_test.
+[treeopen] roundRobinArbitrado_test.rrpTester.
 [treeopen] roundRobinArbitrado_test.rrpTester.test.
 [sst_width] 45
-[signals_width] 345
+[signals_width] 254
 [sst_expanded] 0
 [sst_vpaned_height] 290
 @28
@@ -33,7 +34,7 @@ roundRobinArbitrado_test.rrpTester.test.buf_empty[3:0]
 -group_end
 @200
 -
-@c00023
+@800022
 +{selecciones/pesos} roundRobinArbitrado_test.rrpTester.buf_empty[3:0]
 @24
 roundRobinArbitrado_test.rrpTester.synthTest.\arreglo_selecciones[0][1:0]
@@ -81,7 +82,7 @@ roundRobinArbitrado_test.rrpTester.synthTest.\arreglo_pesos[6][5:0]
 roundRobinArbitrado_test.rrpTester.synthTest.\arreglo_selecciones[7][1:0]
 @22
 roundRobinArbitrado_test.rrpTester.synthTest.\arreglo_pesos[7][5:0]
-@1401201
+@1001200
 -group_end
 @200
 -
