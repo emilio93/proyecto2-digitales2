@@ -1,7 +1,7 @@
 `timescale 1ns/1ps
 //liberia de celdas cmos
 `ifndef cmos_cells
-	`include "../lib/osu018_stdcells.v"
+	`include "includes.v"
 `endif
 //include de design under test(DUT), units under test(UUT)
 `ifndef fifo16
@@ -12,6 +12,8 @@
 `endif
 
 module fifo16_test #(parameter BUF_WIDTH = 4, parameter DATA_WIDTH = 4) ();
+parameter [(DATA_WIDTH-1):0] uH=2;
+parameter [(DATA_WIDTH-1):0] uL=3;
 reg clk, rst, wr_en, rd_en ;
 reg[(DATA_WIDTH-1):0] buf_in;
 reg[(DATA_WIDTH-1):0] tempdata;
@@ -22,7 +24,8 @@ wire [BUF_WIDTH :0] fifo_counter, fifo_counterSynth;
 
 fifo16 #(.BUF_WIDTH(BUF_WIDTH), .DATA_WIDTH(DATA_WIDTH)) ff16(
 	.buf_in(buf_in), .buf_out(buf_out),//datos entrada y salida
-	.clk(clk), .rst(rst), .wr_en(wr_en), .rd_en(rd_en),//señales de control
+	.clk(clk), .rst(rst), .uH(uH), .uL(uL),//señales de control,umbrales de almost_full, almost_empty
+	.wr_en(wr_en), .rd_en(rd_en),//señales de control
 	.buf_empty(buf_empty), .buf_full(buf_full),//banderas de estado del fifo
 	.almost_full(almost_full), .almost_empty(almost_empty),
 	.fifo_counter(fifo_counter) //contador de datos en fifo
@@ -30,11 +33,25 @@ fifo16 #(.BUF_WIDTH(BUF_WIDTH), .DATA_WIDTH(DATA_WIDTH)) ff16(
 
 fifo16Synth ff16Synth(
 	.buf_in(buf_in), .buf_out(buf_outSynth),
-	.clk(clk), .rst(rst), .wr_en(wr_en), .rd_en(rd_en),
+	.clk(clk), .rst(rst), .uH(uH), .uL(uL),//señales de control,umbrales de almost_full, almost_empty
+	.wr_en(wr_en), .rd_en(rd_en),
 	.buf_empty(buf_emptySynth), .buf_full(buf_fullSynth),
 	.almost_full(almost_fullSynth), .almost_empty(almost_emptySynth),
 	.fifo_counter(fifo_counterSynth)
 	);
+
+reg error_buf_full;
+reg error_buf_empty;
+reg error_almost_full;
+reg error_almost_empty;
+reg error_fifo_counter;
+always @ ( * ) begin
+	error_buf_empty = buf_emptySynth!=buf_empty;
+	error_buf_full = buf_fullSynth!=buf_full;
+	error_almost_empty = almost_emptySynth!=almost_empty;
+	error_almost_full = almost_fullSynth!=almost_full;
+	error_fifo_counter = fifo_counterSynth!=fifo_counter;
+end
 
 initial
 begin

@@ -2,54 +2,44 @@
 
 `define isTest 1
 
-`include "../lib/osu018_stdcells.v"
+`include "includes.v"
 `include "../bloques/flowControl/fsm.v"
 `include "../build/fsm-sintetizado.v"
+`include "../testers/fsmTester.v"
 
 module fsm_test();
 
-  reg clk, reset, iniciar;
-  reg [4:0] aFull;
-  reg [4:0] full;
-  reg [4:0] aEmpty;
-  reg [4:0] empty;
-  wire error, idle;
-  wire [3:0] pausa;
-  wire [3:0] continuar;
-  wire errorSynth, idleSynth;
+  reg clk, rst, enb, iniciar_in;
+  reg [4:0] almost_full_in;
+  reg [4:0] full_in;
+  reg [4:0] almost_empty_in;
+  reg [4:0] empty_in;
+
+  wire idleConduct;
+  wire [3:0] pausaConduct;
+  wire [3:0] continuarConduct;
+  wire [3:0] errorConduct;
+
+  wire idleSynth;
   wire [3:0] pausaSynth;
   wire [3:0] continuarSynth;
+  wire [3:0] errorSynth;
 
-  parameter delay = 10;
-
-  fsm fsm(
-	.iniciar(clk),
-	.reset(reset),
-	.almost_full(aFull),
-	.full(full),
-	.almost_empty(aEmpty),
-	.empty(empty),
-	.clk(clk),
-	.continuar(continuar),
-	.error_full(error),
-	.pausa(pausa),
-	.idle(idle)
-  );
-
-  fsm fsmSynth(
-	.iniciar(clk),
-	.reset(reset),
-	.almost_full(aFull),
-	.full(full),
-	.almost_empty(aEmpty),
-	.empty(empty),
-	.clk(clk),
-	.continuar(continuarSynth),
-	.error_full(errorSynth),
-	.pausa(pausaSynth),
-	.idle(idleSynth)
-  );
-
+  fsmTester fsmTester(
+    .clk(clk), .rst(rst), .enb(enb),
+    .iniciar_in(iniciar_in),
+    .almost_full_in(almost_full_in),
+    .full_in(full_in),
+    .almost_empty_in(almost_empty_in),
+    .empty_in(empty_in),
+    .continuarConduct(continuarConduct),
+    .errorConduct(errorConduct),
+    .pausaConduct(pausaConduct),
+    .idleConduct(idleConduct),
+    .continuarSynth(continuarSynth),
+    .errorSynth(errorSynth),
+    .pausaSynth(pausaSynth),
+    .idleSynth(idleSynth));
 
   always # 5 clk = ~clk;
 
@@ -60,176 +50,74 @@ module fsm_test();
     $display("fsm_test");
 
     clk <= 0;
-    reset <= 1;
+    rst <= 1;
+    enb <= 1;
 
-    iniciar <= 0;
-    aFull <= 4'b0000;
-    full <= 4'b0000;
-    aEmpty <= 4'b0001;
-    empty <= 4'b0000;
-    full <= 4'b0000;
+    iniciar_in <= 0;
+    almost_full_in <= 4'b0000;
+    full_in <= 4'b0000;
+    almost_empty_in <= 4'b0000;
+    empty_in <= 4'b1111;
+    full_in <= 4'b0000;
 
-    #delay;
+    # 30
+    @ (posedge clk);
+    rst <= 0;
 
-    #delay;
-    iniciar <= 0;
-    aFull <= 4'b0000;
-    full <= 4'b0000;
-    aEmpty <= 4'b0001;
-    empty <= 4'b0000;
-    full <= 4'b0000;
+    # 60
+    @ (posedge clk);
+    iniciar_in <= 1;
+    @ (posedge clk);
+    iniciar_in <= 0;
 
-    #delay;
-    reset <= 0;
-    iniciar <= 1;
-    #delay
-    iniciar <= 0;
+    # 40
+    empty_in <= 4'b0;
 
-    #delay;
-    iniciar <= 0;
-    aFull <= 4'b0000;
-    full <= 4'b0000;
-    aEmpty <= 4'b0001;
-    empty <= 4'b0000;
-    full <= 4'b0000;
+    # 30; @ (posedge clk);
+    almost_empty_in <= 4'b1000;
+    # 10; @ (posedge clk);
+    almost_empty_in <= 4'b0100;
+    # 10; @ (posedge clk);
+    almost_empty_in <= 4'b0010;
+    # 10; @ (posedge clk);
+    almost_empty_in <= 4'b0001;
+    # 10; @ (posedge clk);
+    almost_empty_in <= 4'b0000;
 
-    #delay;
-    iniciar <= 0;
-    aFull <= 4'b0000;
-    full <= 4'b0000;
-    aEmpty <= 4'b0001;
-    empty <= 4'b0000;
-    full <= 4'b0000;
+    # 40; @ (posedge clk);
+    almost_full_in <= 4'b1000;
+    # 10; @ (posedge clk);
+    almost_full_in <= 4'b0100;
+    # 10; @ (posedge clk);
+    almost_full_in <= 4'b0010;
+    # 10; @ (posedge clk);
+    almost_full_in <= 4'b0001;
+    # 10; @ (posedge clk);
+    almost_full_in <= 4'b0000;
 
-
-
-    iniciar <= 0;
-    aFull <= 4'b0000;
-    full <= 4'b0000;
-    aEmpty <= 4'b0000;
-    empty <= 4'b0001;
-
-    #delay;
-    iniciar <= 0;
-    aFull <= 4'b0000;
-    full <= 4'b0000;
-    aEmpty <= 4'b0001;
-    empty <= 4'b0000;
-
-    #delay;
-    iniciar <= 0;
-    aFull <= 4'b0000;
-    full <= 4'b0000;
-    aEmpty <= 4'b0001;
-    empty <= 4'b0000;
-
-    #delay;
-    iniciar <= 0;
-    aFull <= 4'b0000;
-    full <= 4'b0000;
-    aEmpty <= 4'b0000;
-    empty <= 4'b0000;
+    # 40; @ (posedge clk);
+    full_in <= 4'b1000;
+    # 10; @ (posedge clk);
+    full_in <= 4'b1100;
+    # 10; @ (posedge clk);
+    full_in <= 4'b1110;
+    # 10; @ (posedge clk);
+    full_in <= 4'b1111;
 
 
-    #delay;
-    iniciar <= 0;
-    aFull <= 4'b0001;
-    full <= 4'b0000;
-    aEmpty <= 4'b0000;
-    empty <= 4'b0000;
+    # 30; @ (posedge clk);
+    full_in <= 4'b0000;
 
+    # 10; @ (posedge clk);
+    rst <= 1;
+    # 10; @ (posedge clk);
+    rst <= 0;
 
-    #delay;
-    iniciar <= 0;
-    aFull <= 4'b0001;
-    full <= 4'b0000;
-    aEmpty <= 4'b0000;
-    empty <= 4'b0000;
+    # 30; @ (posedge clk);
+    iniciar_in <= 1;
+    # 10; @ (posedge clk);
+    iniciar_in <= 0;
 
-
-    #delay;
-    iniciar <= 0;
-    aFull <= 4'b0000;
-    full <= 4'b0001;
-    aEmpty <= 4'b0000;
-    empty <= 4'b0000;
-
-
-    #delay;
-    iniciar <= 0;
-    aFull <= 4'b0000;
-    full <= 4'b0001;
-    aEmpty <= 4'b0000;
-    empty <= 4'b0000;
-
-
-    reset = 1;
-    #delay;
-    iniciar <= 0;
-    aFull <= 4'b0000;
-    full <= 4'b0000;
-    aEmpty <= 4'b0000;
-    empty <= 4'b0000;
-
-    reset = 0;
-
-    #delay;
-    iniciar <= 1;
-    aFull <= 4'b0000;
-    full <= 4'b0000;
-    aEmpty <= 4'b0000;
-    empty <= 4'b0000;
-
-
-    #delay;
-    iniciar <= 0;
-    aFull <= 4'b0000;
-    full <= 4'b0000;
-    aEmpty <= 4'b0000;
-    empty <= 4'b0001;
-
-
-    fsm.actual = 3'b100;
-    fsmSynth.actual = 3'b100;
-    #delay
-
-    fsm.actual = 3'b010;
-    fsmSynth.actual = 3'b010;
-    #delay
-
-    fsmSynth.actual = 3'b001;
-    fsm.actual = 3'b001;
-    #delay
-
-    fsmSynth.actual = 3'b110;
-    fsm.actual = 3'b110;
-    #delay
-
-    fsmSynth.actual = 3'b101;
-    fsm.actual = 3'b101;
-    #delay
-
-    fsmSynth.actual = 3'b011;
-    fsm.actual = 3'b011;
-    #delay
-
-    fsmSynth.actual = 3'b111;
-    fsm.actual = 3'b111;
-    #delay
-
-    fsmSynth.actual = 3'b101;
-    fsm.actual = 3'b101;
-    #delay
-
-    fsmSynth.actual = 3'b110;
-    fsm.actual = 3'b110;
-    #delay
-
-    fsmSynth.actual = 3'b001;
-    fsm.actual = 3'b001;
-    #delay
-
-
-    # 15 $finish;
+    # 50; $finish;
   end
 endmodule

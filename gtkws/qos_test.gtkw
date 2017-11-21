@@ -1,0 +1,215 @@
+[*]
+[*] GTKWave Analyzer v3.3.83 (w)1999-2017 BSI
+[*] Tue Nov 21 01:22:21 2017
+[*]
+[dumpfile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/qos_test.vcd"
+[dumpfile_mtime] "Tue Nov 21 01:22:04 2017"
+[dumpfile_size] 3101469
+[savefile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/qos_test.gtkw"
+[timestart] 0
+[size] 1680 1022
+[pos] -1 -1
+*-18.816799 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] qos_test.
+[treeopen] qos_test.qosTester.
+[treeopen] qos_test.qosTester.qos.
+[sst_width] 329
+[signals_width] 284
+[sst_expanded] 1
+[sst_vpaned_height] 459
+@28
+[color] 4
+qos_test.qosTester.clk
+[color] 4
+qos_test.qosTester.enb
+[color] 4
+qos_test.qosTester.rst
+@22
+[color] 4
+qos_test.qosTester.umbral_max[3:0]
+[color] 4
+qos_test.qosTester.umbral_min[3:0]
+@28
+[color] 4
+qos_test.qosTester.mem_seleccion_roundRobin[1:0]
+@22
+[color] 4
+qos_test.qosTester.mem_pesos[23:0]
+[color] 4
+qos_test.qosTester.mem_pesosArbitraje[47:0]
+[color] 4
+qos_test.qosTester.mem_selecciones[15:0]
+@200
+-MEMORIAS
+@28
+qos_test.qosTester.qos.memorias.seleccion_roundRobin_out[1:0]
+@22
+qos_test.qosTester.qos.memorias.pesos_out[23:0]
+qos_test.qosTester.qos.memorias.pesosArbitraje_out[47:0]
+qos_test.qosTester.qos.memorias.selecciones_out[15:0]
+qos_test.qosTester.qos.memorias.umbral_max_out[3:0]
+qos_test.qosTester.qos.memorias.umbral_min_out[3:0]
+@200
+-
+@28
+[color] 4
+qos_test.qosTester.iniciar
+[color] 4
+qos_test.qosTester.vc_id[1:0]
+@22
+[color] 4
+qos_test.qosTester.data_word[3:0]
+@200
+-ROUND ROBIN
+@28
+qos_test.qosTester.qos.interfazRoundRobin.selector[1:0]
+qos_test.qosTester.qos.interfazRoundRobin.selector_enb
+@200
+-fifo0
+@22
+qos_test.qosTester.qos.vc0.fifo_counter[3:0]
+@28
+qos_test.qosTester.qos.vc0.rd_en
+qos_test.qosTester.qos.vc0.wr_en
+@c00022
+qos_test.qosTester.qos.vc0.buf_in[3:0]
+@28
+(0)qos_test.qosTester.qos.vc0.buf_in[3:0]
+(1)qos_test.qosTester.qos.vc0.buf_in[3:0]
+(2)qos_test.qosTester.qos.vc0.buf_in[3:0]
+(3)qos_test.qosTester.qos.vc0.buf_in[3:0]
+@1401200
+-group_end
+@22
+qos_test.qosTester.qos.vc0.buf_out[3:0]
+@200
+-fifo1
+@22
+qos_test.qosTester.qos.vc1.fifo_counter[3:0]
+@28
+qos_test.qosTester.qos.vc1.rd_en
+qos_test.qosTester.qos.vc1.wr_en
+@22
+qos_test.qosTester.qos.vc1.buf_in[3:0]
+qos_test.qosTester.qos.vc1.buf_out[3:0]
+@200
+-fifo2
+@22
+qos_test.qosTester.qos.vc2.fifo_counter[3:0]
+@28
+qos_test.qosTester.qos.vc2.rd_en
+@29
+qos_test.qosTester.qos.vc2.wr_en
+@22
+qos_test.qosTester.qos.vc2.buf_in[3:0]
+qos_test.qosTester.qos.vc2.buf_out[3:0]
+@200
+-fifo3
+@22
+qos_test.qosTester.qos.vc3.fifo_counter[3:0]
+@28
+qos_test.qosTester.qos.vc3.rd_en
+qos_test.qosTester.qos.vc3.wr_en
+@22
+qos_test.qosTester.qos.vc3.buf_in[3:0]
+qos_test.qosTester.qos.vc3.buf_out[3:0]
+@200
+-fifo_salida
+@22
+qos_test.qosTester.qos.fifoSalida.fifo_counter[4:0]
+@28
+qos_test.qosTester.qos.fifoSalida.rd_en
+qos_test.qosTester.qos.fifoSalida.wr_en
+@22
+qos_test.qosTester.qos.fifoSalida.buf_in[3:0]
+qos_test.qosTester.qos.fifoSalida.buf_out[3:0]
+@200
+-CONDUCTUAL
+@c00022
+[color] 3
+qos_test.qosTester.qos.fsm.state[6:0]
+@28
+[color] 3
+(0)qos_test.qosTester.qos.fsm.state[6:0]
+[color] 3
+(1)qos_test.qosTester.qos.fsm.state[6:0]
+[color] 3
+(2)qos_test.qosTester.qos.fsm.state[6:0]
+[color] 3
+(3)qos_test.qosTester.qos.fsm.state[6:0]
+[color] 3
+(4)qos_test.qosTester.qos.fsm.state[6:0]
+[color] 3
+(5)qos_test.qosTester.qos.fsm.state[6:0]
+[color] 3
+(6)qos_test.qosTester.qos.fsm.state[6:0]
+@1401200
+-group_end
+@800022
+[color] 3
+qos_test.qosTester.qos.error_full[3:0]
+@28
+[color] 3
+(0)qos_test.qosTester.qos.error_full[3:0]
+[color] 3
+(1)qos_test.qosTester.qos.error_full[3:0]
+[color] 3
+(2)qos_test.qosTester.qos.error_full[3:0]
+[color] 3
+(3)qos_test.qosTester.qos.error_full[3:0]
+@1001200
+-group_end
+@22
+[color] 3
+qos_test.qosTester.qos.pausa[3:0]
+[color] 3
+qos_test.qosTester.qos.continuar[3:0]
+@28
+[color] 3
+qos_test.qosTester.qos.idle
+@22
+[color] 3
+qos_test.qosTester.qos.dataOut[3:0]
+@200
+-ESTRUCTURAL
+@22
+[color] 2
+qos_test.qosTester.qosSynth.fsm.state[6:0]
+[color] 2
+qos_test.qosTester.qosSynth.error_full[3:0]
+@c00022
+[color] 2
+qos_test.qosTester.qosSynth.pausa[3:0]
+@28
+(0)qos_test.qosTester.qosSynth.pausa[3:0]
+(1)qos_test.qosTester.qosSynth.pausa[3:0]
+(2)qos_test.qosTester.qosSynth.pausa[3:0]
+(3)qos_test.qosTester.qosSynth.pausa[3:0]
+@1401200
+-group_end
+@22
+[color] 2
+qos_test.qosTester.qosSynth.continuar[3:0]
+@28
+[color] 2
+qos_test.qosTester.qosSynth.idle
+@22
+[color] 2
+qos_test.qosTester.qosSynth.dataOut[3:0]
+@200
+-ERRORES
+@28
+[color] 4
+qos_test.qosTester.errContinuar
+[color] 4
+qos_test.qosTester.errDataOut
+[color] 4
+qos_test.qosTester.errError_full
+[color] 4
+qos_test.qosTester.errIdle
+[color] 4
+qos_test.qosTester.errPausa
+@200
+-
+[pattern_trace] 1
+[pattern_trace] 0

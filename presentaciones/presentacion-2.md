@@ -98,11 +98,10 @@ endcase
 ---
 
 # Bloque Mux-Demux
-<br >
 
 #### Archivo .gtkw de las señales del muxDemux_test
 
-![80% center](presentacion-2/TestMuxDemux.png)
+![85% center](presentacion-2/TestMuxDemux.png)
 _De: ```muxDemux_test.v```_
 
 ---
@@ -177,7 +176,7 @@ module roundRobinPesado #(
   input 
   [((QUEUE_QUANTITY)*($clog2(MAX_WEIGHT)))-1:0] pesos,
   input [QUEUE_QUANTITY-1:0] buf_empty,
-  input [(QUEUE_QUANTITY*BUF_WIDTH)-1:0] fifo_counter,
+  input [(QUEUE_QUANTITY*$clog2(MAX_WEIGHT))-1:0] fifo_counter,
   output [$clog2(QUEUE_QUANTITY)-1:0] selector,
   output selector_enb
 );
@@ -222,7 +221,7 @@ always @(actual ... or init) begin
 # Maquina de estados
 
 #### Archivo .gtkw de las señales del fsm_test
-![center](presentacion-2/fsm.png)
+![center](presentacion-2/fsm.jpg)
 _De: ```fsm_test.v```_
 ---
 

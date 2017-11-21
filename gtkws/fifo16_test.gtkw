@@ -1,29 +1,28 @@
 [*]
-[*] GTKWave Analyzer v3.3.66 (w)1999-2015 BSI
-[*] Mon Nov  6 10:12:21 2017
+[*] GTKWave Analyzer v3.3.83 (w)1999-2017 BSI
+[*] Sat Nov 18 11:18:07 2017
 [*]
-[dumpfile] "/home/ubuntu/BMC_git/proyecto2-digitales2/gtkws/fifo16_test.vcd"
-[dumpfile_mtime] "Mon Nov  6 09:57:51 2017"
-[dumpfile_size] 116779
-[savefile] "/home/ubuntu/BMC_git/proyecto2-digitales2/gtkws/fifo16_test.gtkw"
-[timestart] 44900
-[size] 1317 744
-[pos] -1 -1
-*-16.135292 119300 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[dumpfile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/fifo16_test.vcd"
+[dumpfile_mtime] "Sat Nov 18 11:16:49 2017"
+[dumpfile_size] 125427
+[savefile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/fifo16_test.gtkw"
+[timestart] 0
+[size] 1680 1022
+[pos] -51 -51
+*-16.135292 411000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] fifo16_test.
 [sst_width] 225
 [signals_width] 174
 [sst_expanded] 1
-[sst_vpaned_height] 211
+[sst_vpaned_height] 317
 @28
 fifo16_test.ff16.clk
 fifo16_test.ff16.rd_en
 fifo16_test.ff16.rst
 @200
 -Fifo16 Conductual
-@23
-fifo16_test.ff16.buf_in[3:0]
 @22
+fifo16_test.ff16.buf_in[3:0]
 [color] 3
 fifo16_test.ff16.fifo_counter[4:0]
 [color] 3
@@ -73,5 +72,14 @@ fifo16_test.ff16Synth.almost_empty
 fifo16_test.ff16Synth.almost_full
 [color] 2
 fifo16_test.ff16Synth.buf_full
+@200
+-ERRORES
+@28
+fifo16_test.error_almost_empty
+fifo16_test.error_buf_empty
+fifo16_test.error_almost_full
+fifo16_test.error_buf_full
+@29
+fifo16_test.error_fifo_counter
 [pattern_trace] 1
 [pattern_trace] 0

@@ -1,18 +1,18 @@
 [*]
-[*] GTKWave Analyzer v3.3.66 (w)1999-2015 BSI
-[*] Mon Nov  6 07:04:37 2017
+[*] GTKWave Analyzer v3.3.83 (w)1999-2017 BSI
+[*] Sat Nov 18 11:24:35 2017
 [*]
-[dumpfile] "/home/ubuntu/BMC_git/proyecto2-digitales2/gtkws/muxDemux_test.vcd"
-[dumpfile_mtime] "Mon Nov  6 06:50:21 2017"
-[dumpfile_size] 11910
-[savefile] "/home/ubuntu/BMC_git/proyecto2-digitales2/gtkws/muxDemux_test.gtkw"
+[dumpfile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/muxDemux_test.vcd"
+[dumpfile_mtime] "Sat Nov 18 11:23:30 2017"
+[dumpfile_size] 12169
+[savefile] "/home/dvl/Desktop/ucr/2017-ii/523/proy2/gtkws/muxDemux_test.gtkw"
 [timestart] 0
-[size] 1317 716
-[pos] -1 -1
-*-14.000000 8430 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[size] 1680 1022
+[pos] -51 -51
+*-13.372912 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] muxDemux_test.
-[sst_width] 43
-[signals_width] 310
+[sst_width] 45
+[signals_width] 174
 [sst_expanded] 0
 [sst_vpaned_height] 313
 @28
@@ -74,5 +74,18 @@ muxDemux_test.demuxSynth.salida1_dmux[3:0]
 muxDemux_test.demuxSynth.salida2_dmux[3:0]
 [color] 2
 muxDemux_test.demuxSynth.salida3_dmux[3:0]
+@200
+-ERRORES
+@28
+[color] 4
+muxDemux_test.error_salida0
+[color] 4
+muxDemux_test.error_salida1
+[color] 4
+muxDemux_test.error_salida2
+[color] 4
+muxDemux_test.error_salida3
+[color] 4
+muxDemux_test.error_salida_mux
 [pattern_trace] 1
 [pattern_trace] 0

@@ -2,7 +2,7 @@
 
 `define isTest 1
 
-`include "../lib/osu018_stdcells.v"
+`include "includes.v"
 `include "../bloques/roundRobin/roundRobinPesado.v"
 `include "../build/roundRobinPesado-sintetizado.v"
 `include "../testers/roundRobinPesadoTester.v"
@@ -12,7 +12,6 @@ module roundRobinPesado_test #(parameter QUEUE_QUANTITY = 4, parameter DATA_BITS
   reg clk, rst, enb;
   reg [QUEUE_QUANTITY*$clog2(MAX_WEIGHT)-1:0] pesos;
   reg [QUEUE_QUANTITY-1:0] buf_empty;
-  reg [QUEUE_QUANTITY*BUF_WIDTH-1:0] fifo_counter;
   wire [$clog2(QUEUE_QUANTITY)-1:0] selector;
   wire [$clog2(QUEUE_QUANTITY)-1:0] sint_selector;
   wire selector_enb;
@@ -22,7 +21,6 @@ module roundRobinPesado_test #(parameter QUEUE_QUANTITY = 4, parameter DATA_BITS
     .clk(clk), .rst(rst), .enb(enb),
     .pesos(pesos),
     .buf_empty(buf_empty),
-    .fifo_counter(fifo_counter),
     .selector(selector),
     .selector_enb(selector_enb),
     .sint_selector(sint_selector),
@@ -40,7 +38,6 @@ module roundRobinPesado_test #(parameter QUEUE_QUANTITY = 4, parameter DATA_BITS
     rst <= 1;
     enb <= 1;
     buf_empty <= 4'b0000;
-    fifo_counter <= {4'b1000, 4'b1000, 4'b1000, 4'b1000};
     pesos <= {6'b110, 6'b11, 6'b10, 6'b1};
 
     # 15

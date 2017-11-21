@@ -3,298 +3,168 @@
 `ifndef fsm
 `define fsm
 
-//Usar mas de un always, usar one Hot o parecido, especificar.
-
 module fsm(
+  input clk, input rst, input enb,
+
   input iniciar,
-  input reset,
   input [4:0] almost_full,
   input [4:0] full,
   input [4:0] almost_empty,
   input [4:0] empty,
-  input clk,
+
   output [3:0] continuar,
-  output error_full,
+  output [3:0] error_full,
   output [3:0] pausa,
   output idle
-);
+  );
+
+  // DEFINICION ONEHOT
+  /*               n  hex codificado
+  * RESET          0  01
+  * ERROR          1  02
+  * INIT           2  04
+  * IDLE_EMPTY     3  08
+  * PAUSE          4  10
+  * CONTINUE_STATE 5  20
+  * ACTIVE         6  40
+  * */
+  parameter
+  RESET          = 0,
+  ERROR          = 1,
+  INIT           = 2,
+  IDLE_EMPTY     = 3,
+  PAUSE          = 4,
+  CONTINUE_STATE = 5,
+  ACTIVE         = 6;
+
+  reg [6:0] state, next;
 
   // Entradas
-  wire iniciar, reset;
+  wire clk,rst, enb;
+  wire iniciar;
   wire [4:0] almost_full;//5 fifos
   wire [4:0] full;
   wire [4:0] almost_empty;
   wire [4:0] empty;
-  wire clk;
 
   //Salidas
-  reg error_full;
+  reg [3:0] error_full;
   reg [3:0] pausa;//solo 4 fifos de arriba
   reg [3:0] continuar;
   reg idle;
 
-  //Se tienen 7 estados por lo tanto basta representarlos con 3 bits en
-  //Codificacion binario ordinario
-
-  //Variables internas
-  /*
-  * active7
-  * pause5
-  * error2
-  * rst1
-  * continuee6
-  * idle4
-  * init3
-  * */
-  parameter [2:0] rst = 3'b001, error = 3'b010, init = 3'b100, idleEmpty = 3'b011, pause = 3'b101, continuee = 3'b110,  active = 3'b111;
-
-  reg [2:0] proximo = 3'b011;	//iniciales
-  reg [2:0] actual; 
-
-//  always @(posedge clk or negedge reset)begin
-//	  if (!rst) actual <= active;
-//	  else actual <= proximo;
-//end
-/*
+  // ALWAYS PARA ONEHOT SECUENCIAL
+  // RST Y ACTUALIZACION DE ESTADO
   always @(posedge clk)begin
-	  actual <= proximo;
-  end
-*/
-  always @(posedge clk)begin
-	  if (rst) actual <= init;
-	  else actual <= proximo;
+    if (rst) begin
+      // ASIGNAR ESTADO DE RESET
+      state <= 0;
+      state[RESET] <= 1'b1;
+    end else begin
+      // PASAR AL SIGUIENTE ESTADO
+      state <= next;
+    end
   end
 
-//  always @(posedge clk)begin
+  // ALWAYS PARA ONEHOT COMBINACIONAL
+  // SELECCION DE ESTADO SIGUIENTE.
+  always @(*) begin
+    next = 0; // se limpia next para tener solo un bit arriba
+    case (1'b1)
+      // para estado active, puede pasar a CONTINUE_STATE, PAUSE, IDLE_EMPTY
+      // o ERROR
+      state[ACTIVE] : begin
+        if(full > 0) next[ERROR] = 1'b1; // existe algun fifo con señal full en alto
+        else if(almost_full > 0) next[PAUSE] = 1'b1; // || almost_full ||
+        else if(empty > 0) next[IDLE_EMPTY] = 1'b1; // IDLE EMPTY
+        else if(almost_empty > 0) next[CONTINUE_STATE] = 1'b1; // CONTINUE_STATE
+        else next[ACTIVE] = 1'b1; // se mantiene en active
+      end
 
-//	  else actual <= proximo;
-//
-	  /*
-	always @(*) begin
-		if(actual == init ) begin 
-			if(iniciar) begin
-			proximo = idleEmpty;
-			continuar = 4'b0000;	//4
-			pausa = 4'b0000;	//4
-			error_full = 0;
-			idle = 0;
-		end else begin
-			proximo = init;
-			continuar = 4'b0000;	//4
-			pausa = 4'b0000;	//4
-			error_full = 0;
-			idle = 0;
-		end
-		end
-		else if(actual == idleEmpty) begin 
-			if(|empty)begin
-			proximo = idleEmpty;
-			continuar = 4'b1111;	//4
-			pausa = 4'b0000;	//4
-			error_full = 0;
-			idle = 1;
-		end else begin
-			proximo = active;
-			continuar = 4'b1111;	//4
-			pausa = 4'b0000;	//4
-			error_full = 0;
-			idle = 0;
+      state[CONTINUE_STATE] : begin
+        next[ACTIVE] = 1'b1; // siempre regresa a active
+      end
 
-		end
-		end
-		else if(actual == active) begin
-		       	if(full == 0 ) begin 
-			proximo = error;
-			continuar = 4'b1111;	//4
-			pausa = 4'b0000;	//4
-			error_full = 0;
-			idle = 0;
-		end	else begin
-			if(almost_full > 0) begin
-			proximo = pause;
-			continuar = 4'b0000;	//4
-			pausa = 4'b1111;	//4
-			error_full = 0;
-			idle = 0;
-		end else begin
-			proximo = continuee;
-			continuar = 4'b1111;	//4
-			pausa = 4'b0000;	//4
-			error_full = 0;
-			idle = 0;
-		end
-	end
-	end
-	else if(actual == continuee) begin
-			proximo = active;
-			continuar = 4'b1111;	//4
-			pausa = 4'b0000;	//4
-			error_full = 0;
-			idle = 0;
-		end
-		else if(actual == pause) begin
-			if(almost_full > 0) begin
-			proximo = pause;
-			continuar = 4'b0000;	//4
-			pausa = 4'b1111;	//4
-			error_full = 0;
-			idle = 0;
-		end
-		else begin
-			proximo = active;
-			continuar = 4'b0000;	//4
-			pausa = 4'b0000;	//4
-			error_full = 0;
-			idle = 0;
-		end
-	end else if(actual == error ) begin
-			if(reset) begin
-			proximo = rst;
-			continuar = 4'b0000;	//4
-			pausa = 4'b0000;	//4
-			error_full = 1;
-			idle = 0;
-		end else begin
-			proximo = error;
-			continuar = 4'b0000;	//4
-			pausa = 4'b0000;	//4
-			error_full = 1;
-			idle = 0;
-		end
-	end else if(actual == rst) begin
-		if(!reset) begin
-			proximo = init;
-			continuar = 4'b0000;	//4
-			pausa = 4'b0000;	//4
-			error_full = 0;
-			idle = 0;
-		end
-		else begin
-			proximo = rst;
-			continuar = 4'b0000;	//4
-			pausa = 4'b0000;	//4
-			error_full = 1;
-			idle = 0;
-		end
-	end
-	else 
-		actual = active;
-		proximo = idleEmpty;
-		continuar = 4'b0000;	//4
-		pausa = 4'b0000;	//4
-		error_full = 0;
-		idle = 0;
+      state[PAUSE] : begin
+        next[ACTIVE] = 1'b1; // siempre regresa a active
+      end
 
-	end*/
+      state[IDLE_EMPTY] : begin
+        if(empty) next[IDLE_EMPTY] = 1'b1;
+        else next[ACTIVE] = 1'b1;
+      end
 
-	always @(*) begin
-//		actual = proximo;
-		case(actual)
+      state[INIT] : begin
+        if (iniciar) begin
+          next[IDLE_EMPTY] = 1'b1;
+        end else begin
+          next[INIT] = 1'b1;
+        end
+      end
 
-			active : begin
-				if(full > 4'b0000) proximo = error;
-					else if(almost_full > 4'b0000) proximo = pausa;
-					else if(empty > 4'b0000) proximo = idleEmpty;
-					else if(almost_empty > 4'b0000) proximo = continuee;
-				else proximo = active;
-			end
+      state[ERROR] : begin
+        if (!rst) next[ERROR] = 1'b1;
+        else next[RESET] = 1'b1;
+      end
 
-			continuee : begin 
-				if(full > 4'b0000) proximo = error;
-					else proximo =  active;
-			end
+      state[RESET] :  begin
+        if (!rst) begin
+          next[INIT] = 1'b1;
+        end else begin
+          next[RESET] = 1'b1;
+        end
+      end
 
-			pause : begin 
-				if(almost_full > 4'b0000) proximo = pause;
-					else proximo =  active;
-			end  
+      default:
+       next = state;
+    endcase
+  end
 
-			idleEmpty : begin 
-				if(|empty) proximo = active;
-					else proximo = idleEmpty;
-			end
+  // ALWAYS PARA ONEHOT SECUENCIAL
+  // ASIGNACION DE SALIDAS
+  always @(posedge clk) begin
+    continuar <= 1'b0;
+    pausa <= 1'b0;
+    error_full <= 1'b0;
+    idle <= 1'b0;
+    if (!rst) begin
+      case (1'b1)
+        next[INIT] : begin
+          // permite la modificación de registros
+          // 'Tabla de Arbitraje' y 'Umbrales'
+        end
 
-			init : begin 
-				if(iniciar) begin 
-					proximo = 3'b011;//idleEmpty
-				end
-					else proximo = init;
-			end
+        // IDLE SE MANTINE EN 1 MIENTRAS ESTÉ EN IDLE EMPTY
+        next[IDLE_EMPTY] : begin
+          idle <= 1;
+        end
 
-			error : begin  
-				if (!reset) proximo = error;
-					else proximo = rst;
-			end
+        // TRANSMISION DE DATOS POR DEFECTO
+        next[ACTIVE] : begin
+        end
 
-			rst :  begin
-			       	if(reset)proximo = idleEmpty;
-					else proximo = rst;
-			end
+        // SEÑAL ALMOST FULL SE ENVIA EN PAUSA
+        // ESTO INDICA AL FIFO QUE DEBE DEJAR DE
+        // RECIBIR DATOS(wr_en en bajo)
+        // strobe
+        next[PAUSE] : begin
+          pausa <= almost_full;
+        end
 
-			default : begin
-				actual = actual;
-				proximo = proximo;
-			end
+        // CONTINUE_STATE indica que un fifo está casi vacio
+        // por lo que evita sacar datos de este (rd_en en bajo)
+        // strobe
+        next[CONTINUE_STATE] : begin
+          continuar <= almost_empty;
+        end
 
-		endcase
-	end
-
-	always @(posedge clk) begin
-	case(actual)
-
-		init, active : begin
-			continuar <= 0;
-			pausa <= 0;
-			error_full <= 0;
-			idle <= 0;
-		end
-
-		continuee : begin 
-			continuar <= 1;
-			pausa <= 0;
-			error_full <= 0;
-			idle <= 0;
-		end
-
-		pause : begin 
-			continuar <= 0;
-			pausa <= 1;
-			error_full <= 0;
-			idle <= 0;
-		end  
-
-		idleEmpty : begin 
-			continuar <= 0;
-			pausa <= 0;
-			error_full <= 0;
-			idle <= 1;
-		end
-
-	/*	init : begin 
-			continuar <= 0;
-			pausa <= 0;
-			error_full <= 0;
-			idle <= 0;
-		end
-	*/
-		error, rst : begin  
-			continuar <= 0;
-			pausa <= 0;
-			error_full <= 1;
-			idle <= 0;
-		end
-
-/*		rst :  begin 
-			continuar <= 0;
-			pausa <= 0;
-			error_full <= 1;
-			idle <= 0;
-		end
-		*/
-
-	endcase
-end
-//*/
+        // INDICA ERRORES DE FIFOS FULL SE MANTIENE EN ESTE ESTADO
+        // HASTA TENER UNA SEÑAL DE RESET
+        next[ERROR], next[RESET] : begin
+          error_full <= full;
+        end
+      endcase
+    end
+  end
 endmodule // fsm
 `endif
-

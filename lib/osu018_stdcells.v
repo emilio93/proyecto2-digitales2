@@ -1,3 +1,4 @@
+`ifdef COMPILACION
 `timescale 1ns/10ps
 `celldefine
 module AND2X1 (A, B, Y);
@@ -1048,3 +1049,4 @@ primitive udp_mux2 (out, in0, in1, sel);
    endtable
 endprimitive // udp_mux2
 
+`endif
