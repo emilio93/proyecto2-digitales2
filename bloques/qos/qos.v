@@ -26,8 +26,8 @@ module qos #(
   parameter MAX_WEIGHT = 64,       // El peso máximo es de 64 = 2^6
   parameter TABLE_SIZE = 8,        // Tamaño de la tabla de arbitraje
   parameter MAX_MAG_UMBRAL = 16,   // Tamaño máximo de los umbrales
-  parameter TIPOS_ROUND_ROBIN = 3, // Tamaño máximo de los umbrales
-  parameter FIFO_COUNT = 5
+  parameter TIPOS_ROUND_ROBIN = 3, // Tipos de RoundRobin
+  parameter FIFO_COUNT = 5	   // Cantidades de Fifos	
 )(
   input clk, rst, enb,
   input iniciar,
